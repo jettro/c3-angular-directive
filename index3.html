@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- 
+	Doing more with the options of c3 by creating the configuration object
+	using angularJS and input from the user.
+ -->
+<html ng-app="graphApp">
+<head>
+	<meta charset="utf-8">
+
+	<link href="css/c3-0.2.4.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="GraphCtrl">
+	<form novalidate>
+		<p>Enter in format: val1,val2,val3,etc</p>
+		<input ng-model="config.data1" type="text" size="100"/>
+		<select ng-model="config.type1" ng-options="typeOption for typeOption in typeOptions"></select>
+		<p>Enter in format: val1,val2,val3,etc</p>
+		<input ng-model="config.data2" type="text" size="100"/>
+		<select ng-model="config.type2" ng-options="typeOption for typeOption in typeOptions"></select>
+	</form>
+	<p>After pushing the following button the chart will be shown.</p>
+	<button ng-click="showGraph()">Show graph</button>
+	<div id="chart"></div>
+
+	<!-- Load the javascript libraries -->
+	<script src="js/d3/d3-3.4.11.min.js" charset="utf-8"></script>
+	<script src="js/c3/c3-0.2.4.min.js"></script>
+	<script src="js/angular/angular-1.2.21.min.js"></script>
+	<script src="js/graph-app-3.js"></script>
+</body>
+</html>

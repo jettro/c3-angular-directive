@@ -1,0 +1,24 @@
+<!doctype html>
+<!-- 
+	Most basic sample showing the c3js sample in it's most basic form. However
+	the graph is now initialized by using an AngularJS function call after
+	pushing the button.
+ -->
+<html ng-app="graphApp">
+<head>
+	<meta charset="utf-8">
+
+	<link href="css/c3-0.2.4.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="GraphCtrl">
+	<p>After pushing the following button the chart will be shown.</p>
+	<button ng-click="showGraph()">Show graph</button>
+	<div id="chart"></div>
+
+	<!-- Load the javascript libraries -->
+	<script src="js/d3/d3-3.4.11.min.js" charset="utf-8"></script>
+	<script src="js/c3/c3-0.2.4.min.js"></script>
+	<script src="js/angular/angular-1.2.21.min.js"></script>
+	<script src="js/graph-app-2.js"></script>
+</body>
+</html>

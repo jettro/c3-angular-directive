@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- 
+	Most basic sample showing the c3js sample in it's most basic form.
+ -->
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<link href="css/c3-0.2.4.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="chart"></div>
+
+	<!-- Load the javascript libraries -->
+	<script src="js/d3/d3-3.4.11.min.js" charset="utf-8"></script>
+	<script src="js/c3/c3-0.2.4.min.js"></script>
+
+	<!-- Initialize and draw the chart -->
+	<script type="text/javascript">
+		var chart = c3.generate({
+		    bindto: '#chart',
+		    data: {
+		      columns: [
+		        ['data1', 30, 200, 100, 400, 150, 250],
+		        ['data2', 50, 20, 10, 40, 15, 25]
+		      ]
+		    }
+		});
+	</script>
+
+</body>
+</html>
