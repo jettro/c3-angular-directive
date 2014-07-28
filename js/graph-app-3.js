@@ -14,7 +14,7 @@ graphApp.controller('GraphCtrl', function ($scope) {
 
 	$scope.showGraph = function() {
 		var config = {};
-		config.binto = '#chart';
+		config.bindto = '#chart';
 		config.data = {};
 		config.data.json = {};
 		config.data.json.data1 = $scope.config.data1.split(",");

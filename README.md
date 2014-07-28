@@ -1,2 +1,2 @@
-This repository will contain some samples to demonostrate what you can do when you integrate AngularJS with C3JS.
+This repository will contain some samples to demonstrate what you can do when you integrate AngularJS with C3JS.
 
