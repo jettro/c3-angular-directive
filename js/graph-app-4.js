@@ -1,6 +1,6 @@
 var graphApp = angular.module('graphApp', ['graphApp.services']);
 
-graphApp.controller('GraphCtrl', ['$scope','$timeout','dataService',function ($scope,$timeout,dataService) {
+graphApp.controller('GraphCtrl', function ($scope,$timeout,dataService) {
 	$scope.chart = null;
 	$scope.config={};
 
@@ -47,10 +47,10 @@ graphApp.controller('GraphCtrl', ['$scope','$timeout','dataService',function ($s
 			},1000);			
 		});
 	}
-}]);
+});
 
 var services = angular.module('graphApp.services', []);
-services.factory('dataService', [function() {
+services.factory('dataService', function() {
 	function DataService() {
 		var data = [];
 		var numDataPoints = 60;
@@ -69,4 +69,4 @@ services.factory('dataService', [function() {
 		}
 	}
 	return new DataService();
-}]);
+});
