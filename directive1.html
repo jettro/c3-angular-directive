@@ -11,12 +11,15 @@
 		<chart-column column-title="data 1" 
 					  column-values="30,200,100,400,150,250"
 					  column-type="spline"/>
-		<chart-column column-title="data 2" 
+<!-- 		<chart-column column-title="data 2" 
 		              column-values="50,20,10,40,15,25"
 		              column-type="line"/>
+ -->		<chart-axis axis-id="y"
+		            axis-position="outer-right"
+	            	axis-label="Some random numbers"/>
 	</c3chart>
 
-	<c3chart bindto-id="chart2" values-x="x">
+	<c3chart bindto-id="chart2">
 		<chart-column column-title="x" 
 					  column-values="10,20,30,40,50,60"/>
 		<chart-column column-title="data 1" 
@@ -25,9 +28,23 @@
 		<chart-column column-title="data 2" 
 		              column-values="50,20,10,40,15,25"
 		              column-type="line"/>
-<!-- 		<chart-axis axis-position=""
-		            axis-label=""/>
- -->	</c3chart>
+		<chart-column column-title="data 3" 
+		              column-values="150,20,100,70,85,215"
+		              column-type="spline"/>
+
+		<!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
+		<chart-axes values-x="x" y="data 1,data 3" y2="data 2"/>
+
+		<chart-axis axis-id="x"
+		            axis-position="outer-center"
+	            	axis-label="Number by 10"/>
+		<chart-axis axis-id="y"
+		            axis-position="outer-right"
+	            	axis-label="Higher numbers"/>
+		<chart-axis axis-id="y2"
+		            axis-position="outer-right"
+	            	axis-label="Lower numbers"/>
+	</c3chart>
 
 	<!-- Load the javascript libraries -->
 	<script src="js/d3/d3-3.4.11.min.js" charset="utf-8"></script>

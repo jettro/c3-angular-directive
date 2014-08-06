@@ -6,13 +6,16 @@ graphApp.directive('c3chart', function($timeout) {
 		$scope.chart = null;
 		$scope.columns = [];
 		$scope.types = {};
+		$scope.axis = {};
+		$scope.axes = {};
+		$scope.xValues= null;
 
 		this.addColumn = function(column,columnType) {
 			$scope.columns.push(column);
 			if (columnType !== undefined) {
 				$scope.types[column[0]]=columnType;
 			}
-		}
+		};
 
 		this.showGraph = function() {
 			var config = {};			
@@ -23,8 +26,26 @@ graphApp.directive('c3chart', function($timeout) {
 			}
 			config.data.columns = $scope.columns;
 			config.data.types = $scope.types;
+			config.data.axes = $scope.axes;
+			config.axis = $scope.axis;
+			console.log(config);
 			$scope.chart = c3.generate(config);				
-		}
+		};
+
+		this.addYAxis = function(yAxis) {
+			$scope.axes = yAxis;
+			if (!$scope.axis.y2) {
+				$scope.axis.y2={"show":true};				
+			}
+		};
+
+		this.addXAxisValues = function(xValues) {
+			$scope.xValues = xValues;
+		};
+
+		this.addAxisProperties = function(id,axis) {
+			$scope.axis[id]=axis;
+		};
 	};
 
 	var chartLinker = function(scope,element,attrs,chartCtrl) {
@@ -37,8 +58,7 @@ graphApp.directive('c3chart', function($timeout) {
 	return {
 		"restrict": "E",
 		"scope": {
-			"bindto":"@bindtoId",
-			"xValues":"@valuesX"
+			"bindto":"@bindtoId"
 		},
 		"template":"<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
 		"replace":true,
@@ -61,6 +81,65 @@ graphApp.directive('chartColumn', function() {
 		"scope": {},
 		"replace":true,
 		"link": columnLinker
+	}
+});
+
+graphApp.directive('chartAxes', function() {
+	var axesLinker = function(scope,element,attrs,chartCtrl) {
+		var x = attrs['valuesX'];
+		if (x) {
+			chartCtrl.addXAxisValues(x);
+		}
+
+		var y = attrs['y'];
+		var y2 = attrs['y2'];
+		var yAxis = {};
+		if (y) {
+			var items = y.split(",");
+			for (item in items) {
+				yAxis[items[item]] = "y";
+			}
+		}
+		if (y2) {
+			var items = y2.split(",");
+			for (item in items) {
+				yAxis[items[item]] = "y2";
+			}
+		}
+		chartCtrl.addYAxis(yAxis);
+	};
+
+	return {
+		"require":"^c3chart",
+		"restrict":"E",
+		"scope": {},
+		"replace":true,
+		"link": axesLinker
+	}
+});
+
+graphApp.directive('chartAxis', function() {
+	var axisLinker = function(scope,element,attrs,chartCtrl) {
+		console.log("In the chart axis linker");
+
+		var id=attrs['axisId'];
+		var position=attrs['axisPosition'];
+		var label=attrs['axisLabel'];
+
+		var axis={"label":{"text":label,"position":position}};
+		if (id === 'y2') {
+			axis.show=true;
+		}
+
+		chartCtrl.addAxisProperties(id,axis);
+	};
+
+	return {
+		"require":"^c3chart",
+		"restrict":"E",
+		"scope": {},
+		"replace":true,
+		"link": axisLinker
 	}
 });
 
