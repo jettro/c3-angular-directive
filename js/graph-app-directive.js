@@ -35,7 +35,6 @@ sampleApp.directive('outer', function() {
 sampleApp.directive('inner', function() {
 	var innerLinker = function(scope,element,attrs,outerCtrl) {
 		console.log("Inner linker");
-		scope.message = "Hello from the inside.";
 		outerCtrl.setMessage(attrs['message']);
 		outerCtrl.tryMe();
 	};
@@ -45,9 +44,28 @@ sampleApp.directive('inner', function() {
 		"restrict":"E",
 		"scope": {},
 		"replace":true,
+		"transclude":true,
+		"template":"<div ng-transclude></div>",
 		"link": innerLinker
 	}
 });
+
+sampleApp.directive('moreinner', function() {
+	var moreinnerLinker = function(scope,element,attrs,outerCtrl) {
+		console.log("More Inner linker");
+		outerCtrl.setMessage(attrs['message']);
+		outerCtrl.tryMe();
+	};
+
+	return {
+		"require":"^outer",
+		"restrict":"E",
+		"scope": {},
+		"replace":true,
+		"link": moreinnerLinker
+	}
+});
+
 
 sampleApp.controller('SampleCtrl', function ($scope) {
 	console.log("Main controller");

@@ -11,17 +11,17 @@
 		<chart-column column-title="data 1" 
 					  column-values="30,200,100,400,150,250"
 					  column-type="spline"/>
-<!-- 		<chart-column column-title="data 2" 
+		<chart-column column-title="data 2" 
 		              column-values="50,20,10,40,15,25"
 		              column-type="line"/>
- -->		<chart-axis axis-id="y"
+		<chart-axis axis-id="y"
 		            axis-position="outer-right"
 	            	axis-label="Some random numbers"/>
 	</c3chart>
 
 	<c3chart bindto-id="chart2">
 		<chart-column column-title="x" 
-					  column-values="10,20,30,40,50,60"/>
+					  column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
 		<chart-column column-title="data 1" 
 					  column-values="30,200,100,400,150,250"
 					  column-type="spline"/>
@@ -35,15 +35,55 @@
 		<!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
 		<chart-axes values-x="x" y="data 1,data 3" y2="data 2"/>
 
-		<chart-axis axis-id="x"
-		            axis-position="outer-center"
-	            	axis-label="Number by 10"/>
-		<chart-axis axis-id="y"
-		            axis-position="outer-right"
-	            	axis-label="Higher numbers"/>
-		<chart-axis axis-id="y2"
-		            axis-position="outer-right"
-	            	axis-label="Lower numbers"/>
+
+		<chart-axis>
+			<chart-axis-x axis-position="outer-center"
+		            	  axis-label="Number by 10"
+		            	  axis-type="category">
+		        <chart-axis-x-tick tick-count="6"
+		        				   tick-culling="4"
+		        				   tick-fit="false"
+		        				   tick-rotate="50"/>
+		    </chart-axis-x>
+			<chart-axis-y axis-id="y"
+			              axis-position="outer-right"
+		            	  axis-label="Higher numbers"
+		            	  padding-top="100"
+		            	  padding-bottom="10"/>
+			<chart-axis-y axis-id="y2"
+			              axis-position="outer-right"
+		            	  axis-label="Lower numbers"
+		            	  padding-top="10"
+		            	  padding-bottom="1"
+		            	  range-max="1"
+		            	  rnage-min="0"/>
+		</chart-axis>
+	</c3chart>
+
+	<c3chart bindto-id="chart3">
+		<chart-column column-title="x" 
+					  column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+		<chart-column column-title="data 1" 
+					  column-values="30,200,100,400,150,250"
+					  column-type="spline"/>
+		<chart-column column-title="data 2" 
+		              column-values="50,20,100,375,215,125"
+		              column-type="bar"/>
+
+		<!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
+		<chart-axes values-x="x"/>
+
+		<chart-axis axis-rotate="true">
+			<chart-axis-x axis-position="outer-center"
+		            	  axis-label="Number by 10"
+		            	  axis-type="category">
+		    </chart-axis-x>
+			<chart-axis-y axis-id="y"
+			              axis-position="outer-right"
+		            	  axis-label="All numbers"
+		            	  padding-top="100"
+		            	  padding-bottom="10"/>
+		</chart-axis>
 	</c3chart>
 
 	<!-- Load the javascript libraries -->
