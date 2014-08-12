@@ -80,6 +80,7 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.colors != null) {
 			config.color = {"pattern":$scope.colors};
 		}
+		console.log(config);
 		$scope.chart = c3.generate(config);				
 	};
 

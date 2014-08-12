@@ -6,117 +6,22 @@
 	<link href="css/c3-0.2.4.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-controller="GraphCtrl" >
-	<h1>Sample directive 1: Most basic C3JS sample</h1>
-	<c3chart bindto-id="chart">
-		<chart-legend show-legend="true" legend-position="right"/>
-		<chart-tooltip show-tooltip="true" group-tooltip="false"/>
-		<chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
-
-		<chart-column column-id="data 1" 
+	<h1>Sample directives</h1>
+	<h2>Most basic sample</h2>
+	<c3chart bindto-id="chart1">
+		<chart-column column-id="data-1" 
 					  column-values="30,200,100,400,150,250"
-					  column-type="spline"/>
-		<chart-column column-id="data 2" 
-		              column-values="50,20,10,40,15,25"
-		              column-type="line"/>
-		
-		<chart-axis>
-			<chart-axis-y axis-id="y"
-		            axis-position="outer-right"
-	            	axis-label="Some random numbers"
-	            	padding-top="100"
-		            padding-bottom="0"
-		            range-max="500"
-		            range-min="-100"/>
-		</chart-axis>
-
-  		<chart-grid show-x="false" show-y="true">
-			<chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
-			<chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
-			<chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
-		</chart-grid>
+					  column-type="line"/>		
  	</c3chart>
 
-	<c3chart bindto-id="chart2" show-labels="true" show-subchart="true" enable-zoom="true">
-		<chart-legend show-legend="false"/>
-		<chart-size chart-height="600" chart-width="600"/>
-		
-		<chart-column column-id="x" 
-					  column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
-		<chart-column column-id="data1" 
-		     		  column-name="Data 1"
-		     		  column-color="red"
-		     		  column-values="30,200,100,400,150,250"
-					  column-type="spline"/>
-		<chart-column column-id="data2" 
-		     		  column-name="Data 2"
-		     		  column-color="green"
-		              column-values="50,20,10,40,15,25"
-		              column-type="line"/>
-		<chart-column column-id="data3" 
-		     		  column-name="Data 3"
-		     		  column-color="#000000"
-		              column-values="150,20,100,70,85,215"
-		              column-type="spline"/>
+ 	<h2>Using json based data coming from the model</h2>
+	<c3chart bindto-id="chart2" chart-data="datapoints" chart-columns="datacolumns">
+ 	</c3chart>
 
-		<!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
-		<chart-axes values-x="x" y="data1,data3" y2="data2"/>
+ 	<h2>Add meaning to the x axis and change names and colors</h2>
+	<c3chart bindto-id="chart3" chart-data="datapoints2" chart-columns="datacolumns2" chart-x="datax2">
+ 	</c3chart>
 
-
-		<chart-axis>
-			<chart-axis-x axis-position="outer-center"
-		            	  axis-label="Number by 10"
-		            	  axis-type="category">
-		        <chart-axis-x-tick tick-count="6"
-		        				   tick-culling="4"
-		        				   tick-fit="false"
-		        				   tick-rotate="50"/>
-		    </chart-axis-x>
-			<chart-axis-y axis-id="y"
-			              axis-position="outer-right"
-		            	  axis-label="Higher numbers"
-		            	  padding-top="100"
-		            	  padding-bottom="0"
-		            	  range-min="0"/>
-			<chart-axis-y axis-id="y2"
-			              axis-position="outer-right"
-		            	  axis-label="Lower numbers"
-		            	  padding-top="10"
-		            	  padding-bottom="0"
-		            	  range-max="100"
-		            	  range-min="0"/>
-		</chart-axis>
- 		<chart-grid show-x="false" show-y="true">	            	
-			<chart-grid-optional axis-id="y" grid-value="200" grid-text="Value on the y"/>
-			<chart-grid-optional axis-id="y2" grid-value="40" grid-text="Value on the y2"/>
-		</chart-grid>
-	</c3chart>
-
-	<c3chart bindto-id="chart3">
-		<chart-column column-id="x" 
-					  column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
-		<chart-column column-id="data1"
-					  column-name="Data 1"
-					  column-values="30,200,100,400,150,250"
-					  column-type="spline"/>
-		<chart-column column-id="data2" 
-		              column-values="50,20,100,375,215,125"
-		              column-type="bar"/>
-
-		<!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
-		<chart-axes values-x="x"/>
-
-		<chart-axis axis-rotate="true">
-			<chart-axis-x axis-position="outer-center"
-		            	  axis-label="Number by 10"
-		            	  axis-type="category">
-		    </chart-axis-x>
-			<chart-axis-y axis-id="y"
-			              axis-position="outer-right"
-		            	  axis-label="All numbers"
-		            	  padding-top="100"
-		            	  padding-bottom="10"/>
-		</chart-axis>
-	</c3chart>
 
 	<!-- Load the javascript libraries -->
 	<script src="js/d3/d3-3.4.11.min.js" charset="utf-8"></script>
