@@ -163,7 +163,7 @@ Notice the *chart-axis-x-tick*, this shows the cool feature to rotate the labels
 </chart-grid>
 ```
 Another really cool feature is adding the subchart, with this you can select just a selection of the datapoints in the chart. Together with the zoom functionality this makes a very interactive chart. You have to try it to believe it.
-```hmtl
+```html
 <c3chart bindto-id="chart5" show-labels="true" show-subchart="true" enable-zoom="true">		
 </c3chart>
 ```
