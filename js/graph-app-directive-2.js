@@ -2,7 +2,7 @@ var graphApp = angular.module('graphApp', ['gridshore.c3js.chart','graphApp.serv
 
 graphApp.controller('GraphCtrl', function ($scope, $interval,dataService) {
 	$scope.datapoints=[];
-	$scope.datacolumns=[{"id":"top-1","type":"line","name":"Top one","color":"black"},
+	$scope.datacolumns=[{"id":"top-1","type":"line","name":"Top one"},
 	                    {"id":"top-2","type":"spline","name":"Top two"}];
 	$scope.datax={"id":"x"};
 
@@ -14,8 +14,6 @@ graphApp.controller('GraphCtrl', function ($scope, $interval,dataService) {
 });
 
 var services = angular.module('graphApp.services', []);
-
-// Returns datapoints in the format of {x,y1,y2,y...}
 services.factory('dataService', function() {
 	function DataService() {
 		var maxNumber = 200;

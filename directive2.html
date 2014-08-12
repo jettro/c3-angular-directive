@@ -7,14 +7,10 @@
 </head>
 <body ng-controller="GraphCtrl" >
 	<c3chart bindto-id="chart" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
-		<chart-legend show-legend="true" legend-position="right"/>
-		<chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
-
 		<chart-axis>
 			<chart-axis-x axis-id="x" axis-type="timeseries">
 		        <chart-axis-x-tick tick-format="%Y-%m-%d"/>
 			</chart-axis-x>
-			<chart-axis-y axis-id="y" axis-position="outer-right" axis-label="Some random numbers"/>
 		</chart-axis>
  	</c3chart>
 

@@ -71,4 +71,106 @@ graphApp.controller('GraphCtrl', function ($scope) {
 	$scope.datax={"id":"x"};
 });
 ```
-Now the data is coming from an AngularJS model object. We can use AngularJS features to obtain the data from a service for instance, or we can even do something with an update of the data using *$interval* for instance. The directive listens for changes to the *datapoints* model, it does not change when datacolumns of datax changes. if the datapoints changes, the graph is redrawn.
+Now the data is coming from an AngularJS model object. We can use AngularJS features to obtain the data from a service for instance, or we can even do something with an update of the data using *$interval*. The directive listens for changes to the *datapoints* model, it does not change when *datacolumns* or *datax* changes. if the datapoints changes, the graph is redrawn. Open directive2.html to see the sample.
+
+### directive3.html
+In this sample we are going to show you the timeseries chart, as available from c3.js. To do this, you need to add information about the x-axis. We need to tell it to be of type *timeseries* and we define the format of the tick (meaning the values on the x-axis). The following code block shows the html.
+```html
+<c3chart bindto-id="chart" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
+	<chart-axis>
+		<chart-axis-x axis-id="x" axis-type="timeseries">
+	        <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+		</chart-axis-x>
+	</chart-axis>
+</c3chart>
+```
+Next the trick to update the data in the chart. What we do is change the model parameter in the $scope called *datapoints*. Than in the directive we watch the datapoints collection and redraw the chart if changes.
+```javascript
+var graphApp = angular.module('graphApp', ['gridshore.c3js.chart','graphApp.services']);
+
+graphApp.controller('GraphCtrl', function ($scope, $interval,dataService) {
+	$scope.datapoints=[];
+	$scope.datacolumns=[{"id":"top-1","type":"line","name":"Top one","color":"black"},
+	                    {"id":"top-2","type":"spline","name":"Top two"}];
+	$scope.datax={"id":"x"};
+
+	$interval(function(){
+		dataService.loadData(function(data){
+			$scope.datapoints.push(data);
+		});		
+	},1000,10);
+});
+
+var services = angular.module('graphApp.services', []);
+services.factory('dataService', function() {
+	function DataService() {
+		var maxNumber = 200;
+
+		// API methods
+		this.loadData = function(callback) {
+			callback({"x":new Date(),"top-1":randomNumber(),"top-2":randomNumber()});
+		};
+
+		function randomNumber() {
+			return Math.floor((Math.random() * maxNumber) + 1);
+		}
+	}
+	return new DataService();
+});
+```
+The dataService is used to generate a new object with three properties, the current datetime for the x axis and two random values for the different lines. Notice the *$interval* which helps us to wait one second before creating a new point. It will do this 10 times. The most important part here is that you do not need to change the directive to make the data dynamic. This is purely done in the controller for the page you are on.
+
+Next up are more features made available by the very nice c3.js library.
+### directive3.html
+I am not going to show all the code in this case. I am focussing on changes. First one is setting the name of the column and the color of the column (or line)
+```html
+<chart-column column-id="data 1" 
+     		  column-name="Data 1"
+     		  column-color="red"
+			  column-values="30,200,100,400,150,250"
+			  column-type="spline"/>
+```
+Use the attributes column-color and column-name. Next up is adding a second verticle axis. First part is specifying which columns belong to x, y and y2. Next is configuring things like range and padding and labels for the axis. Padding is placing empty space on top of the y-axis.
+```html
+<chart-axes values-x="x" y="data1,data3" y2="data2"/>
+<chart-axis>
+	<chart-axis-x axis-position="outer-center"
+            	  axis-label="Number by 10"
+            	  axis-type="category">
+        <chart-axis-x-tick tick-rotate="50"/>
+    </chart-axis-x>
+	<chart-axis-y axis-id="y"
+	              axis-position="outer-right"
+            	  axis-label="Higher numbers"
+            	  padding-top="100"
+            	  padding-bottom="0"
+            	  range-min="0"/>
+	<chart-axis-y axis-id="y2"
+	              axis-position="outer-right"
+            	  axis-label="Lower numbers"
+            	  padding-top="10"
+            	  padding-bottom="0"
+            	  range-max="100"
+            	  range-min="0"/>
+</chart-axis>
+```
+Notice the *chart-axis-x-tick*, this shows the cool feature to rotate the labels on the x-axis. Next up is adding a grid to the chart. You can configure to show the x and y grid. But you can also position one grid line on a specific value.
+```html
+<chart-grid show-x="false" show-y="true">
+	<chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+	<chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+	<chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+</chart-grid>
+```
+Another really cool feature is adding the subchart, with this you can select just a selection of the datapoints in the chart. Together with the zoom functionality this makes a very interactive chart. You have to try it to believe it.
+```hmtl
+<c3chart bindto-id="chart5" show-labels="true" show-subchart="true" enable-zoom="true">		
+</c3chart>
+```
+The last thing to show for now is putting the legenda at another location, changing the tooltip, change the size of the chart and provide an array of colors to use for the lines.
+```html
+<chart-legend show-legend="true" legend-position="right"/>
+<chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
+<chart-size chart-height="600" chart-width="600"/>
+<chart-tooltip show-tooltip="true" group-tooltip="false"/>
+```
