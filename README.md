@@ -11,14 +11,34 @@ Homepage AngularJS [https://angularjs.org]
 Blogpost about c3js by Roberto van der Linden: [Creating charts with c3.js](http://blog.trifork.com/2014/07/29/creating-charts-with-c3-js/)
 Blogpost about integrating c3js and angularjs by Jettro Coenradie: [Using C3js with AngularJS](http://www.gridshore.nl/2014/07/29/using-c3js-angularjs/)
 
-Blogpost about AngularJS Directives for c3js: TODO
+Blogpost about AngularJS Directives for c3js: [Angularjs directives for c3js chart library](http://blog.trifork.com/2014/08/19/angularjs-directives-for-c3-js-chart-library/)
+
+Blogpost about the improvements I made using grunt and bower: TODO
+
+## Installation and development
+We are using grunt and bower during development. Bower makes it easier to use it for your own project as well. More on this in the next section. If you want to try out the project and change sources or something like that, you can use bower and grunt to do development.
+
+First use npm to install all grunt plugins, than use bower to install all bower dependencies.
+```
+npm install
+bower install
+```
+Now grunt is available, you can use some of the utilities that grunt has in store for you. A nice one is to use the watch task and change one of the samples. There is also a plugin in place for running a development server. Just type grunt devserver and connect to port 8888 on your localhost.
+
+
+## Using it in your own project
+The easiest way to use the directives is to use bower to install it to your project.
+```
+bower install c3-angular --save
+```
+In the end you just need one file in your project: c3-angular.min.js
 
 ## Documentation
 Check the blogpost from Roberto above if you want an introdcution into what c3.js can do for you. If you want information about the basic usage of AngularJS together with C3.JS, check the first blogpost by Jettro. This documentation focussus on the directives.
 
 The goal for the directive is to come up with some sort of DSL in the HTML language for creating charts with c3.js. I will go though the different aspects of creating a chart first.
 
-You do not need a webserver to run the samples, the easiest way is to clone the repository from github or download the zip.
+You do not need a webserver to run the samples, the easiest way is to clone the repository from github or download the zip. Now we have grunt it is also easy to use a development webserver. Just execute grunt devserver
 
 ### directive1.html
 This one shows the one of the most basic charts, we define the data right in the chart. One line, no additional configuration.
