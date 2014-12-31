@@ -19,7 +19,7 @@ angular.module('gridshore.c3js.chart', [])
 	this.showGraph = function() {
 		var config = {};			
 		config.bindto = "#"+$scope.bindto;
-		config.data = {}
+		config.data = {};
 
 		if ($scope.chartData && $scope.chartColumns) {
 			$scope.$watchCollection('chartData', function() {
@@ -126,17 +126,17 @@ angular.module('gridshore.c3js.chart', [])
 			$scope.grid = {};
 		}
 		if (axis === "x") {
-			if ($scope.grid.x == undefined) {
+			if ($scope.grid.x === undefined) {
 				$scope.grid.x = {};
 			}
-			if ($scope.grid.x.lines == undefined) {
+			if ($scope.grid.x.lines === undefined) {
 				$scope.grid.x.lines = [];
 			}
 		} else {
-			if ($scope.grid.y == undefined) {
+			if ($scope.grid.y === undefined) {
 				$scope.grid.y = {};
 			}
-			if ($scope.grid.y.lines == undefined) {
+			if ($scope.grid.y.lines === undefined) {
 				$scope.grid.y.lines = [];
 			}
 
@@ -144,7 +144,7 @@ angular.module('gridshore.c3js.chart', [])
 		if (axis === "y2") {
 			$scope.grid.y.lines.push({"value":value,"text":text,"axis":"y2"});
 		} else {
-			$scope.grid[axis].lines.push({"value":value,"text":text})
+			$scope.grid[axis].lines.push({"value":value,"text":text});
 		}
 	};
 
@@ -190,11 +190,11 @@ angular.module('gridshore.c3js.chart', [])
 		$scope.chart.load(data);
 	}
 }])
-.directive('c3chart', function($timeout) {
+.directive('c3chart', ['$timeout', function($timeout) {
 	var chartLinker = function(scope,element,attrs,chartCtrl) {
 		// Trick to wait for all rendering of the DOM to be finished.
 		$timeout(function() {
-			chartCtrl.showGraph()
+			chartCtrl.showGraph();
 		});
 	};
 
@@ -214,8 +214,8 @@ angular.module('gridshore.c3js.chart', [])
 		"replace":true,
 		"transclude":true,
 		"link": chartLinker
-	}
-})
+	};
+}])
 .directive('chartColumn', function() {
 	var columnLinker = function(scope,element,attrs,chartCtrl) {
 		var column = attrs['columnValues'].split(",");
@@ -229,7 +229,7 @@ angular.module('gridshore.c3js.chart', [])
 		"scope": {},
 		"replace":true,
 		"link": columnLinker
-	}
+	};
 })
 .directive('chartAxes', function() {
 	var axesLinker = function(scope,element,attrs,chartCtrl) {
@@ -243,7 +243,7 @@ angular.module('gridshore.c3js.chart', [])
 		var yAxis = {};
 		if (y2) {
 			var items = y2.split(",");
-			for (item in items) {
+			for (var item in items) {
 				yAxis[items[item]] = "y2";
 			}
 			if (y) {
@@ -262,7 +262,7 @@ angular.module('gridshore.c3js.chart', [])
 		"scope": {},
 		"replace":true,
 		"link": axesLinker
-	}
+	};
 })
 .directive('chartAxis', function() {
 	var axisLinker = function(scope,element,attrs,chartCtrl) {
@@ -280,8 +280,7 @@ angular.module('gridshore.c3js.chart', [])
 		"template": "<div ng-transclude></div>",
 		"replace":true,
 		"link": axisLinker
-	}
-
+	};
 })
 .directive('chartAxisX', function() {
 	var axisLinker = function(scope,element,attrs,chartCtrl) {
@@ -310,7 +309,7 @@ angular.module('gridshore.c3js.chart', [])
 		"template": "<div ng-transclude></div>",
 		"replace":true,
 		"link": axisLinker
-	}
+	};
 })
 .directive('chartAxisY', function() {
 	var axisLinker = function(scope,element,attrs,chartCtrl) {
