@@ -21,23 +21,6 @@ angular.module('gridshore.c3js.chart', [])
 		config.bindto = "#"+$scope.bindto;
 		config.data = {};
 
-		if ($scope.chartData && $scope.chartColumns) {
-			$scope.$watchCollection('chartData', function() {
-				loadChartData();
-			});
-			$scope.jsonKeys = {};
-			$scope.jsonKeys.value=[];
-			angular.forEach($scope.chartColumns, function(column) {
-				$scope.jsonKeys.value.push(column.id);
-				addColumnProperties(column.id ,column.type, column.name, column.color);
-			});
-			if ($scope.chartX) {
-				$scope.jsonKeys.x=$scope.chartX.id;
-			}
-			config.data.keys=$scope.jsonKeys;
-			config.data.json=$scope.chartData;
-		}
-
 		if ($scope.xValues) {
 			config.data.x=$scope.xValues;
 		}
@@ -80,7 +63,16 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.colors != null) {
 			config.color = {"pattern":$scope.colors};
 		}
-		$scope.chart = c3.generate(config);				
+
+		$scope.config = config;
+
+		if ($scope.chartData && $scope.chartColumns) {
+			$scope.$watchCollection('chartData', function() {
+				loadChartData();
+			});
+		} else {
+			$scope.chart = c3.generate($scope.config);				
+		}
 	};
 
 	this.addColumn = function(column,columnType,columnName,columnColor) {
@@ -183,11 +175,28 @@ angular.module('gridshore.c3js.chart', [])
 	}
 
 	function loadChartData() {
-		var data = {};
-		data.keys=$scope.jsonKeys;
-		data.json=$scope.chartData;
+        $scope.jsonKeys = {};
+        $scope.jsonKeys.value=[];
+        angular.forEach($scope.chartColumns, function(column) {
+            $scope.jsonKeys.value.push(column.id);
+            addColumnProperties(column.id ,column.type, column.name, column.color);
+        });
+        if ($scope.chartX) {
+            $scope.jsonKeys.x=$scope.chartX.id;
+        }
+        if ($scope.names) {
+            $scope.config.data.names = $scope.names;
+        }
+        if ($scope.colors) {
+            $scope.config.data.colors = $scope.colors;
+        }
 
-		$scope.chart.load(data);
+        $scope.config.data.keys=$scope.jsonKeys;
+        $scope.config.data.json=$scope.chartData;
+
+        $scope.chart = c3.generate($scope.config);
+
+		// $scope.chart.load(data);
 	}
 }])
 .directive('c3chart', ['$timeout', function($timeout) {
