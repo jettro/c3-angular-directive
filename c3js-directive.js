@@ -35,6 +35,9 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.colors) {
 			config.data.colors = $scope.colors;
 		}
+		if ($scope.colorFunction) {
+			config.data.color = $scope.colorFunction;
+		}
 		if ($scope.showLabels && $scope.showLabels === "true") {
 			config.data.labels=true;
 		}
@@ -154,6 +157,10 @@ angular.module('gridshore.c3js.chart', [])
 
 	this.addColors = function(colors) {
 		$scope.colors = colors;
+	};
+
+	this.addColorFunction = function(colorFunction) {
+		$scope.colorFunction = colorFunction;
 	};
 
 	function addColumnProperties(id, columnType, columnName, columnColor) {
@@ -528,12 +535,18 @@ angular.module('gridshore.c3js.chart', [])
 		if (pattern) {
 			chartCtrl.addColors(pattern.split(","));
 		}
+
+		if (attrs.colorFunction) {
+			chartCtrl.addColorFunction(scope.colorFunction());
+		}
 	};
 
 	return {
 		"require":"^c3chart",
 		"restrict":"E",
-		"scope": {},
+		"scope": {
+			"colorFunction": "&"
+		},
 		"replace":true,
 		"link": colorsLinker
 	};
