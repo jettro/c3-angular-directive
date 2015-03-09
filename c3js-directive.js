@@ -5,6 +5,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.types = {};
 	$scope.axis = {};
 	$scope.axes = {};
+	$scope.padding = null;
 	$scope.xValues= null;
 	$scope.xTick = null;
 	$scope.names = null;
@@ -31,6 +32,9 @@ angular.module('gridshore.c3js.chart', [])
 		config.data.axes = $scope.axes;
 		if ($scope.names) {
 			config.data.names = $scope.names;
+		}
+		if ($scope.padding != null) {
+			config.padding = $scope.padding;
 		}
 		if ($scope.colors) {
 			config.data.colors = $scope.colors;
@@ -102,6 +106,13 @@ angular.module('gridshore.c3js.chart', [])
 	this.rotateAxis = function() {
 		$scope.axis.rotated = true;
 	};
+
+	this.addPadding = function(side, amount) {
+		if ($scope.padding == null) {
+			$scope.padding = {};
+		}
+		$scope.padding[side] = parseInt(amount);
+	}
 
 	this.addGrid = function(axis) {
 		if ($scope.grid == null) {
@@ -201,6 +212,23 @@ angular.module('gridshore.c3js.chart', [])
 }])
 .directive('c3chart', ['$timeout', function($timeout) {
 	var chartLinker = function(scope,element,attrs,chartCtrl) {
+		var paddingTop = attrs.paddingTop;
+		var paddingRight = attrs.paddingRight;
+		var paddingBottom = attrs.paddingBottom;
+		var paddingLeft = attrs.paddingLeft;
+
+		if (paddingTop) {
+			chartCtrl.addPadding('top', paddingTop);
+		}
+		if (paddingRight) {
+			chartCtrl.addPadding('right', paddingRight);
+		}
+		if (paddingBottom) {
+			chartCtrl.addPadding('bottom', paddingBottom);
+		}
+		if (paddingLeft) {
+			chartCtrl.addPadding('left', paddingLeft);
+		}
 		// Trick to wait for all rendering of the DOM to be finished.
 		$timeout(function() {
 			chartCtrl.showGraph();
