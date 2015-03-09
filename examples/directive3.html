@@ -197,6 +197,17 @@
 		              column-type="line"/>
  	</c3chart>
 
+ 	<h2>Hide axis</h2>
+ 	<c3chart bindto-id="chart7">
+    <chart-column column-id="Data 1" 
+                  column-values="30,200,100,400,150,250,50"
+                  column-type="line"/>
+    <chart-axis>
+      <chart-axis-x show="false"></chart-axis-x>
+      <chart-axis-y show="false"></chart-axis-y>
+    </chart-axis>
+  </c3chart>
+
 	<!-- Load the javascript libraries -->
 	<script src="assets/js/d3.min.js" charset="utf-8"></script>
 	<script src="assets/js/c3.min.js"></script>
