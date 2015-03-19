@@ -1,4 +1,4 @@
-/*! c3-angular - v0.1.0 - 2015-01-01
+/*! c3-angular - v0.2.1 - 2015-03-06
 * https://github.com/jettro/c3-angular-sample
 * Copyright (c) 2015 ; Licensed  */
 angular.module('gridshore.c3js.chart', [])
@@ -9,6 +9,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.axis = {};
 	$scope.axes = {};
 	$scope.xValues= null;
+	$scope.xsValues = null;
 	$scope.xTick = null;
 	$scope.names = null;
 	$scope.colors = null;
@@ -26,6 +27,9 @@ angular.module('gridshore.c3js.chart', [])
 
 		if ($scope.xValues) {
 			config.data.x=$scope.xValues;
+		}
+		if ($scope.xsValues) {
+			config.data.xs=$scope.xsValues;
 		}
 		if ($scope.columns) {
 			config.data.columns = $scope.columns;
@@ -92,6 +96,10 @@ angular.module('gridshore.c3js.chart', [])
 
 	this.addXAxisValues = function(xValues) {
 		$scope.xValues = xValues;
+	};
+
+	this.addXSValues = function(xsValues) {
+		$scope.xsValues = xsValues;
 	};
 
 	this.addAxisProperties = function(id,axis) {
@@ -248,6 +256,17 @@ angular.module('gridshore.c3js.chart', [])
 		var x = attrs.valuesX;
 		if (x) {
 			chartCtrl.addXAxisValues(x);
+		}
+
+		var xs = attrs.valuesXs;
+		var xsValues = {};
+		if (xs) {
+			xsItems = xs.split(",");
+			for (var xsI in xsItems) {
+				xsItem = xsItems[xsI].split(":");
+				xsValues[xsItem[0]] = xsItem[1];
+			}
+			chartCtrl.addXSValues(xsValues);
 		}
 
 		var y = attrs.y;
