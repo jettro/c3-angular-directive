@@ -81,5 +81,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-devserver');
 
-    grunt.registerTask('combine',['concat:dist','uglify:dist']);
+    grunt.registerTask('combine',['concat:dist','uglify:dist','copy:examples']);
 };

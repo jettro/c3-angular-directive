@@ -6,7 +6,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.axis = {};
 	$scope.axes = {};
 	$scope.xValues= null;
-	$scope.xsValues = null;
+    $scope.xsValues = null;
 	$scope.xTick = null;
 	$scope.names = null;
 	$scope.colors = null;
@@ -16,6 +16,28 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.chartSize = null;
 	$scope.colors = null;
 	$scope.jsonKeys = null;
+
+	function resetVars() {
+		$scope.chart = null;
+		$scope.columns = [];
+		$scope.types = {};
+		$scope.axis = {};
+		$scope.axes = {};
+		$scope.padding = null;
+		$scope.xValues= null;
+		$scope.xsValues = null;
+		$scope.xTick = null;
+		$scope.names = null;
+		$scope.colors = null;
+		$scope.grid = null;
+		$scope.legend = null;
+		$scope.tooltip = null;
+		$scope.chartSize = null;
+		$scope.colors = null;
+		$scope.jsonKeys = null;
+	};
+
+	resetVars();
 
 	this.showGraph = function() {
 		var config = {};			
@@ -77,6 +99,13 @@ angular.module('gridshore.c3js.chart', [])
 		} else {
 			$scope.chart = c3.generate($scope.config);				
 		}
+
+		$scope.$on('$destroy', function() {
+			if (angular.isDefined($scope.chart)) {
+				$scope.chart = $scope.chart.destroy();
+				resetVars();
+			}
+		});
 	};
 
 	this.addColumn = function(column,columnType,columnName,columnColor) {
