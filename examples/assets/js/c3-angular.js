@@ -1,4 +1,4 @@
-/*! c3-angular - v0.2.1 - 2015-03-06
+/*! c3-angular - v0.2.1 - 2015-03-20
 * https://github.com/jettro/c3-angular-sample
 * Copyright (c) 2015 ; Licensed  */
 angular.module('gridshore.c3js.chart', [])
@@ -324,6 +324,9 @@ angular.module('gridshore.c3js.chart', [])
 		if (type) {
 			axis.type=type;
 		}
+		if (attrs.show === 'false') {
+			axis.show = false;
+		}
 		// TODO has a strange effect on the graph, need to evaluate
 		var height = attrs.axisHeight;
 		if (height) {
@@ -348,8 +351,12 @@ angular.module('gridshore.c3js.chart', [])
 		var position=attrs.axisPosition;
 		var label=attrs.axisLabel;
 
+		id = ( id == undefined ? 'y' : id );
+
 		var axis={"label":{"text":label,"position":position}};
-		if (id === 'y2') {
+		if (attrs.show === 'false') {
+			axis.show=false;
+		} else if (id === 'y2') {
 			axis.show=true;
 		}
 		var paddingTop = attrs.paddingTop;

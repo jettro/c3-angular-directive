@@ -31,7 +31,7 @@
 		              column-type="line"/>
  	</c3chart>
 
-	<h2>Add more info to the axes and add the second y axis</h2>
+	<h2>Add more info to the axes and add the second y axis.</h2>
 	<c3chart bindto-id="chart3">
 		<chart-column column-id="x" 
 					  column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
@@ -196,6 +196,17 @@
 		              column-values="50,20,10,40,15,25"
 		              column-type="line"/>
  	</c3chart>
+
+    <h2>Hide axis</h2>
+    <c3chart bindto-id="chart7">
+        <chart-column column-id="Data 1"
+                      column-values="30,200,100,400,150,250,50"
+                      column-type="line"/>
+        <chart-axis>
+            <chart-axis-x show="false"></chart-axis-x>
+            <chart-axis-y show="false"></chart-axis-y>
+        </chart-axis>
+    </c3chart>
 
 	<h2>Scatter chart with data that has different x values.</h2>
 	<c3chart bindto-id="scatter-plot2-chart">
