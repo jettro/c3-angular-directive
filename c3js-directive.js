@@ -7,6 +7,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.axes = {};
 	$scope.xValues= null;
 	$scope.xTick = null;
+	$scope.yTick = null;
 	$scope.names = null;
 	$scope.colors = null;
 	$scope.grid = null;
@@ -17,7 +18,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.jsonKeys = null;
 
 	this.showGraph = function() {
-		var config = {};			
+		var config = {};
 		config.bindto = "#"+$scope.bindto;
 		config.data = {};
 
@@ -48,6 +49,9 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.xTick) {
 			config.axis.x.tick = $scope.xTick;
 		}
+		if ($scope.yTick) {
+			config.axis.y.tick = $scope.yTick;
+		}
 		if ($scope.grid != null) {
 			config.grid = $scope.grid;
 		}
@@ -71,7 +75,7 @@ angular.module('gridshore.c3js.chart', [])
 				loadChartData();
 			});
 		} else {
-			$scope.chart = c3.generate($scope.config);				
+			$scope.chart = c3.generate($scope.config);
 		}
 	};
 
@@ -83,7 +87,7 @@ angular.module('gridshore.c3js.chart', [])
 	this.addYAxis = function(yAxis) {
 		$scope.axes = yAxis;
 		if (!$scope.axis.y2) {
-			$scope.axis.y2={"show":true};				
+			$scope.axis.y2={"show":true};
 		}
 	};
 
@@ -97,6 +101,10 @@ angular.module('gridshore.c3js.chart', [])
 
 	this.addXTick = function(tick) {
 		$scope.xTick = tick;
+	};
+
+	this.addYTick = function(tick) {
+		$scope.yTick = tick;
 	};
 
 	this.rotateAxis = function() {
@@ -175,26 +183,26 @@ angular.module('gridshore.c3js.chart', [])
 	}
 
 	function loadChartData() {
-        $scope.jsonKeys = {};
-        $scope.jsonKeys.value=[];
-        angular.forEach($scope.chartColumns, function(column) {
-            $scope.jsonKeys.value.push(column.id);
-            addColumnProperties(column.id ,column.type, column.name, column.color);
-        });
-        if ($scope.chartX) {
-            $scope.jsonKeys.x=$scope.chartX.id;
-        }
-        if ($scope.names) {
-            $scope.config.data.names = $scope.names;
-        }
-        if ($scope.colors) {
-            $scope.config.data.colors = $scope.colors;
-        }
+		$scope.jsonKeys = {};
+		$scope.jsonKeys.value = [];
+		angular.forEach($scope.chartColumns, function (column) {
+			$scope.jsonKeys.value.push(column.id);
+			addColumnProperties(column.id, column.type, column.name, column.color);
+		});
+		if ($scope.chartX) {
+			$scope.jsonKeys.x = $scope.chartX.id;
+		}
+		if ($scope.names) {
+			$scope.config.data.names = $scope.names;
+		}
+		if ($scope.colors) {
+			$scope.config.data.colors = $scope.colors;
+		}
 
-        $scope.config.data.keys=$scope.jsonKeys;
-        $scope.config.data.json=$scope.chartData;
+		$scope.config.data.keys = $scope.jsonKeys;
+		$scope.config.data.json = $scope.chartData;
 
-        $scope.chart = c3.generate($scope.config);
+		$scope.chart = c3.generate($scope.config);
 
 		// $scope.chart.load(data);
 	}
@@ -442,6 +450,31 @@ angular.module('gridshore.c3js.chart', [])
 	};
 
 })
+.directive('chartAxisYTick', function() {
+	var tickLinker = function(scope,element,attrs,chartCtrl) {
+		var tick = {};
+
+		var count = attrs.tickCount;
+		if (count) {
+			tick.count = count;
+		}
+
+		var format = attrs.tickFormat;
+		if (format) {
+			tick.format = d3.format(format);
+		}
+
+		chartCtrl.addYTick(tick);
+	};
+
+	return {
+		"require":"^c3chart",
+		"restrict":"E",
+		"scope": {},
+		"replace":true,
+		"link": tickLinker
+	};
+})
 .directive('chartLegend', function() {
 	var legendLinker = function(scope,element,attrs,chartCtrl) {
 		var legend = null;
@@ -506,7 +539,7 @@ angular.module('gridshore.c3js.chart', [])
 			if (width) {
 				chartSize.width = parseInt(width);
 			}
-			if (height) { 
+			if (height) {
 				chartSize.height = parseInt(height);
 			}
 			chartCtrl.addSize(chartSize);
