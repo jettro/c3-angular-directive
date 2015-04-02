@@ -425,7 +425,13 @@ angular.module('gridshore.c3js.chart', [])
 
 		var culling = attrs.tickCulling;
 		if (culling) {
-			tick.culling = culling;
+      culling = angular.lowercase(culling);
+      if (culling === 'true') {
+        tick.culling = true;
+      }
+      else if (culling === 'false') {
+        tick.culling = false;
+      }
 		}
 
 		var rotate = attrs.tickRotate;
@@ -435,7 +441,13 @@ angular.module('gridshore.c3js.chart', [])
 
 		var fit = attrs.tickFit;
 		if (fit) {
-			tick.fit = fit;
+      fit = angular.lowercase(fit);
+      if (fit === 'true') {
+        tick.fit = true;
+      }
+      else if (fit === 'false') {
+        tick.fit = false;
+      }
 		}
 
 		chartCtrl.addXTick(tick);
