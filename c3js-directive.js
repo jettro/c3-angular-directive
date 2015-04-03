@@ -193,6 +193,13 @@ angular.module('gridshore.c3js.chart', [])
 		$scope.colors = colors;
 	};
 
+	this.hideGridFocus = function() {
+		if ($scope.grid == null) {
+			$scope.grid = {};
+		}
+		$scope.grid["focus"] = {"show": false};
+	};
+
 	function addColumnProperties(id, columnType, columnName, columnColor) {
 		if (columnType !== undefined) {
 			$scope.types[id]=columnType;
@@ -432,6 +439,10 @@ angular.module('gridshore.c3js.chart', [])
 		var showY2 = attrs.showY2;
 		if (showY2 && showY2 === "true") {
 			chartCtrl.addGrid("y2");
+		}
+		var showFocus = attrs.showFocus;
+		if (showFocus && showFocus === "false") {
+			chartCtrl.hideGridFocus();
 		}
 	};
 
