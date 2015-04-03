@@ -194,3 +194,13 @@ The last thing to show for now is putting the legenda at another location, chang
 <chart-size chart-height="600" chart-width="600"/>
 <chart-tooltip show-tooltip="true" group-tooltip="false"/>
 ```
+
+## Version History
+### 0.3.0
+Upgraded to the latest versions of:
+
+
+Added a number of pull requests by:
+mark-lai: formatting and x/y tick enhancements
+yourivdlans: Some very nice enhancements in the axis, also the sample with the bubble.
+Resseguie: Added a feature to pass a color function to the chart
