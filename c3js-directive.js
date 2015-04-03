@@ -350,6 +350,13 @@ angular.module('gridshore.c3js.chart', [])
 		if (type) {
 			axis.type=type;
 		}
+		var paddingLeft = attrs.paddingLeft;
+		var paddingRight = attrs.paddingRight;
+		if (paddingLeft || paddingRight) {
+			paddingLeft = (paddingLeft) ? paddingLeft : 0;
+			paddingRight = (paddingRight)? paddingRight : 0;
+			axis.padding = {"left":parseInt(paddingLeft),"right":parseInt(paddingRight)};
+		}
 		if (attrs.show === 'false') {
 			axis.show = false;
 		}
