@@ -17,6 +17,7 @@ angular.module('gridshore.c3js.chart', [])
 	$scope.tooltip = null;
 	$scope.chartSize = null;
 	$scope.colors = null;
+	$scope.gauge = null;
 	$scope.jsonKeys = null;
 
 	function resetVars() {
@@ -36,6 +37,7 @@ angular.module('gridshore.c3js.chart', [])
 		$scope.tooltip = null;
 		$scope.chartSize = null;
 		$scope.colors = null;
+		$scope.gauge = null;
 		$scope.jsonKeys = null;
 	};
 
@@ -99,6 +101,9 @@ angular.module('gridshore.c3js.chart', [])
 		}
 		if ($scope.colors != null) {
 			config.color = {"pattern":$scope.colors};
+		}
+		if ($scope.gauge != null) {
+			config.gauge = $scope.gauge;
 		}
 
 		$scope.config = config;
@@ -217,6 +222,10 @@ angular.module('gridshore.c3js.chart', [])
 
 	this.addColorFunction = function(colorFunction) {
 		$scope.colorFunction = colorFunction;
+	};
+
+	this.addGauge = function (gauge) {
+		$scope.gauge = gauge;
 	};
 
 	this.hideGridFocus = function() {
@@ -696,5 +705,22 @@ angular.module('gridshore.c3js.chart', [])
 		"replace":true,
 		"link": colorsLinker
 	};
+})
+.directive('chartGauge', function() {
+	var gaugeLinker = function (scope, element, attrs, chartCtrl) {
+		var gauge = {
+			min: parseInt(attrs.min || '0'),
+			max: parseInt(attrs.max || '100')
+		};
 
+		chartCtrl.addGauge(gauge);
+	};
+
+	return {
+		require: '^c3chart',
+		restrict: 'E',
+		scope: {},
+		replace: true,
+		link: gaugeLinker
+	};
 });
