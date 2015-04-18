@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="graphApp">
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,18 +25,15 @@
   
 <!--<![endif]-->
 
-
-
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
   
     <!--[if lte IE 8]>
-        <link rel="stylesheet" href="/c3-angular-directive/css/layouts/marketing-old-ie.css">
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
     <![endif]-->
     <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="/c3-angular-directive/css/layouts/marketing.css">
+        <link rel="stylesheet" href="css/layouts/marketing.css">
     <!--<![endif]-->
   
 
@@ -46,6 +43,17 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
 <![endif]-->
 
+<link href="css/c3.min.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+
+  <script type="text/javascript" src="js/shCore.js"></script>
+  <script type="text/javascript" src="js/shBrushXml.js"></script>
+
+<script type="text/javascript">
+  SyntaxHighlighter.defaults['gutter'] = true;
+  SyntaxHighlighter.defaults['toolbar'] = false;
+  SyntaxHighlighter.all();
+</script>
 
     
 <script>
@@ -60,47 +68,37 @@ ga('send', 'pageview');
 
 
 </head>
-<body>
-
-
-
-
-
-
-
-
-
+<body ng-controller="GraphCtrl">
+<a name="home"></a>
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="">Your Site</a>
+        <a class="pure-menu-heading" href="">C3 Angular Directives</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tour</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
+            <li class="pure-menu-item pure-menu-selected"><a href="#home" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="#getstarted" class="pure-menu-link">Get Started</a></li>
+            <li class="pure-menu-item"><a href="#download" class="pure-menu-link">Download</a></li>
         </ul>
     </div>
 </div>
 
 <div class="splash-container">
     <div class="splash">
-        <h1 class="splash-head">Big Bold Text</h1>
+        <h1 class="splash-head">C3js Angular Directives</h1>
         <p class="splash-subhead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            A set of Angularjs directives for the very nice C3js library.
         </p>
         <p>
-            <a href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
-      <a href="https://github.com/jettro/c3-angular-directive" class="btn">View on GitHub</a>
-      <a href="https://github.com/jettro/c3-angular-directive/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/jettro/c3-angular-directive/tarball/master" class="btn">Download .tar.gz</a>
-
+            <a href="#getstarted" class="pure-button pure-button-primary">Get Started</a>
         </p>
     </div>
 </div>
 
+<a name="getstarted"></a> <!-- TODO jettro place at actual getting started -->
+
 <div class="content-wrapper">
     <div class="content">
-        <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
+        <h2 class="content-head is-center">Overview of C3 angular directives.</h2>
 
         <div class="pure-g">
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
@@ -110,34 +108,35 @@ ga('send', 'pageview');
                     Get Started Quickly
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    Use bower and grunt to install the directives for your project or just download the distributable.
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-mobile"></i>
-                    Responsive Layouts
+                    Easy out of the box
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    With just a few lines of code you can already add nice charts to your pages
                 </p>
             </div>
+            <a name="download"></a>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-th-large"></i>
-                    Modular
+                    Configurable
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    The most used options of the c3js library are available through the directive as well.
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-check-square-o"></i>
-                    Plays Nice
+                    Dynamic
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    Easy to created a dynamic chart using standard AngularJS components.
                 </p>
             </div>
         </div>
@@ -145,21 +144,108 @@ ga('send', 'pageview');
 
     <div class="ribbon l-box-lrg pure-g">
         <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-            <img class="pure-img-responsive" alt="File Icons" width="300" src="/img/common/file-icons.png">
+      <p><a href="https://github.com/jettro/c3-angular-directive" class="pure-button">View on GitHub</a></p>
+      <p><a href="https://github.com/jettro/c3-angular-directive/zipball/master" class="pure-button">Download .zip</a></p>
+      <p><a href="https://github.com/jettro/c3-angular-directive/tarball/master" class="pure-button">Download .tar.gz</a></p>
         </div>
         <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
-            <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
+            <h2 class="content-head content-head-ribbon">Download latest and greatest.</h2>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor.
+                On the left you can download the latest and greatest versions of the libraries. Beware, these points to the master of the repository, so not heavily tested. You can also go for the latest release.
             </p>
         </div>
     </div>
 
+    <div class="content">
+      <h2 class="content-head is-center">Just a basic example to show how it works.</h2>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Basic chart with two lines</h2>
+            <c3chart bindto-id="chart1">
+              <chart-column column-id="data 1" 
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data 2" 
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart1">
+              <chart-column column-id="data 1" 
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data 2" 
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+              <h2>Change line name and color</h2>
+              <c3chart bindto-id="chart2">
+                <chart-column column-id="data 1" 
+                          column-name="Data 1"
+                          column-color="red"
+                        column-values="30,200,100,400,150,250"
+                        column-type="spline"/>
+                <chart-column column-id="data 2" 
+                          column-name="Data 2"
+                          column-color="green"
+                              column-values="50,20,10,40,15,25"
+                              column-type="line"/>
+              </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+              <c3chart bindto-id="chart2">
+                <chart-column column-id="data 1" 
+                          column-name="Data 1"
+                          column-color="red"
+                        column-values="30,200,100,400,150,250"
+                        column-type="spline"/>
+                <chart-column column-id="data 2" 
+                          column-name="Data 2"
+                          column-color="green"
+                              column-values="50,20,10,40,15,25"
+                              column-type="line"/>
+              </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Create a Gauge</h2>
+            <c3chart bindto-id="gauge-plot1-chart">
+              <chart-column column-id="Data 1" 
+                          column-values="70"
+                          column-type="gauge"/>
+              <chart-gauge min="50" 
+                        max="75"
+                        units=" hours"
+                        width="39"/>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="gauge-plot1-chart">
+              <chart-column column-id="Data 1" 
+                          column-values="70"
+                          column-type="gauge"/>
+              <chart-gauge min="50" 
+                        max="75"
+                        units=" hours"
+                        width="39"/>
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+    </div>
     <div class="content">
         <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
 
@@ -232,8 +318,11 @@ app.yui.use('node-base', 'node-event-delegate', function (Y) {
 });
 </script>
 
-
-
+  <script src="https://raw.githubusercontent.com/jettro/c3-angular-directive/master/examples/assets/js/d3.min.js" charset="utf-8"></script>
+  <script src="https://raw.githubusercontent.com/jettro/c3-angular-directive/master/examples/assets/js/c3.min.js"></script>
+  <script src="https://raw.githubusercontent.com/jettro/c3-angular-directive/master/examples/assets/js/angular.min.js"></script>
+  <script src="https://raw.githubusercontent.com/jettro/c3-angular-directive/master/examples/assets/js/c3-angular.min.js"></script>
+  <script src="https://raw.githubusercontent.com/jettro/c3-angular-directive/master/examples/js/graph-app-directive-1.js"></script>
 
 
 
