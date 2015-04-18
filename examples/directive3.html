@@ -229,6 +229,22 @@
 		<chart-gauge min="50" max="75" units=" hours" width="39"/>
 	</c3chart>
 
+	<h2>Stacked bar chart</h2>
+	<c3chart bindto-id="stacked-bar-plot1-chart">
+		<chart-column column-id="data 1" 
+		     		  column-name="Data 1"
+		     		  column-color="red"
+					  column-values="30,200,100,400,150,250"
+					  column-type="bar"/>
+		<chart-column column-id="data 2" 
+		     		  column-name="Data 2"
+		     		  column-color="green"
+		              column-values="50,20,10,40,15,25"
+		              column-type="bar"/>
+		<chart-group group-values="data 1,data 2"/>
+	</c3chart>
+
+
 	<!-- Load the javascript libraries -->
 	<script src="assets/js/d3.min.js" charset="utf-8"></script>
 	<script src="assets/js/c3.min.js"></script>

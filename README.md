@@ -198,7 +198,7 @@ The last thing to show for now is putting the legenda at another location, chang
 ## Version History
 ### 0.3.0
 Upgraded to the latest versions of:
-
+c3js - 0.4.10
 
 Added a number of pull requests by:
 mark-lai: formatting and x/y tick enhancements
