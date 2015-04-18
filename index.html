@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>C3-angular-directive by jettro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">C3-angular-directive</h1>
+      <h2 class="project-tagline">Contains some samples to use c3js together with angularjs to give it a dynamic feel.</h2>
+      <a href="https://github.com/jettro/c3-angular-directive" class="btn">View on GitHub</a>
+      <a href="https://github.com/jettro/c3-angular-directive/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/jettro/c3-angular-directive/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="c3js-and-angularjs-integration-samples" class="anchor" href="#c3js-and-angularjs-integration-samples" aria-hidden="true"><span class="octicon octicon-link"></span></a>C3JS and AngularJS integration samples</h1>
+
+<p>This repository contains some samples to demonstrate what you can do when you integrate AngularJS with C3JS. This repository is mainly here to support a few blogpost. I am working an a better location for the directives. For now you can find them here.</p>
+
+<h2>
+<a id="goal" class="anchor" href="#goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h2>
+
+<p>Come up with a few samples to demonstrate how to integrate C3js with AngularJS</p>
+
+<h2>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+
+<p>Homepage c3js library [<a href="http://c3js.org">http://c3js.org</a>]
+Homepage AngularJS [<a href="https://angularjs.org">https://angularjs.org</a>]</p>
+
+<p>Blogpost about c3js by Roberto van der Linden: <a href="http://blog.trifork.com/2014/07/29/creating-charts-with-c3-js/">Creating charts with c3.js</a>
+Blogpost about integrating c3js and angularjs by Jettro Coenradie: <a href="http://www.gridshore.nl/2014/07/29/using-c3js-angularjs/">Using C3js with AngularJS</a></p>
+
+<p>Blogpost about AngularJS Directives for c3js: <a href="http://blog.trifork.com/2014/08/19/angularjs-directives-for-c3-js-chart-library/">Angularjs directives for c3js chart library</a></p>
+
+<p>Blogpost about the improvements I made using grunt and bower: TODO</p>
+
+<h2>
+<a id="installation-and-development" class="anchor" href="#installation-and-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation and development</h2>
+
+<p>We are using grunt and bower during development. Bower makes it easier to use it for your own project as well. More on this in the next section. If you want to try out the project and change sources or something like that, you can use bower and grunt to do development.</p>
+
+<p>First use npm to install all grunt plugins, than use bower to install all bower dependencies.</p>
+
+<pre><code>npm install
+bower install
+</code></pre>
+
+<p>Now grunt is available, you can use some of the utilities that grunt has in store for you. A nice one is to use the watch task and change one of the samples. There is also a plugin in place for running a development server. Just type grunt devserver and connect to port 8888 on your localhost.</p>
+
+<h2>
+<a id="using-it-in-your-own-project" class="anchor" href="#using-it-in-your-own-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using it in your own project</h2>
+
+<p>The easiest way to use the directives is to use bower to install it to your project.</p>
+
+<pre><code>bower install c3-angular --save
+</code></pre>
+
+<p>In the end you just need one file in your project: c3-angular.min.js</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Check the blogpost from Roberto above if you want an introdcution into what c3.js can do for you. If you want information about the basic usage of AngularJS together with C3.JS, check the first blogpost by Jettro. This documentation focussus on the directives.</p>
+
+<p>The goal for the directive is to come up with some sort of DSL in the HTML language for creating charts with c3.js. I will go though the different aspects of creating a chart first.</p>
+
+<p>You do not need a webserver to run the samples, the easiest way is to clone the repository from github or download the zip. Now we have grunt it is also easy to use a development webserver. Just execute grunt devserver</p>
+
+<h3>
+<a id="directive1html" class="anchor" href="#directive1html" aria-hidden="true"><span class="octicon octicon-link"></span></a>directive1.html</h3>
+
+<p>This one shows the one of the most basic charts, we define the data right in the chart. One line, no additional configuration.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">c3chart</span> <span class="pl-e">bindto-id</span>=<span class="pl-s"><span class="pl-pds">"</span>chart1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-column</span> <span class="pl-e">column-id</span>=<span class="pl-s"><span class="pl-pds">"</span>data-1<span class="pl-pds">"</span></span> 
+                  <span class="pl-e">column-values</span>=<span class="pl-s"><span class="pl-pds">"</span>30,200,100,400,150,250<span class="pl-pds">"</span></span>
+                  <span class="pl-e">column-type</span>=<span class="pl-s"><span class="pl-pds">"</span>line<span class="pl-pds">"</span></span>/&gt;      
+&lt;/<span class="pl-ent">c3chart</span>&gt;
+</pre></div>
+
+<p>The main element is <strong>c3chart</strong>, with the attribute <em>bindto-id</em> we define the id of the html element the c3js chart is bound to. This makes it possible to add multiple charts to one page. In this sample we provide the data using a predifined set of numbers. This is done by the <strong>chart-column</strong> element. In this element we can define the id of the line, which is used in the tooltip and the legenda. Also you can change the type of the column by changing the <em>column-type</em>, change it to spline for instance.</p>
+
+<p>Another way of providing data is using a more angular approach. Now we provide the data using the $scope of the controller.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">c3chart</span> <span class="pl-e">bindto-id</span>=<span class="pl-s"><span class="pl-pds">"</span>chart<span class="pl-pds">"</span></span> <span class="pl-e">chart-data</span>=<span class="pl-s"><span class="pl-pds">"</span>datapoints<span class="pl-pds">"</span></span> <span class="pl-e">chart-columns</span>=<span class="pl-s"><span class="pl-pds">"</span>datacolumns<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">c3chart</span>&gt;</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> graphApp <span class="pl-k">=</span> angular.module(<span class="pl-s"><span class="pl-pds">'</span>graphApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>gridshore.c3js.chart<span class="pl-pds">'</span></span>]);
+
+graphApp.controller(<span class="pl-s"><span class="pl-pds">'</span>GraphCtrl<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$scope</span>) {
+    $scope.datapoints<span class="pl-k">=</span>[{<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">15</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">20</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">35</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">30</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">15</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">75</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">40</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">50</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">45</span>}];
+    $scope.datacolumns<span class="pl-k">=</span>[{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>line<span class="pl-pds">"</span></span>},
+                        {<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>spline<span class="pl-pds">"</span></span>}];
+    $scope.datax<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>};
+});</pre></div>
+
+<p>Notice that we put three objects in the $scope, two of which we also have in the html directive (<em>datapoints</em> and <em>datacolumns</em>). This time we have 2 lines: top-1 and top-2. As you can see we can configure the type again, this time I configured two different types, <em>line</em> and <em>spline</em>.</p>
+
+<p>If you look closely at the datapoints, you can see we have an additional property called <strong>x</strong> as well as a different object on the $scope called <strong>datax</strong>. We can add an attribute to the directive called <em>chart-x</em> that tells c3js to use the values from <em>x</em> as values on the x axis. We can also change the name <em>top-1</em> to a nicer version and we can change the colors of the lines if we want to. The following code shows the changes.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">c3chart</span> <span class="pl-e">bindto-id</span>=<span class="pl-s"><span class="pl-pds">"</span>chart<span class="pl-pds">"</span></span> <span class="pl-e">chart-data</span>=<span class="pl-s"><span class="pl-pds">"</span>datapoints<span class="pl-pds">"</span></span> <span class="pl-e">chart-columns</span>=<span class="pl-s"><span class="pl-pds">"</span>datacolumns<span class="pl-pds">"</span></span> <span class="pl-e">chart-x</span>=<span class="pl-s"><span class="pl-pds">"</span>datax<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">c3chart</span>&gt;</pre></div>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> graphApp <span class="pl-k">=</span> angular.module(<span class="pl-s"><span class="pl-pds">'</span>graphApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>gridshore.c3js.chart<span class="pl-pds">'</span></span>]);
+
+graphApp.controller(<span class="pl-s"><span class="pl-pds">'</span>GraphCtrl<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$scope</span>) {
+    $scope.datapoints<span class="pl-k">=</span>[{<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">10</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">15</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">20</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">100</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">35</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">30</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">15</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">75</span>},
+                       {<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">40</span>,<span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">50</span>,<span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">45</span>}];
+    $scope.datacolumns<span class="pl-k">=</span>[{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>line<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>Top one<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>color<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>},
+                        {<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>spline<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>Top two<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>color<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>blue<span class="pl-pds">"</span></span>}];
+    $scope.datax<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>};
+});</pre></div>
+
+<p>Now the data is coming from an AngularJS model object. We can use AngularJS features to obtain the data from a service for instance, or we can even do something with an update of the data using <em>$interval</em>. The directive listens for changes to the <em>datapoints</em> model, it does not change when <em>datacolumns</em> or <em>datax</em> changes. if the datapoints changes, the graph is redrawn. Open directive2.html to see the sample.</p>
+
+<h3>
+<a id="directive3html" class="anchor" href="#directive3html" aria-hidden="true"><span class="octicon octicon-link"></span></a>directive3.html</h3>
+
+<p>In this sample we are going to show you the timeseries chart, as available from c3.js. To do this, you need to add information about the x-axis. We need to tell it to be of type <em>timeseries</em> and we define the format of the tick (meaning the values on the x-axis). The following code block shows the html.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">c3chart</span> <span class="pl-e">bindto-id</span>=<span class="pl-s"><span class="pl-pds">"</span>chart<span class="pl-pds">"</span></span> <span class="pl-e">chart-data</span>=<span class="pl-s"><span class="pl-pds">"</span>datapoints<span class="pl-pds">"</span></span> <span class="pl-e">chart-columns</span>=<span class="pl-s"><span class="pl-pds">"</span>datacolumns<span class="pl-pds">"</span></span> <span class="pl-e">chart-x</span>=<span class="pl-s"><span class="pl-pds">"</span>datax<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis</span>&gt;
+        &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-x</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span> <span class="pl-e">axis-type</span>=<span class="pl-s"><span class="pl-pds">"</span>timeseries<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-x-tick</span> <span class="pl-e">tick-format</span>=<span class="pl-s"><span class="pl-pds">"</span>%Y-%m-%d<span class="pl-pds">"</span></span>/&gt;
+        &lt;/<span class="pl-ent">chart</span><span class="pl-e">-axis-x</span>&gt;
+    &lt;/<span class="pl-ent">chart</span><span class="pl-e">-axis</span>&gt;
+&lt;/<span class="pl-ent">c3chart</span>&gt;</pre></div>
+
+<p>Next the trick to update the data in the chart. What we do is change the model parameter in the $scope called <em>datapoints</em>. Than in the directive we watch the datapoints collection and redraw the chart if changes.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> graphApp <span class="pl-k">=</span> angular.module(<span class="pl-s"><span class="pl-pds">'</span>graphApp<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>gridshore.c3js.chart<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>graphApp.services<span class="pl-pds">'</span></span>]);
+
+graphApp.controller(<span class="pl-s"><span class="pl-pds">'</span>GraphCtrl<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$scope</span>, <span class="pl-smi">$interval</span>,<span class="pl-smi">dataService</span>) {
+    $scope.datapoints<span class="pl-k">=</span>[];
+    $scope.datacolumns<span class="pl-k">=</span>[{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>line<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>Top one<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>color<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>black<span class="pl-pds">"</span></span>},
+                        {<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>top-2<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>spline<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>Top two<span class="pl-pds">"</span></span>}];
+    $scope.datax<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>};
+
+    $interval(<span class="pl-k">function</span>(){
+        dataService.loadData(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+            $scope.datapoints.<span class="pl-c1">push</span>(data);
+        });     
+    },<span class="pl-c1">1000</span>,<span class="pl-c1">10</span>);
+});
+
+<span class="pl-k">var</span> services <span class="pl-k">=</span> angular.module(<span class="pl-s"><span class="pl-pds">'</span>graphApp.services<span class="pl-pds">'</span></span>, []);
+services.factory(<span class="pl-s"><span class="pl-pds">'</span>dataService<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+    <span class="pl-k">function</span> <span class="pl-en">DataService</span>() {
+        <span class="pl-k">var</span> maxNumber <span class="pl-k">=</span> <span class="pl-c1">200</span>;
+
+        <span class="pl-c">// API methods</span>
+        <span class="pl-c1">this</span>.<span class="pl-en">loadData</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">callback</span>) {
+            callback({<span class="pl-s"><span class="pl-pds">"</span><span class="pl-en">x":new Date(),"top-1</span><span class="pl-pds">"</span></span>:<span class="pl-en">randomNumber</span>(),<span class="pl-s"><span class="pl-pds">"</span><span class="pl-en">top-2</span><span class="pl-pds">"</span></span>:<span class="pl-en">randomNumber</span>()});
+        };
+
+        <span class="pl-k">function</span> <span class="pl-en">randomNumber</span>() {
+            <span class="pl-k">return</span> <span class="pl-c1">Math</span>.<span class="pl-c1">floor</span>((<span class="pl-c1">Math</span>.<span class="pl-c1">random</span>() <span class="pl-k">*</span> maxNumber) <span class="pl-k">+</span> <span class="pl-c1">1</span>);
+        }
+    }
+    <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-en">DataService</span>();
+});</pre></div>
+
+<p>The dataService is used to generate a new object with three properties, the current datetime for the x axis and two random values for the different lines. Notice the <em>$interval</em> which helps us to wait one second before creating a new point. It will do this 10 times. The most important part here is that you do not need to change the directive to make the data dynamic. This is purely done in the controller for the page you are on.</p>
+
+<p>Next up are more features made available by the very nice c3.js library.</p>
+
+<h3>
+<a id="directive3html-1" class="anchor" href="#directive3html-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>directive3.html</h3>
+
+<p>I am not going to show all the code in this case. I am focussing on changes. First one is setting the name of the column and the color of the column (or line)</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">chart</span><span class="pl-e">-column</span> <span class="pl-e">column-id</span>=<span class="pl-s"><span class="pl-pds">"</span>data 1<span class="pl-pds">"</span></span> 
+              <span class="pl-e">column-name</span>=<span class="pl-s"><span class="pl-pds">"</span>Data 1<span class="pl-pds">"</span></span>
+              <span class="pl-e">column-color</span>=<span class="pl-s"><span class="pl-pds">"</span>red<span class="pl-pds">"</span></span>
+              <span class="pl-e">column-values</span>=<span class="pl-s"><span class="pl-pds">"</span>30,200,100,400,150,250<span class="pl-pds">"</span></span>
+              <span class="pl-e">column-type</span>=<span class="pl-s"><span class="pl-pds">"</span>spline<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<p>Use the attributes column-color and column-name. Next up is adding a second verticle axis. First part is specifying which columns belong to x, y and y2. Next is configuring things like range and padding and labels for the axis. Padding is placing empty space on top of the y-axis.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">chart</span><span class="pl-e">-axes</span> <span class="pl-e">values-x</span>=<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span> <span class="pl-e">y</span>=<span class="pl-s"><span class="pl-pds">"</span>data1,data3<span class="pl-pds">"</span></span> <span class="pl-e">y2</span>=<span class="pl-s"><span class="pl-pds">"</span>data2<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">chart</span><span class="pl-e">-axis</span>&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-x</span> <span class="pl-e">axis-position</span>=<span class="pl-s"><span class="pl-pds">"</span>outer-center<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-label</span>=<span class="pl-s"><span class="pl-pds">"</span>Number by 10<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-type</span>=<span class="pl-s"><span class="pl-pds">"</span>category<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-x-tick</span> <span class="pl-e">tick-rotate</span>=<span class="pl-s"><span class="pl-pds">"</span>50<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">chart</span><span class="pl-e">-axis-x</span>&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-y</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-position</span>=<span class="pl-s"><span class="pl-pds">"</span>outer-right<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-label</span>=<span class="pl-s"><span class="pl-pds">"</span>Higher numbers<span class="pl-pds">"</span></span>
+                  <span class="pl-e">padding-top</span>=<span class="pl-s"><span class="pl-pds">"</span>100<span class="pl-pds">"</span></span>
+                  <span class="pl-e">padding-bottom</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>
+                  <span class="pl-e">range-min</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-axis-y</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>y2<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-position</span>=<span class="pl-s"><span class="pl-pds">"</span>outer-right<span class="pl-pds">"</span></span>
+                  <span class="pl-e">axis-label</span>=<span class="pl-s"><span class="pl-pds">"</span>Lower numbers<span class="pl-pds">"</span></span>
+                  <span class="pl-e">padding-top</span>=<span class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span>
+                  <span class="pl-e">padding-bottom</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>
+                  <span class="pl-e">range-max</span>=<span class="pl-s"><span class="pl-pds">"</span>100<span class="pl-pds">"</span></span>
+                  <span class="pl-e">range-min</span>=<span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>/&gt;
+&lt;/<span class="pl-ent">chart</span><span class="pl-e">-axis</span>&gt;</pre></div>
+
+<p>Notice the <em>chart-axis-x-tick</em>, this shows the cool feature to rotate the labels on the x-axis. Next up is adding a grid to the chart. You can configure to show the x and y grid. But you can also position one grid line on a specific value.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">chart</span><span class="pl-e">-grid</span> <span class="pl-e">show-x</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> <span class="pl-e">show-y</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-grid-optional</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span> <span class="pl-e">grid-value</span>=<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span> <span class="pl-e">grid-text</span>=<span class="pl-s"><span class="pl-pds">"</span>Start<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-grid-optional</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span> <span class="pl-e">grid-value</span>=<span class="pl-s"><span class="pl-pds">"</span>20<span class="pl-pds">"</span></span> <span class="pl-e">grid-text</span>=<span class="pl-s"><span class="pl-pds">"</span>Minimum<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">chart</span><span class="pl-e">-grid-optional</span> <span class="pl-e">axis-id</span>=<span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span> <span class="pl-e">grid-value</span>=<span class="pl-s"><span class="pl-pds">"</span>200<span class="pl-pds">"</span></span> <span class="pl-e">grid-text</span>=<span class="pl-s"><span class="pl-pds">"</span>Maximum<span class="pl-pds">"</span></span>/&gt;
+&lt;/<span class="pl-ent">chart</span><span class="pl-e">-grid</span>&gt;</pre></div>
+
+<p>Another really cool feature is adding the subchart, with this you can select just a selection of the datapoints in the chart. Together with the zoom functionality this makes a very interactive chart. You have to try it to believe it.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">c3chart</span> <span class="pl-e">bindto-id</span>=<span class="pl-s"><span class="pl-pds">"</span>chart5<span class="pl-pds">"</span></span> <span class="pl-e">show-labels</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> <span class="pl-e">show-subchart</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> <span class="pl-e">enable-zoom</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;     
+&lt;/<span class="pl-ent">c3chart</span>&gt;</pre></div>
+
+<p>The last thing to show for now is putting the legenda at another location, changing the tooltip, change the size of the chart and provide an array of colors to use for the lines.</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">chart</span><span class="pl-e">-legend</span> <span class="pl-e">show-legend</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> <span class="pl-e">legend-position</span>=<span class="pl-s"><span class="pl-pds">"</span>right<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">chart</span><span class="pl-e">-colors</span> <span class="pl-e">color-pattern</span>=<span class="pl-s"><span class="pl-pds">"</span>#1f77b4,#ffbb78,#2ca02c,#ff7f0e<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">chart</span><span class="pl-e">-size</span> <span class="pl-e">chart-height</span>=<span class="pl-s"><span class="pl-pds">"</span>600<span class="pl-pds">"</span></span> <span class="pl-e">chart-width</span>=<span class="pl-s"><span class="pl-pds">"</span>600<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">chart</span><span class="pl-e">-tooltip</span> <span class="pl-e">show-tooltip</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> <span class="pl-e">group-tooltip</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<h2>
+<a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version History</h2>
+
+<h3>
+<a id="030" class="anchor" href="#030" aria-hidden="true"><span class="octicon octicon-link"></span></a>0.3.0</h3>
+
+<p>Upgraded to the latest versions of:
+c3js - 0.4.10</p>
+
+<p>Added a number of pull requests by:
+mark-lai: formatting and x/y tick enhancements
+yourivdlans: Some very nice enhancements in the axis, also the sample with the bubble.
+Resseguie: Added a feature to pass a color function to the chart</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/jettro/c3-angular-directive">C3-angular-directive</a> is maintained by <a href="https://github.com/jettro">jettro</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-180286-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
+
