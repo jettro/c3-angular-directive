@@ -710,7 +710,9 @@ angular.module('gridshore.c3js.chart', [])
 	var gaugeLinker = function (scope, element, attrs, chartCtrl) {
 		var gauge = {
 			min: parseInt(attrs.min || '0'),
-			max: parseInt(attrs.max || '100')
+			max: parseInt(attrs.max || '100'),
+			width: parseInt(attrs.width || '25'),
+			units: attrs.units
 		};
 
 		chartCtrl.addGauge(gauge);
