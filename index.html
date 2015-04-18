@@ -1,16 +1,13 @@
 <!doctype html>
 <html lang="en" ng-app="graphApp">
 <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example that shows off a responsive product landing page.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
-    <title>Landing Page &ndash; Layout Examples &ndash; Pure</title>
+  <title>Documentation for C3js AngularJS Directives</title>
 
-    
-
-
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 
 
@@ -21,11 +18,11 @@
 <![endif]-->
 <!--[if gt IE 8]><!-->
   
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
   
 <!--<![endif]-->
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
   
@@ -66,6 +63,11 @@ ga('create', 'UA-180286-1', 'c3-angular-directive');
 ga('send', 'pageview');
 </script>
 
+<style>
+.footer a {
+  color: white;
+}
+</style>
 
 </head>
 <body ng-controller="GraphCtrl">
@@ -144,7 +146,7 @@ ga('send', 'pageview');
 
     <div class="ribbon l-box-lrg pure-g">
         <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-      <p><a href="https://github.com/jettro/c3-angular-directive" class="pure-button">View on GitHub</a></p>
+      <p><a href="https://github.com/jettro/c3-angular-directive" class="pure-button pure-button-primary">View on GitHub</a></p>
       <p><a href="https://github.com/jettro/c3-angular-directive/zipball/master" class="pure-button">Download .zip</a></p>
       <p><a href="https://github.com/jettro/c3-angular-directive/tarball/master" class="pure-button">Download .tar.gz</a></p>
         </div>
@@ -159,7 +161,7 @@ ga('send', 'pageview');
     </div>
 
     <div class="content">
-      <h2 class="content-head is-center">Just a basic example to show how it works.</h2>
+      <h2 class="content-head is-center">Some examples for the graphs we support, there is more though.</h2>
         <div class="pure-g">
           <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
             <h2>Basic chart with two lines</h2>
@@ -215,6 +217,451 @@ ga('send', 'pageview');
                               column-values="50,20,10,40,15,25"
                               column-type="line"/>
               </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Add more info to the axes and add the second y axis.</h2>
+            <c3chart bindto-id="chart3">
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>
+              
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart3">
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>
+              
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Add a grid to the chart</h2>
+            <c3chart bindto-id="chart4">
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>                 
+              
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+
+                <chart-grid show-x="false" show-y="true">
+                <chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+                <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+              </chart-grid>
+
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart4">
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>                 
+              
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+
+                <chart-grid show-x="false" show-y="true">
+                <chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+                <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+              </chart-grid>
+
+            </c3chart>
+
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Hide labels, but add subchart and zoom</h2>
+            <c3chart bindto-id="chart5" show-labels="true" show-subchart="true" enable-zoom="true">   
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-count="6"
+                                 tick-culling="4"
+                                 tick-fit="false"
+                                 tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+              <chart-grid show-x="false" show-y="true">               
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Value on the y"/>
+                <chart-grid-optional axis-id="y2" grid-value="40" grid-text="Value on the y2"/>
+              </chart-grid>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart5" show-labels="true" show-subchart="true" enable-zoom="true">   
+              <chart-column column-id="x" 
+                      column-values="period 10,period 20,period 30,period 40,period 50,period 60"/>
+              <chart-column column-id="data1" 
+                        column-name="Data 1"
+                        column-color="red"
+                        column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+              <chart-column column-id="data3" 
+                        column-name="Data 3"
+                        column-color="#000000"
+                            column-values="150,20,100,70,85,215"
+                            column-type="spline"/>
+
+              <!-- values for y and y2 can be comma seperated list of items, so no commas is label -->
+              <chart-axes values-x="x" y="data1,data3" y2="data2"/>
+
+
+              <chart-axis>
+                <chart-axis-x axis-position="outer-center"
+                              axis-label="Number by 10"
+                              axis-type="category">
+                      <chart-axis-x-tick tick-count="6"
+                                 tick-culling="4"
+                                 tick-fit="false"
+                                 tick-rotate="50"/>
+                  </chart-axis-x>
+                <chart-axis-y axis-id="y"
+                              axis-position="outer-right"
+                              axis-label="Higher numbers"
+                              padding-top="100"
+                              padding-bottom="0"
+                              range-min="0"/>
+                <chart-axis-y axis-id="y2"
+                              axis-position="outer-right"
+                              axis-label="Lower numbers"
+                              padding-top="10"
+                              padding-bottom="0"
+                              range-max="100"
+                              range-min="0"/>
+              </chart-axis>
+              <chart-grid show-x="false" show-y="true">               
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Value on the y"/>
+                <chart-grid-optional axis-id="y2" grid-value="40" grid-text="Value on the y2"/>
+              </chart-grid>
+            </c3chart>
+            
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Show legend, tooltip and size customization</h2>
+            <c3chart bindto-id="chart6">
+              <chart-legend show-legend="true" legend-position="right"/>
+              <chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
+              <chart-size chart-height="600" chart-width="600"/>
+              <chart-tooltip show-tooltip="true" group-tooltip="false"/>
+
+              <chart-column column-id="data 1" 
+                        column-name="Data 1"
+                        column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data 2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart6">
+              <chart-legend show-legend="true" legend-position="right"/>
+              <chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
+              <chart-size chart-height="600" chart-width="600"/>
+              <chart-tooltip show-tooltip="true" group-tooltip="false"/>
+
+              <chart-column column-id="data 1" 
+                        column-name="Data 1"
+                        column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+              <chart-column column-id="data 2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="line"/>
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Hide axis</h2>
+            <c3chart bindto-id="chart7">
+                <chart-column column-id="Data 1"
+                              column-values="30,200,100,400,150,250,50"
+                              column-type="line"/>
+                <chart-axis>
+                    <chart-axis-x show="false"></chart-axis-x>
+                    <chart-axis-y show="false"></chart-axis-y>
+                </chart-axis>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="chart7">
+                <chart-column column-id="Data 1"
+                              column-values="30,200,100,400,150,250,50"
+                              column-type="line"/>
+                <chart-axis>
+                    <chart-axis-x show="false"></chart-axis-x>
+                    <chart-axis-y show="false"></chart-axis-y>
+                </chart-axis>
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Scatter chart with data that has different x values.</h2>
+            <c3chart bindto-id="scatter-plot2-chart">
+              <chart-column column-id="Data 1 x" 
+                            column-values="3.2, 3.2, 3.1, 2.3, 2.8, 2.8, 3.3, 2.4, 2.9, 2.7, 2.0, 3.0, 2.2, 2.9, 2.9, 3.1, 3.0, 2.7, 2.2, 2.5, 3.2, 2.8, 2.5, 2.8, 2.9, 3.0, 2.8, 3.0, 2.9, 2.6, 2.4, 2.4, 2.7, 2.7, 3.0, 3.4, 3.1, 2.3, 3.0, 2.5, 2.6, 3.0, 2.6, 2.3, 2.7, 3.0, 2.9, 2.9, 2.5, 2.8" />
+              <chart-column column-id="Data 2 x"
+                            column-values="3.3, 2.7, 3.0, 2.9, 3.0, 3.0, 2.5, 2.9, 2.5, 3.6, 3.2, 2.7, 3.0, 2.5, 2.8, 3.2, 3.0, 3.8, 2.6, 2.2, 3.2, 2.8, 2.8, 2.7, 3.3, 3.2, 2.8, 3.0, 2.8, 3.0, 2.8, 3.8, 2.8, 2.8, 2.6, 3.0, 3.4, 3.1, 3.0, 3.1, 3.1, 3.1, 2.7, 3.2, 3.3, 3.0, 2.5, 3.0, 3.4, 3.0" />
+              <chart-column column-id="Data 1"
+                            column-values="1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3"
+                            column-type="scatter"/>
+              <chart-column column-id="Data 2"
+                            column-values="2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8"
+                            column-type="scatter"/>
+              <chart-axes values-xs="Data 1:Data 1 x,Data 2:Data 2 x" />
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="scatter-plot2-chart">
+              <chart-column column-id="Data 1 x" 
+                            column-values="3.2, 3.2, 3.1, 2.3, 2.8, 2.8, 3.3, 2.4, 2.9, 2.7, 2.0, 3.0, 2.2, 2.9, 2.9, 3.1, 3.0, 2.7, 2.2, 2.5, 3.2, 2.8, 2.5, 2.8, 2.9, 3.0, 2.8, 3.0, 2.9, 2.6, 2.4, 2.4, 2.7, 2.7, 3.0, 3.4, 3.1, 2.3, 3.0, 2.5, 2.6, 3.0, 2.6, 2.3, 2.7, 3.0, 2.9, 2.9, 2.5, 2.8" />
+              <chart-column column-id="Data 2 x"
+                            column-values="3.3, 2.7, 3.0, 2.9, 3.0, 3.0, 2.5, 2.9, 2.5, 3.6, 3.2, 2.7, 3.0, 2.5, 2.8, 3.2, 3.0, 3.8, 2.6, 2.2, 3.2, 2.8, 2.8, 2.7, 3.3, 3.2, 2.8, 3.0, 2.8, 3.0, 2.8, 3.8, 2.8, 2.8, 2.6, 3.0, 3.4, 3.1, 3.0, 3.1, 3.1, 3.1, 2.7, 3.2, 3.3, 3.0, 2.5, 3.0, 3.4, 3.0" />
+              <chart-column column-id="Data 1"
+                            column-values="1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3"
+                            column-type="scatter"/>
+              <chart-column column-id="Data 2"
+                            column-values="2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8"
+                            column-type="scatter"/>
+              <chart-axes values-xs="Data 1:Data 1 x,Data 2:Data 2 x" />
+            </c3chart>
+            ]]></script>
+          </div>
+        </div>
+        <div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <h2>Stacked bar chart</h2>
+            <c3chart bindto-id="stacked-bar-plot1-chart">
+              <chart-column column-id="data 1" 
+                        column-name="Data 1"
+                        column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="bar"/>
+              <chart-column column-id="data 2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="bar"/>
+              <chart-group group-values="data 1,data 2"/>
+            </c3chart>
+          </div>
+          <div class="l-box-lrg pure-u-1 pure-u-md-1-2">
+            <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <c3chart bindto-id="stacked-bar-plot1-chart">
+              <chart-column column-id="data 1" 
+                        column-name="Data 1"
+                        column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="bar"/>
+              <chart-column column-id="data 2" 
+                        column-name="Data 2"
+                        column-color="green"
+                            column-values="50,20,10,40,15,25"
+                            column-type="bar"/>
+              <chart-group group-values="data 1,data 2"/>
+            </c3chart>
             ]]></script>
           </div>
         </div>
@@ -289,7 +736,8 @@ ga('send', 'pageview');
     </div>
 
     <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
+        <p>This site is hosted @ Github, check download links if you want to have these graphs as well.</p>
+        <p>This library is powered by <a href="https://twitter.com/jettroCoenradie">@jettroCoenradie</a></p>
     </div>
 
 </div>
