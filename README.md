@@ -1,6 +1,10 @@
 # C3JS and AngularJS integration samples
 This repository contains some samples to demonstrate what you can do when you integrate AngularJS with C3JS. This repository is mainly here to support a few blogpost. I am working an a better location for the directives. For now you can find them here.
 
+# Documentation
+There is a page with samples and documentation available:
+http://jettro.github.io/c3-angular-directive/
+
 ## Goal
 Come up with a few samples to demonstrate how to integrate C3js with AngularJS
 
