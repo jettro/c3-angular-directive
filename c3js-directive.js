@@ -1,26 +1,5 @@
 angular.module('gridshore.c3js.chart', [])
 .controller('ChartController',['$scope', function($scope) {
-	// TODO Do we still need this initializer? Looks like we just need to call resetVars()
-	$scope.chart = null;
-	$scope.columns = [];
-	$scope.types = {};
-	$scope.axis = {};
-	$scope.axes = {};
-	$scope.padding = null;
-	$scope.xValues= null;
-    $scope.xsValues = null;
-	$scope.xTick = null;
-	$scope.yTick = null;
-	$scope.names = null;
-	$scope.colors = null;
-	$scope.grid = null;
-	$scope.legend = null;
-	$scope.tooltip = null;
-	$scope.chartSize = null;
-	$scope.colors = null;
-	$scope.gauge = null;
-	$scope.jsonKeys = null;
-	$scope.groups = null;
 
 	function resetVars() {
 		$scope.chart = null;
@@ -32,6 +11,7 @@ angular.module('gridshore.c3js.chart', [])
 		$scope.xValues= null;
 		$scope.xsValues = null;
 		$scope.xTick = null;
+		$scope.yTick = null;
 		$scope.names = null;
 		$scope.colors = null;
 		$scope.grid = null;
@@ -111,6 +91,15 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.gauge != null) {
 			config.gauge = $scope.gauge;
 		}
+		if ($scope.bar != null) {
+			config.bar = $scope.bar;
+		}
+		if ($scope.pie != null) {
+			config.pie = $scope.pie;
+		}
+		if ($scope.donut != null) {
+			config.donut = $scope.donut;
+		}
 		if ($scope.onInit != null) {
 			config.oninit = $scope.onInit;
 		}
@@ -131,20 +120,25 @@ angular.module('gridshore.c3js.chart', [])
 		}
 		if ($scope.dataOnClick != null) {
 			config.data.onclick = function(data, element) {
-				$scope.dataOnClick({"data":data,"element":element});
+				$scope.$apply(function() {
+					$scope.dataOnClick({"data":data,"element":element});
+				});				
 			};
 		}
 		if ($scope.dataOnMouseover != null) {
 			config.data.onmouseover = function(data) {
-				$scope.dataOnMouseover({"data":data});
+				$scope.$apply(function() {
+					$scope.dataOnMouseover({"data":data});
+				});
 			};
 		}
 		if ($scope.dataOnMouseout != null) {
 			config.data.onmouseout = function(data) {
-				$scope.dataOnMouseout({"data":data});
+				$scope.$apply(function() {
+					$scope.dataOnMouseout({"data":data});
+				});
 			};
 		}
-
 
 		$scope.config = config;
 
@@ -303,6 +297,18 @@ angular.module('gridshore.c3js.chart', [])
 	this.addGauge = function (gauge) {
 		$scope.gauge = gauge;
 	};
+
+	this.addBar = function (bar) {
+		$scope.bar = bar;
+	}
+
+	this.addPie = function (pie) {
+		$scope.pie = pie;
+	}
+
+	this.addDonut = function (donut) {
+		$scope.donut = donut;
+	}
 
 	this.addGroup = function (group) {
 		if ($scope.groups == null) {
@@ -808,13 +814,25 @@ angular.module('gridshore.c3js.chart', [])
 })
 .directive('chartGauge', function() {
 	var gaugeLinker = function (scope, element, attrs, chartCtrl) {
-		var gauge = {
-			min: parseInt(attrs.min || '0'),
-			max: parseInt(attrs.max || '100'),
-			width: parseInt(attrs.width || '25'),
-			units: attrs.units
-		};
-
+		var gauge = {}
+		if (attrs.min) {
+			gauge.min = parseInt(attrs.min);
+		}
+		if (attrs.max) {
+			gauge.max = parseInt(attrs.max);
+		}
+		if (attrs.width) {
+			gauge.width = parseInt(attrs.width);
+		}
+		if (attrs.units) {
+			gauge.units = attrs.units
+		}
+		if (attrs.showLabel) {
+			gauge.label = {"show":(attrs.showLabel === 'true')};
+		}
+		if (attrs.expand) {
+			gauge.expand = (attrs.expand === 'true');
+		}
 		chartCtrl.addGauge(gauge);
 	};
 
@@ -824,6 +842,91 @@ angular.module('gridshore.c3js.chart', [])
 		scope: {},
 		replace: true,
 		link: gaugeLinker
+	};
+})
+.directive('chartPie', function() {
+	var pieLinker = function (scope, element, attrs, chartCtrl) {
+		var pie = {}
+		if (attrs.showLabel) {
+			pie.label = {"show":(attrs.showLabel === 'true')};
+		}
+		if (attrs.thresholdLabel) {
+			if (!pie.label) {
+				pie.label = {};
+			}
+			pie.label.threshold = parseFloat(attrs.thresholdLabel);
+		}
+		if (attrs.expand) {
+			pie.expand = (attrs.expand === 'true');
+		}
+		chartCtrl.addPie(pie);
+	};
+
+	return {
+		require: '^c3chart',
+		restrict: 'E',
+		scope: {},
+		replace: true,
+		link: pieLinker
+	};
+})
+.directive('chartDonut', function() {
+	var donutLinker = function (scope, element, attrs, chartCtrl) {
+		var donut = {}
+		if (attrs.showLabel) {
+			donut.label = {"show":(attrs.showLabel === 'true')};
+		}
+		if (attrs.thresholdLabel) {
+			if (!donut.label) {
+				donut.label = {};
+			}
+			donut.label.threshold = parseFloat(attrs.thresholdLabel);
+		}
+		if (attrs.expand) {
+			donut.expand = (attrs.expand === 'true');
+		}
+		if (attrs.width) {
+			donut.width = parseInt(attrs.width);
+		}
+		if (attrs.title) {
+			donut.title = attrs.title;
+		}
+
+		chartCtrl.addDonut(donut);
+	};
+
+	return {
+		require: '^c3chart',
+		restrict: 'E',
+		scope: {},
+		replace: true,
+		link: donutLinker
+	};
+})
+.directive('chartBar', function() {
+	var barLinker = function (scope, element, attrs, chartCtrl) {
+		var bar = {}
+		if (attrs.width) {
+			bar.width = parseInt(attrs.width);
+		}
+		if (attrs.ratio) {
+			if (!bar.width) {
+				bar.width = {};
+			}
+			bar.width.ratio = parseFloat(attrs.ratio);
+		}
+		if (attrs.zerobased) {
+			bar.zerobased = (attrs.zerobased === 'true');
+		}
+		chartCtrl.addBar(bar);
+	};
+
+	return {
+		require: '^c3chart',
+		restrict: 'E',
+		scope: {},
+		replace: true,
+		link: barLinker
 	};
 })
 .directive('chartEvents', function() {
