@@ -200,6 +200,16 @@ The last thing to show for now is putting the legenda at another location, chang
 ```
 
 ## Version History
+### 0.3.1
+Added a gauge config by richardthombs
+Added a stacked bar chart requested by vinnytheviking
+Added events to the chart as well as data, now you can add callbacks to data click, chart mouse over, etc. requested by Tropicalista and pehrlich
+
+Also added a better project page:
+http://jettro.github.io/c3-angular-directive/
+
+Working on improved documentation and better examples for release 0.4.0
+
 ### 0.3.0
 Upgraded to the latest versions of:
 c3js - 0.4.10
