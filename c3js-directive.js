@@ -1,5 +1,6 @@
 angular.module('gridshore.c3js.chart', [])
 .controller('ChartController',['$scope', function($scope) {
+	// TODO Do we still need this initializer? Looks like we just need to call resetVars()
 	$scope.chart = null;
 	$scope.columns = [];
 	$scope.types = {};
@@ -110,6 +111,40 @@ angular.module('gridshore.c3js.chart', [])
 		if ($scope.gauge != null) {
 			config.gauge = $scope.gauge;
 		}
+		if ($scope.onInit != null) {
+			config.oninit = $scope.onInit;
+		}
+		if ($scope.onMouseover != null) {
+			config.onmouseover = $scope.onMouseover;
+		}
+		if ($scope.onMouseout != null) {
+			config.onmouseout = $scope.onMouseout;
+		}
+		if ($scope.onRendered != null) {
+			config.onrendered = $scope.onRendered;
+		}
+		if ($scope.onResize != null) {
+			config.onresize = $scope.onResize;
+		}
+		if ($scope.onResized != null) {
+			config.onresized = $scope.onResized;
+		}
+		if ($scope.dataOnClick != null) {
+			config.data.onclick = function(data, element) {
+				$scope.dataOnClick({"data":data,"element":element});
+			};
+		}
+		if ($scope.dataOnMouseover != null) {
+			config.data.onmouseover = function(data) {
+				$scope.dataOnMouseover({"data":data});
+			};
+		}
+		if ($scope.dataOnMouseout != null) {
+			config.data.onmouseout = function(data) {
+				$scope.dataOnMouseout({"data":data});
+			};
+		}
+
 
 		$scope.config = config;
 
@@ -227,6 +262,42 @@ angular.module('gridshore.c3js.chart', [])
 
 	this.addColorFunction = function(colorFunction) {
 		$scope.colorFunction = colorFunction;
+	};
+
+	this.addOnInitFunction = function(onInitFunction) {
+		$scope.onInit = onInitFunction;
+	};
+
+	this.addOnMouseoverFunction = function(onMouseoverFunction) {
+		$scope.onMouseover = onMouseoverFunction;
+	};
+
+	this.addOnMouseoutFunction = function(onMouseoutFunction) {
+		$scope.onMouseout = onMouseoutFunction;
+	};
+
+	this.addOnRenderedFunction = function(onRederedFunction) {
+		$scope.onRendered = onRederedFunction;
+	};	
+
+	this.addOnResizeFunction = function(onResizeFunction) {
+		$scope.onResize = onResizeFunction;
+	};
+
+	this.addOnResizedFunction = function(onResizedFuncton) {
+		$scope.onResized = onResizedFuncton;
+	};
+
+	this.addDataOnClickFunction = function(theFunction) {
+		$scope.dataOnClick = theFunction;
+	};
+
+	this.addDataOnMouseoverFunction = function(theFunction) {
+		$scope.dataOnMouseover = theFunction;
+	};
+
+	this.addDataOnMouseoutFunction = function(theFunction) {
+		$scope.dataOnMouseout = theFunction;
 	};
 
 	this.addGauge = function (gauge) {
@@ -754,4 +825,54 @@ angular.module('gridshore.c3js.chart', [])
 		replace: true,
 		link: gaugeLinker
 	};
+})
+.directive('chartEvents', function() {
+	var eventsLinker = function(scope,element,attrs,chartCtrl) {
+		if (attrs.onInit) {
+			chartCtrl.addOnInitFunction(scope.onInit);
+		}
+		if (attrs.onMouseover) {
+			chartCtrl.addOnMouseoverFunction(scope.onMouseover);
+		}
+		if (attrs.onMouseout) {
+			chartCtrl.addOnMouseoutFunction(scope.onMouseout);
+		}
+		if (attrs.onResize) {
+			chartCtrl.addOnResizeFunction(scope.onResize);
+		}
+		if (attrs.onResized) {
+			chartCtrl.addOnResizedFunction(scope.onResized);
+		}
+		if (attrs.onRendered) {
+			chartCtrl.addOnRenderedFunction(scope.onRendered);
+		}
+		if (attrs.onClickData) {
+			chartCtrl.addDataOnClickFunction(scope.onClickData);
+		}
+		if (attrs.onMouseoverData) {
+			chartCtrl.addDataOnMouseoverFunction(scope.onMouseoverData);
+		}
+		if (attrs.onMouseoutData) {
+			chartCtrl.addDataOnMouseoutFunction(scope.onMouseoutData);
+		}
+	};
+
+	return {
+		"require":"^c3chart",
+		"restrict":"E",
+		"scope": {
+			"onInit": "&",
+			"onMouseover": "&",
+			"onMouseout": "&",
+			"onResize": "&",
+			"onResized": "&",
+			"onRendered": "&",
+			"onClickData": "&",
+			"onMouseoverData": "&",
+			"onMouseoutData": "&"
+		},
+		"replace":true,
+		"link": eventsLinker
+	};
+
 });
