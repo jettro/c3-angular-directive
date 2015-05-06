@@ -811,7 +811,7 @@ ga('send', 'pageview');
                           column-values="60"
                           column-type="donut"/>
               <chart-donut title="Donut" width="60"/>
-              <chart-events on-click-data="showClick(data,element)"/>
+              <chart-events on-click-data="showClick(theData)"/>
             </c3chart>
             <p>Data clicked: <strong>Name</strong> {{clicked.name}}, <strong>Value</strong> {{clicked.value}}</p>
           </div>
@@ -828,14 +828,14 @@ ga('send', 'pageview');
                           column-values="60"
                           column-type="donut"/>
               <chart-donut title="Donut" width="60"/>
-              <chart-events on-click-data="showClick(data,element)"/>
+              <chart-events on-click-data="showClick(theData,theElement)"/>
             </c3chart>
             ]]></script>
             <script type="syntaxhighlighter" class="brush: javascript"><![CDATA[
               graphApp.controller('GraphCtrl', function ($scope) {
                 $scope.clicked = {};
-                $scope.showClick = function(data,element) {
-                  $scope.clicked = data;
+                $scope.showClick = function(theData,theElement) {
+                  $scope.clicked = theData;
                 }
               });            
             ]]></script>
