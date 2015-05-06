@@ -1,22 +1,205 @@
 <!doctype html>
-<html>
+<html lang="en" ng-app="graphApp">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
+
+    <link href="assets/css/c3.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/shCoreDefault.css" type="text/css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="assets/js/shCore.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushXml.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushJScript.js"></script>
+
+    <script type="text/javascript">
+        SyntaxHighlighter.defaults['gutter'] = true;
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.all();
+    </script>
+
+    <style>
+        .code-column {
+            max-width: 700px;
+        }
+    </style>
 </head>
 <body>
-	<p>The first few samples are more to try out c3js library. They have nothing to do with the directives.</p>
-	<ul>
-		<li><a href="index1.html">Basic c3 sample.</a></li>
-		<li><a href="index2.html">Load c3 by angular.</a></li>
-		<li><a href="index3.html">Add some options controllable by the user.</a></li>
-		<li><a href="index4.html">Time based data and more AngularJS.</a></li>
-	</ul>
-	<p>The next few samples are using the directives.</p>
-	<ul>
-		<li><a href="directive1.html">Basic c3 sample.</a></li>
-		<li><a href="directive1-1.html">Add more configuration.</a></li>
-		<li><a href="directive2.html">Use time based data.</a></li>
-		<li><a href="directive3.html">Lots of other samples.</a></li>
-	</ul>
+<h1>Tutorial C3JS AngularJS Directives</h1>
+
+<p>Welcome to the tutorial for using the c3js angular directives. We created these directives to make it easier to
+    integrate graphs in your AngularJS project.</p>
+
+<h2>Installation</h2>
+
+<p>If you want to run this tutorial you have to run this as a website. There are a few ways you can do this. For all
+    means you have to get a copy from this <a href="https://github.com/jettro/c3-angular-directive">github
+        repository</a>. You can download the zip/tar or clone the repository.</p>
+<ul>
+    <li>Using Python: Step into the examples folder and run <code>python -m SimpleHTTPServer 8000</code></li>
+    <li>Using grunt: From the root run: <code>grunt devserver</code></li>
+</ul>
+<h2>Setting up your project</h2>
+
+<p>Before you can show your graphs, you need to do the boilerplate stuff. You have to create an html page that loads the
+    appropriate javascript libraries and stylesheets. The next code block shows this very basic html page.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+        &lt;html lang="en" ng-app="graphApp">
+        &lt;head>
+        &lt;link href="assets/css/c3.min.css" rel="stylesheet" type="text/css"/>
+        &lt;/head>
+        &lt;body ng-controller="GraphCtrl">
+
+            &lt;script src="assets/js/d3.min.js" charset="utf-8">&lt;/script>
+            &lt;script src="assets/js/c3.min.js">&lt;/script>
+            &lt;script src="assets/js/angular.min.js">&lt;/script>
+            &lt;script src="assets/js/c3-angular.min.js">&lt;/script>
+
+            &lt;script src="assets/js/app.js">&lt;/script>
+        &lt;/body>
+        &lt;/html>
+    ]]>
+
+</script>
+<p>Besides the html we also need a bit of JavaScript to initialize the application. The next code block shows
+    initilizing the app and a controller.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    var graphApp = angular.module('graphApp', ['gridshore.c3js.chart']);
+
+    graphApp.controller('GraphCtrl', function ($scope) {
+
+    });
+]]>
+</script>
+<p>That is it, now you are ready to move on to your first graph.</p>
+
+<h2>Basic graphs</h2>
+
+<p>The first graph is just a line with a few data points, feel free to play around with the column-type, see what
+    happens when you change it to spline or bar for instance.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart1">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart1">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+    </c3chart>
+    ]]>
+    </script>
+</div>
+<p>Now there are a lot of options available to you to configure. We can add a second line of data, but we can also
+    specify the values for the horizontal axis. That is what we will do in the next example. We add three <strong>chart-column</strong>
+    elements. The first element with the name x is later on configured as the x-axis. Next we configure a second
+    verticle axis. This y2 axis has different scale than the left y axis. Since we do not have a numeric chart x, we
+    have to configure that we use the <em>category</em> type axis for x.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart2">
+        <chart-column column-id="x"
+                      column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes values-x="x" y="line1" y2="bar1"/>
+        <chart-axis>
+            <chart-axis-x axis-position="outer-center"
+                          axis-label="The periods"
+                          axis-type="category"/>
+        </chart-axis>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart2">
+        <chart-column column-id="x"
+                      column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes values-x="x" y="line1" y2="bar1"/>
+        <chart-axis>
+            <chart-axis-x axis-position="outer-center"
+                          axis-label="The periods"
+                          axis-type="category"/>
+        </chart-axis>
+    </c3chart>
+    ]]>
+    </script>
+</div>
+<p>Another feature is that we can add a grid to the chart. We return to our one line of data chart and now add a horizontal grid. In the sample we add a horizontal grid, set <em>show-y</em> to true. But we also add two extra lines with a label. We have to configure the axis to use, the value to draw the line for and the label to place on top of the line.</p>
+<div class="code-column">
+    <c3chart bindto-id="chart3">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart3">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+    </c3chart>
+    ]]>
+    </script>
+</div>
+
+<p>Stacked bar chart</p>
+<c3chart bindto-id="stacked-bar-plot1-chart">
+    <chart-column column-id="data 1"
+                  column-name="Data 1"
+                  column-color="red"
+                  column-values="30,200,100,400,150,250"
+                  column-type="bar"/>
+    <chart-column column-id="data 2"
+                  column-name="Data 2"
+                  column-color="green"
+                  column-values="50,20,10,40,15,25"
+                  column-type="bar"/>
+    <chart-group group-values="data 1,data 2"/>
+</c3chart>
+
+<h2>Time series data</h2>
+<p>Also show the the zoom functionality here</p>
+
+<h2>Interactive charts</h2>
+
+<!-- Load all the required libraries -->
+<script src="assets/js/d3.min.js" charset="utf-8"></script>
+<script src="assets/js/c3.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/c3-angular.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+
 </body>
 </html>
