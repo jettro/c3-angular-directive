@@ -1,23 +1,32 @@
-# C3JS and AngularJS integration samples
-This repository contains some samples to demonstrate what you can do when you integrate AngularJS with C3JS. This repository is mainly here to support a few blogpost. I am working an a better location for the directives. For now you can find them here.
+# C3JS AngularJS directives
+This repository contains directives that let you easily create graphs using the c3js library. Most of the options that are available in c3js are now also available to you in angularjs. Below one of the most basic examples:
+```html
+<c3chart bindto-id="chart1">
+	<chart-column column-id="data-1" 
+				  column-values="30,200,100,400,150,250"
+				  column-type="line"/>		
+</c3chart>
+
+```
 
 # Documentation
 There is a page with samples and documentation available:
 http://jettro.github.io/c3-angular-directive/
 
 ## Goal
-Come up with a few samples to demonstrate how to integrate C3js with AngularJS
+Come up with a number of directives to integrate C3js with AngularJS
 
 ## References
 Homepage c3js library [http://c3js.org]
 Homepage AngularJS [https://angularjs.org]
-
-Blogpost about c3js by Roberto van der Linden: [Creating charts with c3.js](http://blog.trifork.com/2014/07/29/creating-charts-with-c3-js/)
-Blogpost about integrating c3js and angularjs by Jettro Coenradie: [Using C3js with AngularJS](http://www.gridshore.nl/2014/07/29/using-c3js-angularjs/)
+Homepage d3 library [http://d3js.org]
 
 Blogpost about AngularJS Directives for c3js: [Angularjs directives for c3js chart library](http://blog.trifork.com/2014/08/19/angularjs-directives-for-c3-js-chart-library/)
 
-Blogpost about the improvements I made using grunt and bower: TODO
+Blogpost about the improvements I made using grunt and bower: [C3JS directives using angularjs](http://amsterdam.luminis.eu/2015/01/01/c3js-directives-for-angularjs/)
+
+Blogpost about c3js by Roberto van der Linden: [Creating charts with c3.js](http://blog.trifork.com/2014/07/29/creating-charts-with-c3-js/)
+Blogpost about integrating c3js and angularjs by Jettro Coenradie: [Using C3js with AngularJS](http://www.gridshore.nl/2014/07/29/using-c3js-angularjs/)
 
 ## Installation and development
 We are using grunt and bower during development. Bower makes it easier to use it for your own project as well. More on this in the next section. If you want to try out the project and change sources or something like that, you can use bower and grunt to do development.
@@ -27,7 +36,7 @@ First use npm to install all grunt plugins, than use bower to install all bower 
 npm install
 bower install
 ```
-Now grunt is available, you can use some of the utilities that grunt has in store for you. A nice one is to use the watch task and change one of the samples. There is also a plugin in place for running a development server. Just type grunt devserver and connect to port 8888 on your localhost.
+Now grunt is available, you can use some of the utilities that grunt has in store for you. A nice one is to use the watch task and change one of the samples. There is also a plugin in place for running a development server. Just type _grunt devserver_ and connect to port 8888 on your localhost.
 
 
 ## Using it in your own project
@@ -38,6 +47,11 @@ bower install c3-angular --save
 In the end you just need one file in your project: c3-angular.min.js
 
 ## Documentation
+This documentation is now almost obsolete, most of the content is now embedded in the tutorial, this is making use of life examples and therefore needs to be executed on a webserver. Run grunt like mentionen in the installation. We are working on getting the tutorial available online.
+
+More documentation is available from the project page:
+[http://jettro.github.io/c3-angular-directive/]
+
 Check the blogpost from Roberto above if you want an introdcution into what c3.js can do for you. If you want information about the basic usage of AngularJS together with C3.JS, check the first blogpost by Jettro. This documentation focussus on the directives.
 
 The goal for the directive is to come up with some sort of DSL in the HTML language for creating charts with c3.js. I will go though the different aspects of creating a chart first.
@@ -200,6 +214,14 @@ The last thing to show for now is putting the legenda at another location, chang
 ```
 
 ## Version History
+### 0.4.0
+Added config for the pie and donut charts
+Added config for points as requested by Lazymondaysunday
+Added an extensive tutorial in the examples package
+Finalized the events as requested by pehrlich and Tropicalista
+Improved the sample on the project page
+http://jettro.github.io/c3-angular-directive/
+
 ### 0.3.1
 Added a gauge config by richardthombs
 Added a stacked bar chart requested by vinnytheviking
