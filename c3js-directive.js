@@ -91,6 +91,9 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.gauge != null) {
                 config.gauge = $scope.gauge;
             }
+            if ($scope.point != null) {
+                config.point = $scope.point;
+            }
             if ($scope.bar != null) {
                 config.bar = $scope.bar;
             }
@@ -317,6 +320,10 @@ angular.module('gridshore.c3js.chart', [])
             $scope.groups.push(group);
         };
 
+        this.addPoint = function(point) {
+            $scope.point = point;
+        };
+
         this.hideGridFocus = function () {
             if ($scope.grid == null) {
                 $scope.grid = {};
@@ -511,10 +518,16 @@ angular.module('gridshore.c3js.chart', [])
             if (attrs.show === 'false') {
                 axis.show = false;
             }
-            // TODO has a strange effect on the graph, need to evaluate
-            var height = attrs.axisHeight;
-            if (height) {
-                axis.height = height;
+            if (attrs.axisLocaltime === 'true') {
+                axis.localtime=true;
+            }
+            var max=attrs.axisMax;
+            if (max) {
+                axis.max=max;
+            }
+            var min=attrs.axisMin;
+            if (min) {
+                axis.min=min;
             }
             chartCtrl.addAxisProperties('x', axis);
         };
@@ -550,13 +563,16 @@ angular.module('gridshore.c3js.chart', [])
                 paddingBottom = (paddingBottom) ? paddingBottom : 0;
                 axis.padding = {"top": parseInt(paddingTop), "bottom": parseInt(paddingBottom)};
             }
-            var rangeMax = attrs.rangeMax;
-            var rangeMin = attrs.rangeMin;
-            if (rangeMax) {
-                axis.max = parseInt(rangeMax);
+            var axisMax = attrs.axisMax;
+            var axisMin = attrs.axisMin;
+            if (axisMax) {
+                axis.max = parseInt(axisMax);
             }
-            if (rangeMin) {
-                axis.min = parseInt(rangeMin);
+            if (axisMin) {
+                axis.min = parseInt(axisMin);
+            }
+            if (attrs.axisInverted === 'true') {
+                axis.inverted=true;
             }
 
             chartCtrl.addAxisProperties(id, axis);
@@ -706,6 +722,10 @@ angular.module('gridshore.c3js.chart', [])
                 if (position) {
                     legend = {"position": position};
                 }
+                var inset = attrs.legendInset;
+                if (inset) {
+                    legend = {"position":"inset","inset":{"anchor":inset}};
+                }
             }
 
             if (legend != null) {
@@ -841,6 +861,41 @@ angular.module('gridshore.c3js.chart', [])
             scope: {},
             replace: true,
             link: gaugeLinker
+        };
+    })
+    .directive('chartPoints', function () {
+        var pointLinker = function (scope, element, attrs, chartCtrl) {
+            var point = {};
+            if (attrs.showPoint) {
+                point.show =  (attrs.showPoint === 'true');
+            }
+            if (attrs.pointExpandEnabled) {
+                if (!point.focus) {
+                    point.focus = {"expand":{}};
+                }
+                point.focus.expand.enabled = (attrs.pointsFocusEnabled !== 'false');
+            }
+            if (attrs.pointExpandRadius) {
+                if (!point.focus) {
+                    pie.focus = {"expand":{}};
+                }
+                point.focus.expand.r = parseInt(attrs.pointFocusRadius);
+            }
+            if (attrs.pointRadius) {
+                point.r = parseInt(attrs.pointRadius);
+            }
+            if (attrs.pointSelectRadius) {
+                point.select = {"r":parseInt(attrs.pointSelectRadius)};
+            }
+            chartCtrl.addPoint(point);
+        };
+
+        return {
+            require: '^c3chart',
+            restrict: 'E',
+            scope: {},
+            replace: true,
+            link: pointLinker
         };
     })
     .directive('chartPie', function () {
