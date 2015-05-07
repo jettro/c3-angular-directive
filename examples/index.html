@@ -650,9 +650,67 @@
     </c3chart>
     <p>Data clicked: <strong>Name</strong> {{clicked.name}}, <strong>Value</strong> {{clicked.value}}</p>
 </div>
-<h2>Time series data</h2>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="interactive-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="donut"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="donut"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="donut"/>
+        <chart-donut title="Donut" width="60"/>
+        <chart-events on-click-data="showClick(data)"/>
+    </c3chart>
+    ]]>
 
-<p>Also show the the zoom functionality here</p>
+    </script>
+</div>
+
+<h2>Time series data</h2>
+<p>The next chart is really different from all the other charts. Up till now we added the data using <em>chart-column</em> elements. In a lot of situations this is fine, but what if the data is dynamic of nature. Than we want to load the data using an angular controller. That is what this sample does. after clicking the button we generate 10 additional datapoints. Also the chart-columns are taken from a scope parameter. This is all taken care of using the attributes: <em>chart-data</em>, <em>chart-columns</em> and <em>chart-x</em>.</p>
+<div class="code-column">
+<c3chart bindto-id="chart-timeseries" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
+    <chart-axis>
+        <chart-axis-x axis-id="x" axis-type="timeseries">
+            <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+        </chart-axis-x>
+    </chart-axis>
+</c3chart>
+    <button ng-click="generateData()">Start data</button>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<c3chart bindto-id="chart-timeseries" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
+    <chart-axis>
+        <chart-axis-x axis-id="x" axis-type="timeseries">
+            <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+        </chart-axis-x>
+    </chart-axis>
+</c3chart>
+    ]]>
+    </script>
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+        $scope.datapoints=[];
+    $scope.datacolumns=[{"id":"top-1","type":"line","name":"Top one"},
+        {"id":"top-2","type":"spline","name":"Top two"}];
+    $scope.datax={"id":"x"};
+
+    $scope.generateData = function() {
+        $interval(function(){
+            dataService.loadData(function(data){
+                $scope.datapoints.push(data);
+            });
+        },1000,10);
+    };
+    ]]>
+    </script>
+
+</div>
+
 
 
 <!-- Load all the required libraries -->
