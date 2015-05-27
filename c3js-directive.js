@@ -746,6 +746,8 @@ angular.module('gridshore.c3js.chart', [])
         var tooltipLinker = function (scope, element, attrs, chartCtrl) {
             var tooltip = null;
             var show = attrs.showTooltip;
+            var hideTitle = attrs.hideTooltipTitle;
+
             if (show && show === "false") {
                 tooltip = {"show": false};
             } else {
@@ -753,6 +755,12 @@ angular.module('gridshore.c3js.chart', [])
                 if (grouped && grouped === "false") {
                     tooltip = {"grouped": false};
                 }
+            }
+            if (hideTitle && hideTitle === "true") {
+                tooltip = tooltip || {};
+                tooltip.format = {
+                    title: function (d) { return null }
+                };
             }
 
             if (tooltip != null) {
