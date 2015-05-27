@@ -1,5 +1,5 @@
 angular.module('gridshore.c3js.chart', [])
-    .controller('ChartController', ['$scope', function ($scope) {
+    .controller('ChartController', ['$scope', '$timeout', function ($scope, $timeout) {
 
         function resetVars() {
             $scope.chart = null;
@@ -154,10 +154,12 @@ angular.module('gridshore.c3js.chart', [])
             }
 
             $scope.$on('$destroy', function () {
-                if (angular.isDefined($scope.chart)) {
-                    $scope.chart = $scope.chart.destroy();
-                    resetVars();
-                }
+                $timeout(function(){
+                    if (angular.isDefined($scope.chart)) {
+                        $scope.chart = $scope.chart.destroy();
+                        resetVars();
+                    }
+                }, 100)
             });
         };
 
