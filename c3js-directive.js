@@ -70,6 +70,9 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.xTick) {
                 config.axis.x.tick = $scope.xTick;
             }
+            if ($scope.xType) {
+                config.axis.x.type = $scope.xType;
+            }
             if ($scope.yTick) {
                 config.axis.y.tick = $scope.yTick;
             }
@@ -159,7 +162,7 @@ angular.module('gridshore.c3js.chart', [])
                         $scope.chart = $scope.chart.destroy();
                         resetVars();
                     }
-                }, 100)
+                }, 1000)
             });
         };
 
@@ -189,6 +192,10 @@ angular.module('gridshore.c3js.chart', [])
 
         this.addXTick = function (tick) {
             $scope.xTick = tick;
+        };
+
+        this.addXType = function (type) {
+            $scope.xType = type;
         };
 
         this.addYTick = function (tick) {
@@ -531,6 +538,10 @@ angular.module('gridshore.c3js.chart', [])
             if (min) {
                 axis.min=min;
             }
+            var type=attrs.axisType;
+            if (type) {
+                axis.type=type;   
+            }
             chartCtrl.addAxisProperties('x', axis);
         };
 
@@ -657,6 +668,28 @@ angular.module('gridshore.c3js.chart', [])
                 }
                 else if (culling === 'false') {
                     tick.culling = false;
+                }
+            }
+
+            var multiline = attrs.tickMultiline;
+            if (multiline) {
+                multiline = angular.lowercase(multiline);
+                if (multiline === 'true') {
+                    tick.multiline = true;
+                }
+                else if (multiline === 'false') {
+                    tick.multiline = false;
+                }
+            }
+
+            var centered = attrs.tickCentered;
+            if (centered) {
+                centered = angular.lowercase(centered);
+                if (centered === 'true') {
+                    tick.centered = true;
+                }
+                else if (centered === 'false') {
+                    tick.centered = false;
                 }
             }
 
