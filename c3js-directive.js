@@ -57,6 +57,10 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.showLabels && $scope.showLabels === "true") {
                 config.data.labels = true;
             }
+            if ($scope.showLabelsFormat) {
+                config.data.labels = {format: {}};
+                config.data.labels.format[$scope.showLabelsFormat] = true;
+            }
             if ($scope.groups != null) {
                 config.data.groups = $scope.groups;
             }
@@ -417,6 +421,7 @@ angular.module('gridshore.c3js.chart', [])
             "scope": {
                 "bindto": "@bindtoId",
                 "showLabels": "@showLabels",
+                "showLabelsFormat": "@showLabelsFormat",
                 "showSubchart": "@showSubchart",
                 "enableZoom": "@enableZoom",
                 "chartData": "=chartData",
