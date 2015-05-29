@@ -88,7 +88,22 @@ angular.module('gridshore.c3js.chart', [])
             }
             if ($scope.tooltip != null) {
                 config.tooltip = $scope.tooltip;
+            } else {
+                config.tooltip = {}
             }
+            if ($scope.tooltipTitleFormatFunction) {
+                config.tooltip.format       = config.tooltip.format || {};
+                config.tooltip.format.title = $scope.tooltipTitleFormatFunction;
+            }
+            if ($scope.tooltipNameFormatFunction) {
+                config.tooltip.format      = config.tooltip.format || {};
+                config.tooltip.format.name = $scope.tooltipNameFormatFunction;
+            }
+            if ($scope.tooltipValueFormatFunction) {
+                config.tooltip.format       = config.tooltip.format || {};
+                config.tooltip.format.value = $scope.tooltipValueFormatFunction;
+            }
+
             if ($scope.chartSize != null) {
                 config.size = $scope.chartSize;
             }
@@ -97,7 +112,13 @@ angular.module('gridshore.c3js.chart', [])
             }
             if ($scope.gauge != null) {
                 config.gauge = $scope.gauge;
+            } else {
+                config.gauge = {}
             }
+            if ($scope.gaugeLabelFormatFunction) {
+                config.gauge.label = config.gauge.label || {};
+                config.gauge.label.format = $scope.gaugeLabelFormatFunction;
+            }            
             if ($scope.point != null) {
                 config.point = $scope.point;
             }
@@ -109,7 +130,13 @@ angular.module('gridshore.c3js.chart', [])
             }
             if ($scope.donut != null) {
                 config.donut = $scope.donut;
+            } else {
+                config.donut = {}
             }
+            if ($scope.donutLabelFormatFunction) {
+                config.donut.label = config.donut.label || {};
+                config.donut.label.format = $scope.donutLabelFormatFunction;
+            }            
             if ($scope.onInit != null) {
                 config.oninit = $scope.onInit;
             }
@@ -261,6 +288,15 @@ angular.module('gridshore.c3js.chart', [])
         this.addTooltip = function (tooltip) {
             $scope.tooltip = tooltip;
         };
+        this.addTooltipTitleFormatFunction = function (tooltipTitleFormatFunction) {
+            $scope.tooltipTitleFormatFunction = tooltipTitleFormatFunction;
+        };
+        this.addTooltipNameFormatFunction = function (tooltipNameFormatFunction) {
+            $scope.tooltipNameFormatFunction = tooltipNameFormatFunction;
+        };
+        this.addTooltipValueFormatFunction = function (tooltipValueFormatFunction) {
+            $scope.tooltipValueFormatFunction = tooltipValueFormatFunction;
+        };
 
         this.addSize = function (chartSize) {
             $scope.chartSize = chartSize;
@@ -314,6 +350,10 @@ angular.module('gridshore.c3js.chart', [])
             $scope.gauge = gauge;
         };
 
+        this.addGaugeLabelFormatFunction = function (gaugeLabelFormatFunction) {
+            $scope.gaugeLabelFormatFunction = gaugeLabelFormatFunction;
+        };
+
         this.addBar = function (bar) {
             $scope.bar = bar;
         };
@@ -324,6 +364,10 @@ angular.module('gridshore.c3js.chart', [])
 
         this.addDonut = function (donut) {
             $scope.donut = donut;
+        };
+
+        this.addDonutLabelFormatFunction = function (donutLabelFormatFunction) {
+            $scope.donutLabelFormatFunction = donutLabelFormatFunction;
         };
 
         this.addGroup = function (group) {
@@ -798,12 +842,6 @@ angular.module('gridshore.c3js.chart', [])
                 }
             }
 
-            if (hideTitle && hideTitle === "true") {
-                tooltip = tooltip || {};
-                tooltip.format = tooltip.format || {};
-                tooltip.format.title = function (d) { return null }
-            }
-
             if (joined && joined === "true") {
                 tooltip = tooltip || {};
                 tooltip.contents = function (d, defaultTitleFormat, defaultValueFormat, color) {
@@ -843,12 +881,26 @@ angular.module('gridshore.c3js.chart', [])
             if (tooltip != null) {
                 chartCtrl.addTooltip(tooltip);
             }
+            if (attrs.titleFormatFunction) {
+                chartCtrl.addTooltipTitleFormatFunction(scope.titleFormatFunction());
+            }
+            if (attrs.nameFormatFunction) {
+                chartCtrl.addTooltipNameFormatFunction(scope.nameFormatFunction());
+            }
+            if (attrs.valueFormatFunction) {
+                chartCtrl.addTooltipValueFormatFunction(scope.valueFormatFunction());
+            }
+
         };
 
         return {
             "require": "^c3chart",
             "restrict": "E",
-            "scope": {},
+            "scope": {
+                "valueFormatFunction": '&',
+                "nameFormatFunction" : "&",
+                "titleFormatFunction": "&"
+            },
             "replace": true,
             "link": tooltipLinker
         };
@@ -938,12 +990,17 @@ angular.module('gridshore.c3js.chart', [])
                 gauge.expand = (attrs.expand === 'true');
             }
             chartCtrl.addGauge(gauge);
+            if (attrs.labelFormatFunction) {
+                chartCtrl.addGaugeLabelFormatFunction(scope.labelFormatFunction());
+            }
         };
 
         return {
             require: '^c3chart',
             restrict: 'E',
-            scope: {},
+            scope: {
+                'labelFormatFunction': "&"
+            },
             replace: true,
             link: gaugeLinker
         };
@@ -1030,14 +1087,18 @@ angular.module('gridshore.c3js.chart', [])
             if (attrs.title) {
                 donut.title = attrs.title;
             }
-
             chartCtrl.addDonut(donut);
+            if (attrs.labelFormatFunction) {
+                chartCtrl.addDonutLabelFormatFunction(scope.labelFormatFunction());
+            }
         };
 
         return {
             require: '^c3chart',
             restrict: 'E',
-            scope: {},
+            scope: {
+                "labelFormatFunction": "&"
+            },
             replace: true,
             link: donutLinker
         };
