@@ -57,9 +57,9 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.showLabels && $scope.showLabels === "true") {
                 config.data.labels = true;
             }
-            if ($scope.showLabelsFormat) {
-                config.data.labels = {format: {}};
-                config.data.labels.format[$scope.showLabelsFormat] = true;
+            if ($scope.dataLabelsFormatFunction) {
+                config.data.labels        = config.data.labels || {};
+                config.data.labels.format = $scope.dataLabelsFormatFunction;
             }
             if ($scope.groups != null) {
                 config.data.groups = $scope.groups;
@@ -200,6 +200,10 @@ angular.module('gridshore.c3js.chart', [])
         this.addColumn = function (column, columnType, columnName, columnColor) {
             $scope.columns.push(column);
             addColumnProperties(column[0], columnType, columnName, columnColor);
+        };
+
+        this.addDataLabelsFormatFunction = function (dataLabelsFormatFunction) {
+            $scope.dataLabelsFormatFunction = dataLabelsFormatFunction;
         };
 
         this.addYAxis = function (yAxis) {
@@ -453,6 +457,9 @@ angular.module('gridshore.c3js.chart', [])
             if (paddingLeft) {
                 chartCtrl.addPadding('left', paddingLeft);
             }
+            if (attrs.labelsFormatFunction) {
+                chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
+            }
             // Trick to wait for all rendering of the DOM to be finished.
             $timeout(function () {
                 chartCtrl.showGraph();
@@ -465,7 +472,7 @@ angular.module('gridshore.c3js.chart', [])
             "scope": {
                 "bindto": "@bindtoId",
                 "showLabels": "@showLabels",
-                "showLabelsFormat": "@showLabelsFormat",
+                "labelsFormatFunction": "&",
                 "showSubchart": "@showSubchart",
                 "enableZoom": "@enableZoom",
                 "chartData": "=chartData",
