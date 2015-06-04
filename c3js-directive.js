@@ -74,6 +74,11 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.xTick) {
                 config.axis.x.tick = $scope.xTick;
             }
+            if ($scope.xTickFormatFunction) {
+                config.axis.x.tick        = config.axis.x.tick || {};
+                config.axis.x.tick.format = $scope.xTickFormatFunction;
+            }
+
             if ($scope.xType) {
                 config.axis.x.type = $scope.xType;
             }
@@ -193,7 +198,7 @@ angular.module('gridshore.c3js.chart', [])
                         $scope.chart = $scope.chart.destroy();
                         resetVars();
                     }
-                }, 1000)
+                }, 10000)
             });
         };
 
@@ -228,6 +233,10 @@ angular.module('gridshore.c3js.chart', [])
         this.addXTick = function (tick) {
             $scope.xTick = tick;
         };
+        this.addXTickFormatFunction = function (xTickFormatFunction) {
+            $scope.xTickFormatFunction = xTickFormatFunction;
+        };
+
 
         this.addXType = function (type) {
             $scope.xType = type;
@@ -727,6 +736,11 @@ angular.module('gridshore.c3js.chart', [])
                 }
             }
 
+            var cullingMax = attrs.tickCullingMax;
+            if (cullingMax) {
+                tick.culling = { max: parseInt(cullingMax) }
+            }
+
             var multiline = attrs.tickMultiline;
             if (multiline) {
                 multiline = angular.lowercase(multiline);
@@ -766,12 +780,19 @@ angular.module('gridshore.c3js.chart', [])
             }
 
             chartCtrl.addXTick(tick);
+
+            if (attrs.tickFormatFunction) {
+                chartCtrl.addXTickFormatFunction(scope.tickFormatFunction());
+            }
+
         };
 
         return {
             "require": "^c3chart",
             "restrict": "E",
-            "scope": {},
+            "scope": {
+                "tickFormatFunction": "&"
+            },
             "replace": true,
             "link": tickLinker
         };
