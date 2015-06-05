@@ -548,7 +548,7 @@
     attribute is the <em>title</em>. This gives you a title in the middle of the donut.</p>
 
 <div class="code-column">
-    <c3chart bindto-id="donut-plot1-chart">
+    <c3chart bindto-id="donut-plot1-chart" >
         <chart-column column-id="Data 1"
                       column-values="70"
                       column-type="donut"/>
@@ -558,7 +558,7 @@
         <chart-column column-id="Data 3"
                       column-values="60"
                       column-type="donut"/>
-        <chart-donut title="Donut" width="60" show-label="true" threshold-label="0.1"/>
+        <chart-donut title="Donut" width="60" show-label="true" label-format-function="formatDonut" threshold-label="0.1"/>
     </c3chart>
 </div>
 <div class="code-column">
@@ -573,12 +573,19 @@
         <chart-column column-id="Data 3"
                       column-values="60"
                       column-type="donut"/>
-        <chart-donut title="Donut" width="60" show-label="true" threshold-label="0.1"/>
+        <chart-donut title="Donut" width="60" show-label="true" label-format-function="formatDonut" threshold-label="0.1"/>
     </c3chart>
     ]]>
-
     </script>
+    <p>And in the controller we than add the following format function</p>
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    $scope.formatDonut = function (value, ratio, id) {
+        return d3.format('$')(value);
+    };
+    ]]>
+    </script>    
 </div>
+
 
 <h3>Point</h3>
 
@@ -635,8 +642,9 @@
     and <em>on-mouseout-data</em>.</p>
 
 <div class="code-column">
-    <c3chart bindto-id="interactive-plot1-chart">
-        <chart-column column-id="Data 1"
+    <c3chart bindto-id="interactive-plot1-chart" show-labels="false">
+        <chart-column column-id="data1"
+                      column-name="Data 1"
                       column-values="70"
                       column-type="donut"/>
         <chart-column column-id="Data 2"
@@ -645,7 +653,7 @@
         <chart-column column-id="Data 3"
                       column-values="60"
                       column-type="donut"/>
-        <chart-donut title="Donut" width="60"/>
+        <chart-donut title="Donut" width="60" />
         <chart-events on-click-data="showClick(data)"/>
     </c3chart>
     <p>Data clicked: <strong>Name</strong> {{clicked.name}}, <strong>Value</strong> {{clicked.value}}</p>

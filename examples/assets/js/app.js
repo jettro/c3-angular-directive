@@ -17,7 +17,11 @@ graphApp.controller('GraphCtrl', function ($scope,$interval,dataService) {
     $scope.clicked = {};
     $scope.showClick = function(data) {
         $scope.clicked = data;
-    }
+    };
+
+    $scope.formatDonut = function (value, ratio, id) {
+        return d3.format('$')(value);
+    };
 });
 
 var services = angular.module('graphApp.services', []);
