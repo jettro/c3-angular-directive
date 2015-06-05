@@ -1,6 +1,7 @@
 # C3JS AngularJS directives
 
 [![Join the chat at https://gitter.im/jettro/c3-angular-directive](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jettro/c3-angular-directive?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This repository contains directives that let you easily create graphs using the c3js library. Most of the options that are available in c3js are now also available to you in angularjs. Below one of the most basic examples:
 ```html
 <c3chart bindto-id="chart1">
@@ -216,6 +217,9 @@ The last thing to show for now is putting the legenda at another location, chang
 ```
 
 ## Version History
+### 0.5.0
+Added a big pull request by EmmN that includes formatting improvements. All charts now support adding a format function to format labels and tooltips.
+
 ### 0.4.0
 Added config for the pie and donut charts
 Added config for points as requested by Lazymondaysunday
