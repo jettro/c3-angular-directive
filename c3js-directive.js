@@ -133,6 +133,10 @@ angular.module('gridshore.c3js.chart', [])
             if ($scope.pie != null) {
                 config.pie = $scope.pie;
             }
+            if ($scope.pieLabelFormatFunction) {
+                config.pie.label = config.pie.label || {};
+                config.pie.label.format = $scope.pieLabelFormatFunction;
+            }            
             if ($scope.donut != null) {
                 config.donut = $scope.donut;
             } else {
@@ -373,6 +377,10 @@ angular.module('gridshore.c3js.chart', [])
 
         this.addPie = function (pie) {
             $scope.pie = pie;
+        };
+
+        this.addPieLabelFormatFunction = function (pieLabelFormatFunction) {
+            $scope.pieLabelFormatFunction = pieLabelFormatFunction;
         };
 
         this.addDonut = function (donut) {
@@ -1084,12 +1092,17 @@ angular.module('gridshore.c3js.chart', [])
                 pie.expand = (attrs.expand === 'true');
             }
             chartCtrl.addPie(pie);
+            if (attrs.labelFormatFunction) {
+                chartCtrl.addPieLabelFormatFunction(scope.labelFormatFunction());
+            }
         };
 
         return {
             require: '^c3chart',
             restrict: 'E',
-            scope: {},
+            scope: {
+                "labelFormatFunction": "&"
+            },
             replace: true,
             link: pieLinker
         };
