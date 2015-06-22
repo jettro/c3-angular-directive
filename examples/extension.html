@@ -8,6 +8,13 @@
 
 </head>
 <body ng-controller="GraphCtrl">
+<c3chart bindto-id="chart1" show-labels="true" chart-callback-function="extendChart()">
+    <chart-column column-id="line1"
+                  column-name="Line 1"
+                  column-color="green"
+                  column-values="30,200,100,400,150,250"
+                  column-type="line"/>
+</c3chart>
 
 
 <script src="assets/js/d3.min.js" charset="utf-8"></script>

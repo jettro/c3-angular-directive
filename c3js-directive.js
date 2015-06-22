@@ -194,6 +194,11 @@ angular.module('gridshore.c3js.chart', [])
                 });
             } else {
                 $scope.chart = c3.generate($scope.config);
+
+                // TODO make sure we make it once so it works for the other location as well
+                if ($scope.chartCallbackFunction) {
+                    $scope.chartCallbackFunction($scope.chart);
+                }
             }
 
             $scope.$on('$destroy', function () {
@@ -213,6 +218,10 @@ angular.module('gridshore.c3js.chart', [])
 
         this.addDataLabelsFormatFunction = function (dataLabelsFormatFunction) {
             $scope.dataLabelsFormatFunction = dataLabelsFormatFunction;
+        };
+
+        this.addChartCallbackFunction = function (chartCallbackFunction) {
+            $scope.chartCallbackFunction = chartCallbackFunction;
         };
 
         this.addYAxis = function (yAxis) {
@@ -452,6 +461,12 @@ angular.module('gridshore.c3js.chart', [])
 
             $scope.chart = c3.generate($scope.config);
 
+            console.log("Check the callback function");
+            if ($scope.chartCallbackFunction) {
+                console.log("About to call the callback function");
+                console.log($scope.chart);
+                $scope.chartCallbackFunction($scope.chart);
+            }
             // $scope.chart.load(data);
         }
     }])
@@ -477,6 +492,11 @@ angular.module('gridshore.c3js.chart', [])
             if (attrs.labelsFormatFunction) {
                 chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
             }
+
+            if (attrs.chartCallbackFunction) {
+                chartCtrl.addChartCallbackFunction(scope.chartCallbackFunction());
+            }
+
             // Trick to wait for all rendering of the DOM to be finished.
             $timeout(function () {
                 chartCtrl.showGraph();
@@ -494,7 +514,8 @@ angular.module('gridshore.c3js.chart', [])
                 "enableZoom": "@enableZoom",
                 "chartData": "=chartData",
                 "chartColumns": "=chartColumns",
-                "chartX": "=chartX"
+                "chartX": "=chartX",
+                "chartCallbackFunction": "&"
             },
             "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
             "replace": true,
