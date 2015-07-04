@@ -450,9 +450,15 @@ angular.module('gridshore.c3js.chart', [])
             $scope.config.data.keys = $scope.jsonKeys;
             $scope.config.data.json = $scope.chartData;
 
-            $scope.chart = c3.generate($scope.config);
-
-            // $scope.chart.load(data);
+            if ($scope.chartCallbackFunction) {
+                $scope.chartCallbackFunction($scope.chart);
+            }
+            if (!$scope.chartIsGenerated) {
+                $scope.chart = c3.generate($scope.config);
+                $scope.chartIsGenerated = true;
+            } else {
+                $scope.chart.load($scope.config.data);
+            }
         }
     }])
     .directive('c3chart', ['$timeout', function ($timeout) {

@@ -9,9 +9,12 @@ graphApp.controller('GraphCtrl', function ($scope,$interval,dataService) {
     $scope.generateData = function() {
         $interval(function(){
             dataService.loadData(function(data){
+                if ($scope.datapoints.length > 10) {
+                    $scope.datapoints.shift();
+                }
                 $scope.datapoints.push(data);
             });
-        },1000,10);
+        },1000,1000);
     };
 
     $scope.clicked = {};
