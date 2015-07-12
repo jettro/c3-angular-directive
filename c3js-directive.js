@@ -450,9 +450,6 @@ angular.module('gridshore.c3js.chart', [])
             $scope.config.data.keys = $scope.jsonKeys;
             $scope.config.data.json = $scope.chartData;
 
-            if ($scope.chartCallbackFunction) {
-                $scope.chartCallbackFunction($scope.chart);
-            }
             if (!$scope.chartIsGenerated) {
                 $scope.chart = c3.generate($scope.config);
                 $scope.chartIsGenerated = true;
