@@ -9,6 +9,9 @@ graphApp.controller('GraphCtrl', function ($scope,$interval,dataService) {
     $scope.donutPoints=[{"data1":70,"data2":30}];
     $scope.donutColumns=[{"id":"data1","type":"donut"},{"id":"data2","type":"donut"}];
 
+    $scope.piePoints=[{"data1":70,"data2":30,"data3":"100"}];
+    $scope.pieColumns=[{"id":"data1","type":"pie"},{"id":"data2","type":"pie"},{"id":"data3","type":"pie"}];
+
 
     $scope.generateData = function() {
         $interval(function(){
