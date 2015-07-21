@@ -589,10 +589,6 @@ angular.module('gridshore.c3js.chart', [])
 
             var axis = {"label": {"text": label, "position": position}};
 
-            var type = attrs.axisType;
-            if (type) {
-                axis.type = type;
-            }
             var paddingLeft = attrs.paddingLeft;
             var paddingRight = attrs.paddingRight;
             if (paddingLeft || paddingRight) {
