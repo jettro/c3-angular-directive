@@ -208,7 +208,7 @@ Another really cool feature is adding the subchart, with this you can select jus
 <c3chart bindto-id="chart5" show-labels="true" show-subchart="true" enable-zoom="true">		
 </c3chart>
 ```
-The last thing to show for now is putting the legenda at another location, changing the tooltip, change the size of the chart and provide an array of colors to use for the lines.
+The last thing to show for now is putting the legend at another location, changing the tooltip, change the size of the chart and provide an array of colors to use for the lines.
 ```html
 <chart-legend show-legend="true" legend-position="right"/>
 <chart-colors color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e"/>
@@ -217,6 +217,11 @@ The last thing to show for now is putting the legenda at another location, chang
 ```
 
 ## Version History
+
+### 0.6.0
+Main part to move to a higher version is that we have the possibility now to add a callback function. In the examples folder there is a page callback-sample.html that shows how to do this. You can register the callback function to recevei the actual chart object that you can manipulate using the c3js API methods.
+http://c3js.org/reference.html#api
+
 ### 0.5.0
 Added a big pull request by EmmN that includes formatting improvements. All charts now support adding a format function to format labels and tooltips.
 

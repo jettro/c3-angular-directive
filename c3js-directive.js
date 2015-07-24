@@ -215,6 +215,10 @@ angular.module('gridshore.c3js.chart', [])
             $scope.dataLabelsFormatFunction = dataLabelsFormatFunction;
         };
 
+        this.addChartCallbackFunction = function(chartCallbackFunction) {
+            $scope.chartCallbackFunction = chartCallbackFunction;
+        };
+
         this.addYAxis = function (yAxis) {
             $scope.axes = yAxis;
             if (!$scope.axis.y2) {
@@ -453,6 +457,12 @@ angular.module('gridshore.c3js.chart', [])
             if (!$scope.chartIsGenerated) {
                 $scope.chart = c3.generate($scope.config);
                 $scope.chartIsGenerated = true;
+
+                // Use the API as documented here to interact with the chart object
+                // http://c3js.org/reference.html#api
+                if ($scope.chartCallbackFunction) {
+                    $scope.chartCallbackFunction($scope.chart);
+                }
             } else {
                 $scope.chart.load($scope.config.data);
             }
@@ -480,6 +490,9 @@ angular.module('gridshore.c3js.chart', [])
             if (attrs.labelsFormatFunction) {
                 chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
             }
+            if (attrs.callbackFunction) {
+                chartCtrl.addChartCallbackFunction(scope.callbackFunction());
+            }
             // Trick to wait for all rendering of the DOM to be finished.
             $timeout(function () {
                 chartCtrl.showGraph();
@@ -497,7 +510,8 @@ angular.module('gridshore.c3js.chart', [])
                 "enableZoom": "@enableZoom",
                 "chartData": "=chartData",
                 "chartColumns": "=chartColumns",
-                "chartX": "=chartX"
+                "chartX": "=chartX",
+                "callbackFunction": "&"
             },
             "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
             "replace": true,
