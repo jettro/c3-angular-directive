@@ -610,6 +610,12 @@ angular.module('gridshore.c3js.chart', [])
                 paddingRight = (paddingRight) ? paddingRight : 0;
                 axis.padding = {"left": parseInt(paddingLeft), "right": parseInt(paddingRight)};
             }
+            
+            var height = attrs.axisHeight;
+			if (height) {
+				axis.height = parseInt(height)};
+            }
+            
             if (attrs.show === 'false') {
                 axis.show = false;
             }
