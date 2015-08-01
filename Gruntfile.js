@@ -1,5 +1,7 @@
 'use strict';
 
+var Dgeni = require('dgeni');
+
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg:grunt.file.readJSON('package.json'),
@@ -21,7 +23,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: [
-                    'c3js-directive.js',
+                    'src/*.js',
                     ],
                 dest: '<%= pkg.name %>.js'
             }
@@ -33,7 +35,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                'c3js-directive.js'
+                'src/*.js'
             ]
         },
         uglify: {
@@ -68,10 +70,17 @@ module.exports = function (grunt) {
         },
         devserver: {
             options: {
-                base: 'examples'
+                base: 'examples',
+                port:8000
             },
             server: {}
         }
+    });
+
+    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
+        var done = this.async();
+        var dgeni = new Dgeni([require('./docs/dgeni-docs.js')]);
+        dgeni.generate().then(done);
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
