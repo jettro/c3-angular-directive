@@ -92,6 +92,11 @@ angular.module('gridshore.c3js.chart')
             if ($scope.yTick) {
                 config.axis.y.tick = $scope.yTick;
             }
+            if ($scope.yTickFormatFunction) {
+                config.axis.y.tick        = config.axis.y.tick || {};
+                config.axis.y.tick.format = $scope.yTickFormatFunction;
+            }
+
             if ($scope.grid != null) {
                 config.grid = $scope.grid;
             }
@@ -248,10 +253,10 @@ angular.module('gridshore.c3js.chart')
         this.addXTick = function (tick) {
             $scope.xTick = tick;
         };
+
         this.addXTickFormatFunction = function (xTickFormatFunction) {
             $scope.xTickFormatFunction = xTickFormatFunction;
         };
-
 
         this.addXType = function (type) {
             $scope.xType = type;
@@ -259,6 +264,10 @@ angular.module('gridshore.c3js.chart')
 
         this.addYTick = function (tick) {
             $scope.yTick = tick;
+        };
+
+        this.addYTickFormatFunction = function (yTickFormatFunction) {
+            $scope.yTickFormatFunction = yTickFormatFunction;
         };
 
         this.rotateAxis = function () {
