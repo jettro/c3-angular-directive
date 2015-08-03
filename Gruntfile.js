@@ -1,7 +1,5 @@
 'use strict';
 
-var Dgeni = require('dgeni');
-
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg:grunt.file.readJSON('package.json'),
@@ -14,6 +12,10 @@ module.exports = function (grunt) {
             js: {
                 files: '<%= jshint.all %>',
                 tasks: ['combine','copy:examples']
+            },
+            docs: {
+                files: '<%= jshint.all %>',
+                tasks: ['jsdoc']                
             }
         },
         concat: {
@@ -74,13 +76,19 @@ module.exports = function (grunt) {
                 port:8000
             },
             server: {}
+        },
+      jsdoc : {
+        dist: {
+          src: [
+            'src/**/*.js'
+          ], 
+          options: {
+            destination: 'docs',
+            configure: 'node_modules/angular-jsdoc/conf.json',
+            template: 'node_modules/angular-jsdoc/template'
+          }
         }
-    });
-
-    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
-        var done = this.async();
-        var dgeni = new Dgeni([require('./docs/dgeni-docs.js')]);
-        dgeni.generate().then(done);
+      }        
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -89,6 +97,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-devserver');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('combine',['concat:dist','uglify:dist','copy:examples']);
 };

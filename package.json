@@ -25,15 +25,16 @@
   },
   "homepage": "https://github.com/jettro/c3-angular-sample",
   "devDependencies": {
+    "angular-jsdoc": "^0.3.8",
     "canonical-path": "0.0.2",
-    "dgeni": "^0.4.1",
-    "dgeni-packages": "^0.10.18",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-devserver": "^0.6.0"
+    "grunt-devserver": "^0.6.0",
+    "grunt-jsdoc": "^0.6.7",
+    "jsdoc": "^3.3.2"
   }
 }
