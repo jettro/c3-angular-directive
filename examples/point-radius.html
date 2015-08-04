@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" ng-app="graphApp">
+<head>
+    <meta charset="utf-8">
+
+    <link href="assets/css/c3.min.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="GraphCtrl">
+
+    <c3chart bindto-id="chart1" show-labels="true">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="green"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-points point-radius="10"/>
+    </c3chart>
+
+
+<!-- Javascript includes -->
+<script src="assets/js/d3.min.js" charset="utf-8"></script>
+<script src="assets/js/c3.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/c3-angular.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
