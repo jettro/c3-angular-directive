@@ -119,6 +119,11 @@ angular.module('gridshore.c3js.chart')
             if ($scope.yTick) {
                 config.axis.y.tick = $scope.yTick;
             }
+            if ($scope.yTickFormatFunction) {
+                config.axis.y.tick        = config.axis.y.tick || {};
+                config.axis.y.tick.format = $scope.yTickFormatFunction;
+            }
+
             if ($scope.grid != null) {
                 config.grid = $scope.grid;
             }
@@ -275,10 +280,10 @@ angular.module('gridshore.c3js.chart')
         this.addXTick = function (tick) {
             $scope.xTick = tick;
         };
+
         this.addXTickFormatFunction = function (xTickFormatFunction) {
             $scope.xTickFormatFunction = xTickFormatFunction;
         };
-
 
         this.addXType = function (type) {
             $scope.xType = type;
@@ -286,6 +291,10 @@ angular.module('gridshore.c3js.chart')
 
         this.addYTick = function (tick) {
             $scope.yTick = tick;
+        };
+
+        this.addYTickFormatFunction = function (yTickFormatFunction) {
+            $scope.yTickFormatFunction = yTickFormatFunction;
         };
 
         this.rotateAxis = function () {
@@ -511,7 +520,7 @@ angular.module('gridshore.c3js.chart')
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>directive</h3><ul><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
 </nav>
 
 <br clear="both">

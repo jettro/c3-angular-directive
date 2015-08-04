@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartAxisX</title>
+    <title>JSDoc: directive: chartAxisXTick</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartAxisX</h1>
+    <h1 class="page-title">directive: chartAxisXTick</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartAxisX
+    chartAxisXTick
     </h2>
     
 </header>
@@ -49,11 +49,11 @@
 
     
     <div class="description">
-        <p><code>chart-axis-x</code> is used to customize the x axis properties. Using this directive you can padding, size, visibility of the axis.</p>
+        <p><code>chart-axis-x-tick</code> is used to customize the x axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
-  chart-axis</p>
+  chart-axis-x</p>
     </div>
     
 
@@ -87,60 +87,7 @@
 
         <tr>
             
-                <td class="name"><code>axis-position</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Location of the label. Can have following values:</p>
-<ul>
-<li>Horizontal: inner-right (default), inner-center, inner-left, outer-right, outer-center, outer-left </li>
-<li><p>Vertical: inner-top (default), inner-middle, inner-bottom, outer-top, outer-middle, outer-bottom</p>
-<p><a href="http://c3js.org/reference.html#data-x"> c3js doc</a></p>
-</li>
-</ul></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-label</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set the text for the label of the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-label"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>padding-left</code></td>
+                <td class="name"><code>tick-count</code></td>
             
 
             <td class="type">
@@ -156,63 +103,15 @@
 
             
 
-            <td class="description last"><p>Set padding on the left side of the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-padding"> c3js doc</a></p></td>
+            <td class="description last"><p>Specify the number of ticks on the x axis.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-count"> c3js doc</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>padding-right</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set padding on the right side of the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-padding"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set the overall height of the x axis, unit in pixels.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-height"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>show</code></td>
+                <td class="name"><code>tick-culling</code></td>
             
 
             <td class="type">
@@ -228,21 +127,21 @@
 
             
 
-            <td class="description last"><p>Show or hide the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-show"> c3js doc</a></p></td>
+            <td class="description last"><p>Culling means not all ticks will be shown, for category data this is by default false, for other data true.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-culling"> c3js doc</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-localtime</code></td>
+                <td class="name"><code>tick-culling-max</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Number</span>
 
 
             
@@ -252,21 +151,21 @@
 
             
 
-            <td class="description last"><p>Default is to use localtime, but can be set to false to use UTC.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-localtime"> c3js doc</a></p></td>
+            <td class="description last"><p>Set the maximum number of ticks, if specified culling is by default true.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-culling-max"> c3js doc</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-min</code></td>
+                <td class="name"><code>tick-multiline</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -276,21 +175,21 @@
 
             
 
-            <td class="description last"><p>Min value of the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-min"> c3js doc</a></p></td>
+            <td class="description last"><p>Not sure what this does, not documented.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-multiline"> c3js doc</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-max</code></td>
+                <td class="name"><code>tick-centered</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -300,21 +199,21 @@
 
             
 
-            <td class="description last"><p>Max value of the x axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-max%20"> c3js doc</a></p></td>
+            <td class="description last"><p>Centers the tick on the x axis</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-centered"> c3js doc</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-type</code></td>
+                <td class="name"><code>tick-rotate</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Number</span>
 
 
             
@@ -324,8 +223,130 @@
 
             
 
-            <td class="description last"><p>The type of the x-axis can be one of the following three: timeseries, category or indexed (default).</p>
-<p>  <a href="http://c3js.org/reference.html#axis-x-type%20"> c3js doc</a></p></td>
+            <td class="description last"><p>Number of degrees to rotate the tick, can also be a negative number.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-rotate"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-fit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Default is to make the tick fit the chart, if false it will be at the exact position of the x value.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-fit"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-outer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Default is not to show the outer tick, setting this to true will show the outer tick.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-outer"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-values</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the exact values to present a tick for.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-values"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a d3 based format for the tick value.
+  format: '$,'</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-format"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a function to format the tick value.
+  format: function (d) { return '$' + d; }</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-format"> c3js doc</a></p></td>
         </tr>
 
     
@@ -357,7 +378,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="axis-x-directive.js.html">axis-x-directive.js</a>, <a href="axis-x-directive.js.html#line4">line 4</a>
+        <a href="axis-x-tick-directive.js.html">axis-x-tick-directive.js</a>, <a href="axis-x-tick-directive.js.html#line4">line 4</a>
     </li></ul></dd>
     -->
     
@@ -386,14 +407,16 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-axis-x axis-position="..." axis-label="..." padding-left="..." padding-right="..." .../>
+  &lt;chart-axis-x-tick tick-rotate="..." tick-count="..."/>
+
 Example:
   <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
 
-  &lt;chart-axis axis-rotate="true">
-    &lt;chart-axis-x axis-position="outer-center"
-                  axis-label="The periods"
-                  axis-type="category"/>
+  &lt;chart-axis>
+    &lt;chart-axis-x axis-position="outer-center" axis-label="Number by 10"
+                  axis-type="category">
+      &lt;chart-axis-x-tick tick-rotate="50"/>
+    &lt;/chart-axis-x>
   &lt;/chart-axis></code></pre>
 
     

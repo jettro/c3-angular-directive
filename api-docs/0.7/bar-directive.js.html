@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Index</title>
+    <title>JSDoc: Source: bar-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,30 +17,75 @@
 
 <div id="main">
 
-    <h1 class="page-title">Index</h1>
+    <h1 class="page-title">Source: bar-directive.js</h1>
 
     
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartBar', ChartBar);
+/**
+ * @ngdoc directive
+ * @name chartBar
+ * @description
+ *  `chart-bar` is used to customize the axes properties. Using this directive you can select the propertie(s) to use for the different categories or for the time field. You can also configure for the different columns to use y or y2.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Number} width Fixed with of the bars in pixels
+ *   
+ *   {@link http://c3js.org/reference.html#bar-width| c3js doc}
+ * 
+ * @param {Number} ratio Change the width of the bar by ratio
+ *
+ *   {@link http://c3js.org/reference.html#bar-width-ratio| c3js doc}
+ * @param {Boolean} zerobased Set if we start from zero, default is true.
+ * 
+ *   {@link http://c3js.org/reference.html#bar-zerobased| c3js doc}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-bar width="..." ratio="..." zerobased="..."/>
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ */
 
+function ChartBar() {
+    var barLinker = function (scope, element, attrs, chartCtrl) {
+        var bar = {};
+        if (attrs.width) {
+            bar.width = parseInt(attrs.width);
+        }
+        if (attrs.ratio) {
+            if (!bar.width) {
+                bar.width = {};
+            }
+            bar.width.ratio = parseFloat(attrs.ratio);
+        }
+        if (attrs.zerobased) {
+            bar.zerobased = (attrs.zerobased === 'true');
+        }
+        chartCtrl.addBar(bar);
+    };
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    return {
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {},
+        replace: true,
+        link: barLinker
+    };
+}</code></pre>
+        </article>
+    </section>
 
 
 

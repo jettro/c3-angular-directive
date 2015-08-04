@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: module: C3jsChartDirective</title>
+    <title>JSDoc: directive: chartBar</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">module: C3jsChartDirective</h1>
+    <h1 class="page-title">directive: chartBar</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    C3jsChartDirective
+    chartBar
     </h2>
     
 </header>
@@ -41,7 +41,6 @@
 <dt>
     
     
-      <a href="-_main.js.html#line1" class="name-link"><h4 class="name" id="C3jsChartDirective">C3jsChartDirective<span class="signature">()</span><span class="type-signature"></span></h4></a>
     
 
     
@@ -50,12 +49,11 @@
 
     
     <div class="description">
-        <p>AngularJS Directive for the c3js library. With this directive we make it easier 
-  to work with the great c3js libary. We provide a number of directives that make 
-  it possible to declaritively create some charts.</p>
-<p>  This documentation can be found online at: <a href="http://jettro.github.io/c3-angular-directive/api-docs/0.7/C3jsChartDirective.html">http://jettro.github.io/c3-angular-directive/api-docs/0.7/C3jsChartDirective.html</a></p>
-<p>  More information about the directive can be found here <a href="http://jettro.github.io/c3-angular-directive/">http://jettro.github.io/c3-angular-directive/</a></p>
-<p>  The documentation is generated using jsdoc, and this plugin: <a href="https://github.com/allenhwkim/angular-jsdoc">https://github.com/allenhwkim/angular-jsdoc</a></p>
+        <p><code>chart-bar</code> is used to customize the axes properties. Using this directive you can select the propertie(s) to use for the different categories or for the time field. You can also configure for the different columns to use y or y2.</p>
+<p>Restrict To:
+  Element</p>
+<p>Parent Element:
+  c3chart</p>
     </div>
     
 
@@ -63,6 +61,103 @@
 
     
 
+    
+        <h5>Attributes:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Fixed with of the bars in pixels</p>
+<p>  <a href="http://c3js.org/reference.html#bar-width"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ratio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Change the width of the bar by ratio</p>
+<p>  <a href="http://c3js.org/reference.html#bar-width-ratio"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>zerobased</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set if we start from zero, default is true.</p>
+<p>  <a href="http://c3js.org/reference.html#bar-zerobased"> c3js doc</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -89,7 +184,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="-_main.js.html">_main.js</a>, <a href="-_main.js.html#line1">line 1</a>
+        <a href="bar-directive.js.html">bar-directive.js</a>, <a href="bar-directive.js.html#line3">line 3</a>
     </li></ul></dd>
     -->
     
@@ -113,6 +208,14 @@
     
 
     
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>Usage:
+  &lt;chart-bar width="..." ratio="..." zerobased="..."/>
+Example:
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a></code></pre>
 
     
 </dd>

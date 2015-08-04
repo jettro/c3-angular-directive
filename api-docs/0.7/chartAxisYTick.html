@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartAxis</title>
+    <title>JSDoc: directive: chartAxisYTick</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartAxis</h1>
+    <h1 class="page-title">directive: chartAxisYTick</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartAxis
+    chartAxisYTick
     </h2>
     
 </header>
@@ -49,11 +49,11 @@
 
     
     <div class="description">
-        <p><code>chart-axis</code> is used to customize the axis properties. Can be used to change the orientation of the axis.</p>
+        <p><code>chart-axis-y-tick</code> is used to customize the y or y2 axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.</p>
 <p>Restrict To:
   Element</p>
-<p>Parent element:
-  c3chart</p>
+<p>Parent Element:
+  chart-axis-y</p>
     </div>
     
 
@@ -87,7 +87,31 @@
 
         <tr>
             
-                <td class="name"><code>axisRotate</code></td>
+                <td class="name"><code>tick-count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Specify the number of ticks on the x axis.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-y-tick-count"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-outer</code></td>
             
 
             <td class="type">
@@ -103,8 +127,81 @@
 
             
 
-            <td class="description last"><p>Configure to rotate the axis, javascript true means we rotate the axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-rotated">http://c3js.org/reference.html#axis-rotated</a></p></td>
+            <td class="description last"><p>Default is not to show the outer tick, setting this to true will show the outer tick.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-y-tick-outer"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-values</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the exact values to present a tick for.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-y-tick-values"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a d3 based format for the tick value.
+  format: '$,'</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-format"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a function to format the tick value.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-y-tick-format"> c3js doc</a></p></td>
         </tr>
 
     
@@ -136,7 +233,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="axis-directive.js.html">axis-directive.js</a>, <a href="axis-directive.js.html#line4">line 4</a>
+        <a href="axis-y-tick-directive.js.html">axis-y-tick-directive.js</a>, <a href="axis-y-tick-directive.js.html#line4">line 4</a>
     </li></ul></dd>
     -->
     
@@ -165,7 +262,8 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-axis axis-rotate="true"/>
+  &lt;chart-axis-y-tick tick-outer="..." tick-count="..."/>
+
 Example:
   <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a></code></pre>
 
