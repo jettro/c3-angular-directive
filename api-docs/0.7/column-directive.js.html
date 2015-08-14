@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: axis-y-tick-directive.js</title>
+    <title>JSDoc: Source: column-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: axis-y-tick-directive.js</h1>
+    <h1 class="page-title">Source: column-directive.js</h1>
 
     
 
@@ -26,96 +26,66 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
-    .directive('chartAxisYTick', ChartAxisYTick);
+    .directive('chartColumn', ChartColumn);
 
 /**
  * @ngdoc directive
- * @name chartAxisYTick
+ * @name chartColumn
  * @description
- *  `chart-axis-y-tick` is used to customize the y or y2 axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.
+ *  `chart-column` Used to provide data values for the chart as well as the name and some other config options.
  *
  * Restrict To:
  *   Element
  *
  * Parent Element:
- *   chart-axis-y
+ *   c3chart
  *
- * @param {Number} tick-count Specify the number of ticks on the x axis.
+ * @param {String} column-id The id used to uniquely identify the column
  *   
- *   {@link http://c3js.org/reference.html#axis-y-tick-count| c3js doc}
+ * @param {String} column-values The values for this column to plot.
  *
- * @param {Boolean} tick-outer Default is not to show the outer tick, setting this to true will show the outer tick.
+ * @param {String} column-type The type of the column to show: line, spline, bar, step, area, area-spline, area-step, scatter, pie, donut, gauge
  *
- *   {@link http://c3js.org/reference.html#axis-y-tick-outer| c3js doc}
+ *   {@link http://c3js.org/reference.html#data-type| c3js docs}
  *
- * @param {Array} tick-values An array containing the exact values to present a tick for.
+ * @param {String} column-name The name of the column as used to print in the label.
  *
- *   {@link http://c3js.org/reference.html#axis-y-tick-values| c3js doc}
+ *   {@link http://c3js.org/reference.html#data-names| c3js docs}
  *
- * @param {Function} tick-format Provide a d3 based format for the tick value.
- *   format: '$,'
+ * @param {String} column-color The color to use for this column.
  *
- *   {@link http://c3js.org/reference.html#axis-x-tick-format| c3js doc}
- *
- * @param {Function} tick-format-function Provide a function to format the tick value.
- *
- *   {@link http://c3js.org/reference.html#axis-y-tick-format| c3js doc}
+ *   {@link http://c3js.org/reference.html#data-names| c3js docs}
  *
  * @example
  * Usage:
- *   &lt;chart-axis-y-tick tick-outer="..." tick-count="..."/>
+ *   &lt;chart-column column-values="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
- *
+ * 
+ * &lt;chart-column column-id="data 1"
+ *               column-name="Data 1"
+ *               column-color="red"
+ *               column-values="30,200,100,400,150,250"
+ *               column-type="spline"/>  
+ * 
  */
-function ChartAxisYTick() {
-    var tickLinker = function (scope, element, attrs, chartCtrl) {
-        var tick = {};
-
-        var count = attrs.tickCount;
-        if (count) {
-            tick.count = count;
-        }
-
-        var outer = attrs.tickOuter;
-        if (outer) {
-            outer = angular.lowercase(outer);
-            if (outer === 'true') {
-                tick.outer = true;
-            }
-            else if (outer === 'false') {
-                tick.outer = false;
-            }
-        }
-
-        var tickValues = attrs.tickValues;
-        if (tickValues) {
-            tick.values = tickValues;
-        }
-
-        var format = attrs.tickFormat;
-        if (format) {
-            tick.format = d3.format(format);
-        }
-
-        chartCtrl.addYTick(tick);
-
-        if (attrs.tickFormatFunction) {
-            chartCtrl.addYTickFormatFunction(scope.tickFormatFunction());
-        }        
+function ChartColumn () {
+    var columnLinker = function (scope, element, attrs, chartCtrl) {
+        var column = attrs.columnValues.split(",");
+        column.unshift(attrs.columnId);
+        chartCtrl.addColumn(column, attrs.columnType, attrs.columnName, attrs.columnColor);
     };
 
     return {
         "require": "^c3chart",
         "restrict": "E",
-        "scope": {
-            "tickFormatFunction": "&amp;"
-        },
+        "scope": {},
         "replace": true,
-        "link": tickLinker
+        "link": columnLinker
     };
-}</code></pre>
+}
+</code></pre>
         </article>
     </section>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartAxes</title>
+    <title>JSDoc: directive: chartDonut</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartAxes</h1>
+    <h1 class="page-title">directive: chartDonut</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartAxes
+    chartDonut
     </h2>
     
 </header>
@@ -49,7 +49,7 @@
 
     
     <div class="description">
-        <p><code>chart-axes</code> is used to customize the axes properties. Using this directive you can select the propertie(s) to use for the different categories or for the time field. You can also configure for the different columns to use y or y2.</p>
+        <p><code>chart-donut</code> SPecific configuration options for creating a donut chart.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
@@ -87,13 +87,13 @@
 
         <tr>
             
-                <td class="name"><code>valuesX</code></td>
+                <td class="name"><code>show-label</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -103,21 +103,21 @@
 
             
 
-            <td class="description last"><p>Specify the key in the data object to use for the x value</p>
-<p>  <a href="http://c3js.org/reference.html#data-x">http://c3js.org/reference.html#data-x</a></p></td>
+            <td class="description last"><p>Show labels in the Donut.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-label-show"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>valuesXs</code></td>
+                <td class="name"><code>threshold-label</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Number</span>
 
 
             
@@ -127,22 +127,21 @@
 
             
 
-            <td class="description last"><p>Specify the different keys for different data columns in format
-  columnId:key,columnId:key</p>
-<p>  <a href="http://c3js.org/reference.html#data-xs">http://c3js.org/reference.html#data-xs</a></p></td>
+            <td class="description last"><p>Set the threshold to show or hide labels.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-label-threshold"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>y</code></td>
+                <td class="name"><code>expand</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -152,15 +151,39 @@
 
             
 
-            <td class="description last"><p>Set the id(s) of columns to use the first y value (y). Format is comma separated.</p>
-<p>  <a href="http://c3js.org/reference.html#data-axes">http://c3js.org/reference.html#data-axes</a></p></td>
+            <td class="description last"><p>Enable or disable whether to expand a pie part. True is the default.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-expand"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>y2</code></td>
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The width of the donut.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-width"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
             
 
             <td class="type">
@@ -176,8 +199,32 @@
 
             
 
-            <td class="description last"><p>Set the id(s) of columns to use the second y value (y2) Format is comma separated.</p>
-<p>  <a href="http://c3js.org/reference.html#data-axes">http://c3js.org/reference.html#data-axes</a></p></td>
+            <td class="description last"><p>The title for the donut chart.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-title"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label-format-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Function to format the labels.</p>
+<p>  <a href="http://c3js.org/reference.html#donut-label-format"> c3js docs</a></p></td>
         </tr>
 
     
@@ -209,7 +256,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="axes-directive.js.html">axes-directive.js</a>, <a href="axes-directive.js.html#line3">line 3</a>
+        <a href="donut-directive.js.html">donut-directive.js</a>, <a href="donut-directive.js.html#line3">line 3</a>
     </li></ul></dd>
     -->
     
@@ -238,9 +285,23 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-axes values-x="..." values-Xs="..." y="..." y2="..."/>
+  &lt;chart-donut show-label="..." threshold-label="..." expand="..." width="..." title="..."/>
+
 Example:
-  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a></code></pre>
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
+
+&lt;c3chart bindto-id="donut-plot1-chart">
+  &lt;chart-column column-id="Data 1"
+                column-values="70"
+                column-type="donut"/>
+  &lt;chart-column column-id="Data 2"
+                column-values="35"
+                column-type="donut"/>
+  &lt;chart-column column-id="Data 3"
+                column-values="60"
+                column-type="donut"/>
+  &lt;chart-donut title="Donut" width="60"/>
+&lt;/c3chart></code></pre>
 
     
 </dd>

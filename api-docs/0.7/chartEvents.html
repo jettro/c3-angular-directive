@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartAxisY</title>
+    <title>JSDoc: directive: chartEvents</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartAxisY</h1>
+    <h1 class="page-title">directive: chartEvents</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartAxisY
+    chartEvents
     </h2>
     
 </header>
@@ -49,11 +49,11 @@
 
     
     <div class="description">
-        <p><code>chart-axis-y</code> is used to customize the y and y2 axis properties. Using this directive you can padding, size, visibility of the axis.</p>
+        <p><code>chart-events</code> Used to provide callback functions to respond to events of the charts.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
-  chart-axis</p>
+  c3chart</p>
     </div>
     
 
@@ -87,13 +87,13 @@
 
         <tr>
             
-                <td class="name"><code>axis-id</code></td>
+                <td class="name"><code>on-init</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
@@ -103,20 +103,21 @@
 
             
 
-            <td class="description last"><p>Default value is 'y' but you can also provide 'y2'</p></td>
+            <td class="description last"><p>The on init callback function.</p>
+<p>  <a href="http://c3js.org/reference.html#oninit"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-position</code></td>
+                <td class="name"><code>on-rendered</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
@@ -126,26 +127,21 @@
 
             
 
-            <td class="description last"><p>Location of the label. Can have following values:</p>
-<ul>
-<li>Horizontal: inner-right (default), inner-center, inner-left, outer-right, outer-center, outer-left </li>
-<li><p>Vertical: inner-top (default), inner-middle, inner-bottom, outer-top, outer-middle, outer-bottom</p>
-<p><a href="http://c3js.org/reference.html#data-y"> c3js doc</a></p>
-</li>
-</ul></td>
+            <td class="description last"><p>Provide the callback to respond to on-rendered. Basically, this callback will be called in each time when the chart is redrawed.</p>
+<p>  <a href="http://c3js.org/reference.html#onrendered"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-label</code></td>
+                <td class="name"><code>on-mouseover</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
@@ -155,21 +151,21 @@
 
             
 
-            <td class="description last"><p>Set the text for the label of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-label"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called when you hoover the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#onmouseover"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>padding-top</code></td>
+                <td class="name"><code>on-mouseout</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
@@ -179,21 +175,21 @@
 
             
 
-            <td class="description last"><p>Set padding on the top side of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-padding"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called when you hoover out of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#onmouseout"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>padding-bottom</code></td>
+                <td class="name"><code>on-resize</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
@@ -203,21 +199,21 @@
 
             
 
-            <td class="description last"><p>Set padding on the bottom side of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-padding"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called when the chart is resizing.</p>
+<p>  <a href="http://c3js.org/reference.html#onresize"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>show</code></td>
+                <td class="name"><code>on-resized</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">function</span>
 
 
             
@@ -227,21 +223,21 @@
 
             
 
-            <td class="description last"><p>Configure if the y or y2 axis should be shown.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-show"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called when the chart is resized.</p>
+<p>  <a href="http://c3js.org/reference.html#onresized"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-min</code></td>
+                <td class="name"><code>on-click-data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
@@ -251,21 +247,21 @@
 
             
 
-            <td class="description last"><p>Min value of the y our y2 axis in pixels.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-min"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is clicked.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-max</code></td>
+                <td class="name"><code>on-mouseover-data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
@@ -275,21 +271,21 @@
 
             
 
-            <td class="description last"><p>Max value of the y or y2 axis in pixels.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-max"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-inner</code></td>
+                <td class="name"><code>on-mouseout-data</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">function</span>
 
 
             
@@ -299,56 +295,8 @@
 
             
 
-            <td class="description last"><p>Position the y or y2 axis within the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-inner"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-inverted</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Invert the y or y2 axis, the default is true, from top to bottom.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-inverted"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-center</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set the center of the y or y2 axis, is a numeric value.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-center"> c3js doc</a></p></td>
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered out.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
         </tr>
 
     
@@ -380,7 +328,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="axis-y-directive.js.html">axis-y-directive.js</a>, <a href="axis-y-directive.js.html#line4">line 4</a>
+        <a href="events-directive.js.html">events-directive.js</a>, <a href="events-directive.js.html#line4">line 4</a>
     </li></ul></dd>
     -->
     
@@ -409,25 +357,30 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-axis-y axis-position="..." axis-label="..." padding-top="..." padding-bottom="..." .../>
+  &lt;chart-events on-init="..." on-rendered="..."/>
+
 Example:
   <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
 
-  &lt;chart-axis>
-    &lt;chart-axis-y axis-id="y"
-                axis-position="outer-right"
-                axis-label="Higher numbers"
-                padding-top="100"
-                padding-bottom="0"
-                range-min="0"/>
-    &lt;chart-axis-y axis-id="y2"
-                axis-position="outer-right"
-                axis-label="Lower numbers"
-                padding-top="10"
-                padding-bottom="0"
-                range-max="100"
-                range-min="0"/>
- &lt;/chart-axis></code></pre>
+  &lt;c3chart bindto-id="donut-plot1-chart">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="donut"/>
+    &lt;chart-donut title="Donut" width="60"/>
+    &lt;chart-events on-click-data="showClick(data)"/>
+  &lt;/c3chart>
+
+  graphApp.controller('GraphCtrl', function ($scope) {
+    $scope.clicked = {};
+    $scope.showClick = function(data) {
+    $scope.clicked = data;
+  }</code></pre>
 
     
 </dd>

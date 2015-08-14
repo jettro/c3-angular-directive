@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: axis-y-tick-directive.js</title>
+    <title>JSDoc: Source: donut-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: axis-y-tick-directive.js</h1>
+    <h1 class="page-title">Source: donut-directive.js</h1>
 
     
 
@@ -26,96 +26,101 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
-    .directive('chartAxisYTick', ChartAxisYTick);
-
+    .directive('chartDonut', ChartDonut);
 /**
  * @ngdoc directive
- * @name chartAxisYTick
+ * @name chartDonut
  * @description
- *  `chart-axis-y-tick` is used to customize the y or y2 axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.
+ *  `chart-donut` SPecific configuration options for creating a donut chart.
  *
  * Restrict To:
  *   Element
  *
  * Parent Element:
- *   chart-axis-y
+ *   c3chart
  *
- * @param {Number} tick-count Specify the number of ticks on the x axis.
+ * @param {Boolean} show-label Show labels in the Donut.
+ *
+ *   {@link http://c3js.org/reference.html#donut-label-show| c3js docs}
  *   
- *   {@link http://c3js.org/reference.html#axis-y-tick-count| c3js doc}
+ * @param {Number} threshold-label Set the threshold to show or hide labels.
  *
- * @param {Boolean} tick-outer Default is not to show the outer tick, setting this to true will show the outer tick.
+ *   {@link http://c3js.org/reference.html#donut-label-threshold| c3js docs}
+ * 
+ * @param {Boolean} expand Enable or disable whether to expand a pie part. True is the default.
  *
- *   {@link http://c3js.org/reference.html#axis-y-tick-outer| c3js doc}
+ *   {@link http://c3js.org/reference.html#donut-expand| c3js docs}
  *
- * @param {Array} tick-values An array containing the exact values to present a tick for.
+ * @param {Number} width The width of the donut.
  *
- *   {@link http://c3js.org/reference.html#axis-y-tick-values| c3js doc}
+ *   {@link http://c3js.org/reference.html#donut-width| c3js docs}
  *
- * @param {Function} tick-format Provide a d3 based format for the tick value.
- *   format: '$,'
+ * @param {String} title The title for the donut chart.
  *
- *   {@link http://c3js.org/reference.html#axis-x-tick-format| c3js doc}
+ *   {@link http://c3js.org/reference.html#donut-title| c3js docs}
  *
- * @param {Function} tick-format-function Provide a function to format the tick value.
+ * @param {Function} label-format-function Function to format the labels.
  *
- *   {@link http://c3js.org/reference.html#axis-y-tick-format| c3js doc}
+ *   {@link http://c3js.org/reference.html#donut-label-format| c3js docs}
  *
  * @example
  * Usage:
- *   &lt;chart-axis-y-tick tick-outer="..." tick-count="..."/>
+ *   &lt;chart-donut show-label="..." threshold-label="..." expand="..." width="..." title="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
- *
- */
-function ChartAxisYTick() {
-    var tickLinker = function (scope, element, attrs, chartCtrl) {
-        var tick = {};
-
-        var count = attrs.tickCount;
-        if (count) {
-            tick.count = count;
+ * 
+ * &lt;c3chart bindto-id="donut-plot1-chart">
+ *   &lt;chart-column column-id="Data 1"
+ *                 column-values="70"
+ *                 column-type="donut"/>
+ *   &lt;chart-column column-id="Data 2"
+ *                 column-values="35"
+ *                 column-type="donut"/>
+ *   &lt;chart-column column-id="Data 3"
+ *                 column-values="60"
+ *                 column-type="donut"/>
+ *   &lt;chart-donut title="Donut" width="60"/>
+ * &lt;/c3chart>
+ */    
+function ChartDonut() {
+    var donutLinker = function (scope, element, attrs, chartCtrl) {
+        var donut = {};
+        if (attrs.showLabel) {
+            donut.label = {"show": (attrs.showLabel === 'true')};
         }
-
-        var outer = attrs.tickOuter;
-        if (outer) {
-            outer = angular.lowercase(outer);
-            if (outer === 'true') {
-                tick.outer = true;
+        if (attrs.thresholdLabel) {
+            if (!donut.label) {
+                donut.label = {};
             }
-            else if (outer === 'false') {
-                tick.outer = false;
-            }
+            donut.label.threshold = parseFloat(attrs.thresholdLabel);
         }
-
-        var tickValues = attrs.tickValues;
-        if (tickValues) {
-            tick.values = tickValues;
+        if (attrs.expand) {
+            donut.expand = (attrs.expand === 'true');
         }
-
-        var format = attrs.tickFormat;
-        if (format) {
-            tick.format = d3.format(format);
+        if (attrs.width) {
+            donut.width = parseInt(attrs.width);
         }
-
-        chartCtrl.addYTick(tick);
-
-        if (attrs.tickFormatFunction) {
-            chartCtrl.addYTickFormatFunction(scope.tickFormatFunction());
-        }        
+        if (attrs.title) {
+            donut.title = attrs.title;
+        }
+        chartCtrl.addDonut(donut);
+        if (attrs.labelFormatFunction) {
+            chartCtrl.addDonutLabelFormatFunction(scope.labelFormatFunction());
+        }
     };
 
     return {
-        "require": "^c3chart",
-        "restrict": "E",
-        "scope": {
-            "tickFormatFunction": "&amp;"
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {
+            "labelFormatFunction": "&amp;"
         },
-        "replace": true,
-        "link": tickLinker
+        replace: true,
+        link: donutLinker
     };
-}</code></pre>
+}
+</code></pre>
         </article>
     </section>
 

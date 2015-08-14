@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartAxisY</title>
+    <title>JSDoc: directive: chartGauge</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartAxisY</h1>
+    <h1 class="page-title">directive: chartGauge</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartAxisY
+    chartGauge
     </h2>
     
 </header>
@@ -49,11 +49,11 @@
 
     
     <div class="description">
-        <p><code>chart-axis-y</code> is used to customize the y and y2 axis properties. Using this directive you can padding, size, visibility of the axis.</p>
+        <p><code>chart-gauge</code> is used to specify specific properties when creating a guage chart.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
-  chart-axis</p>
+  c3chart</p>
     </div>
     
 
@@ -87,7 +87,79 @@
 
         <tr>
             
-                <td class="name"><code>axis-id</code></td>
+                <td class="name"><code>min</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The minimum value used in the Gauge.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-min"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The maximum value used in the Guage.</p>
+<p>  <a href="http://c3js.org/reference.html#data-color"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The width of the Guage.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-width"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>units</code></td>
             
 
             <td class="type">
@@ -103,115 +175,15 @@
 
             
 
-            <td class="description last"><p>Default value is 'y' but you can also provide 'y2'</p></td>
+            <td class="description last"><p>Set the units of the gauge, ' %' for instance.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-units"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-position</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Location of the label. Can have following values:</p>
-<ul>
-<li>Horizontal: inner-right (default), inner-center, inner-left, outer-right, outer-center, outer-left </li>
-<li><p>Vertical: inner-top (default), inner-middle, inner-bottom, outer-top, outer-middle, outer-bottom</p>
-<p><a href="http://c3js.org/reference.html#data-y"> c3js doc</a></p>
-</li>
-</ul></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-label</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set the text for the label of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-label"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>padding-top</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set padding on the top side of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-padding"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>padding-bottom</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set padding on the bottom side of the y or y2 axis.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-padding"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>show</code></td>
+                <td class="name"><code>show-label</code></td>
             
 
             <td class="type">
@@ -227,63 +199,15 @@
 
             
 
-            <td class="description last"><p>Configure if the y or y2 axis should be shown.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-show"> c3js doc</a></p></td>
+            <td class="description last"><p>Set to false to hide the labels, default is true.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-label-show"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-min</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Min value of the y our y2 axis in pixels.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-min"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-max</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Max value of the y or y2 axis in pixels.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-max"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-inner</code></td>
+                <td class="name"><code>expand</code></td>
             
 
             <td class="type">
@@ -299,21 +223,21 @@
 
             
 
-            <td class="description last"><p>Position the y or y2 axis within the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-inner"> c3js doc</a></p></td>
+            <td class="description last"><p>Set to false to prevent expanding the gauge, default is true.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-expand"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>axis-inverted</code></td>
+                <td class="name"><code>label-format-function</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">function</span>
 
 
             
@@ -323,32 +247,8 @@
 
             
 
-            <td class="description last"><p>Invert the y or y2 axis, the default is true, from top to bottom.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-inverted"> c3js doc</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>axis-center</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Set the center of the y or y2 axis, is a numeric value.</p>
-<p>  <a href="http://c3js.org/reference.html#axis-y-center"> c3js doc</a></p></td>
+            <td class="description last"><p>Function to format the labels.</p>
+<p>  <a href="http://c3js.org/reference.html#gauge-label-format"> c3js docs</a></p></td>
         </tr>
 
     
@@ -380,7 +280,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="axis-y-directive.js.html">axis-y-directive.js</a>, <a href="axis-y-directive.js.html#line4">line 4</a>
+        <a href="gauge-directive.js.html">gauge-directive.js</a>, <a href="gauge-directive.js.html#line3">line 3</a>
     </li></ul></dd>
     -->
     
@@ -409,25 +309,12 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-axis-y axis-position="..." axis-label="..." padding-top="..." padding-bottom="..." .../>
+  &lt;chart-gauge min="..." max="..."/>
+
 Example:
   <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
 
-  &lt;chart-axis>
-    &lt;chart-axis-y axis-id="y"
-                axis-position="outer-right"
-                axis-label="Higher numbers"
-                padding-top="100"
-                padding-bottom="0"
-                range-min="0"/>
-    &lt;chart-axis-y axis-id="y2"
-                axis-position="outer-right"
-                axis-label="Lower numbers"
-                padding-top="10"
-                padding-bottom="0"
-                range-max="100"
-                range-min="0"/>
- &lt;/chart-axis></code></pre>
+  </code></pre>
 
     
 </dd>
