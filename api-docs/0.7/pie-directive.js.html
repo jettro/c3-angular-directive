@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: pie-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,93 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: pie-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartPie', ChartPie);
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * @ngdoc directive
+ * @name chartPie
+ * @description
+ *  `chart-pie` is used configure additional properties for a pie chart.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Boolean} showLabel Whether to show a label for each pie part.
+ *   
+ *   {@link http://c3js.org/reference.html#pie-label-show| c3js docs}
+ *
+ * @param {Boolean} expand Whether to expand on mouse over.
+ *   
+ *   {@link http://c3js.org/reference.html#pie-expand| c3js docs}
+ *
+ * @param {Number} thresholdLabel Show label if value is higher than the provided value.
+ *
+ *   {@link http://c3js.org/reference.html#pie-label-threshold| c3js docs}
+ *
+ * @param {Function} labelFormatFunction Present a function to format the label.
+ *
+ *   {@link http://c3js.org/reference.html#pie-label-format| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-pie show-label="..." expand="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;c3chart bindto-id="pie-plot1-chart">
+ *   &lt;chart-column column-id="Data 1" column-values="70" column-type="pie"/>
+ *   &lt;chart-column column-id="Data 2" column-values="35" column-type="pie"/>
+ *   &lt;chart-column column-id="Data 3" column-values="60" column-type="pie"/>
+ *   &lt;chart-pie expand="true"/>
+ * &lt;/c3chart>
+ */
+function ChartPie () {
+    var pieLinker = function (scope, element, attrs, chartCtrl) {
+        var pie = {};
+        if (attrs.showLabel) {
+            pie.label = {"show": (attrs.showLabel === 'true')};
+        }
+        if (attrs.thresholdLabel) {
+            if (!pie.label) {
+                pie.label = {};
+            }
+            pie.label.threshold = parseFloat(attrs.thresholdLabel);
+        }
+        if (attrs.expand) {
+            pie.expand = (attrs.expand === 'true');
+        }
+        chartCtrl.addPie(pie);
+        if (attrs.labelFormatFunction) {
+            chartCtrl.addPieLabelFormatFunction(scope.labelFormatFunction());
+        }
+    };
 
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {
+            "labelFormatFunction": "&amp;"
+        },
+        replace: true,
+        link: pieLinker
+    };
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

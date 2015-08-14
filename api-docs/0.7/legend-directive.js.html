@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: legend-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,78 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: legend-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartLegend', ChartLegend);
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * @ngdoc directive
+ * @name chartLegend
+ * @description
+ *  `chart-legend` is used configure the legend to add to the chart.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Boolean} showLegend Whether to show the legend or not, default is show.
+ *   
+ *   {@link http://c3js.org/reference.html#legend-show| c3js docs}
+ *
+ * @param {String} legendPosition One of the following values: bottom, right, inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-position| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-legend show-legend="..." legend-position="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;chart-legend show-legend="true" legend-position="right"/>
+ */
+function ChartLegend () {
+    var legendLinker = function (scope, element, attrs, chartCtrl) {
+        var legend = null;
+        var show = attrs.showLegend;
+        if (show &amp;&amp; show === "false") {
+            legend = {"show": false};
+        } else {
+            var position = attrs.legendPosition;
+            if (position) {
+                legend = {"position": position};
+            }
+            var inset = attrs.legendInset;
+            if (inset) {
+                legend = {"position":"inset","inset":{"anchor":inset}};
+            }
+        }
 
-    
-        
+        if (legend != null) {
+            chartCtrl.addLegend(legend);
+        }
+    };
 
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": legendLinker
+    };
+}</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartEvents</title>
+    <title>JSDoc: directive: chartPie</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartEvents</h1>
+    <h1 class="page-title">directive: chartPie</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartEvents
+    chartPie
     </h2>
     
 </header>
@@ -49,7 +49,7 @@
 
     
     <div class="description">
-        <p><code>chart-events</code> Used to provide callback functions to respond to events of the charts.</p>
+        <p><code>chart-pie</code> is used configure additional properties for a pie chart.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
@@ -87,13 +87,13 @@
 
         <tr>
             
-                <td class="name"><code>on-init</code></td>
+                <td class="name"><code>showLabel</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -103,21 +103,21 @@
 
             
 
-            <td class="description last"><p>The on init callback function.</p>
-<p>  <a href="http://c3js.org/reference.html#oninit"> c3js docs</a></p></td>
+            <td class="description last"><p>Whether to show a label for each pie part.</p>
+<p>  <a href="http://c3js.org/reference.html#pie-label-show"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-rendered</code></td>
+                <td class="name"><code>expand</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -127,21 +127,21 @@
 
             
 
-            <td class="description last"><p>Provide the callback to respond to on-rendered. Basically, this callback will be called in each time when the chart is redrawed.</p>
-<p>  <a href="http://c3js.org/reference.html#onrendered"> c3js docs</a></p></td>
+            <td class="description last"><p>Whether to expand on mouse over.</p>
+<p>  <a href="http://c3js.org/reference.html#pie-expand"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-mouseover</code></td>
+                <td class="name"><code>thresholdLabel</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Number</span>
 
 
             
@@ -151,15 +151,15 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when you hoover the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#onmouseover"> c3js docs</a></p></td>
+            <td class="description last"><p>Show label if value is higher than the provided value.</p>
+<p>  <a href="http://c3js.org/reference.html#pie-label-threshold"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-mouseout</code></td>
+                <td class="name"><code>labelFormatFunction</code></td>
             
 
             <td class="type">
@@ -175,128 +175,8 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when you hoover out of the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#onmouseout"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-resize</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called when the chart is resizing.</p>
-<p>  <a href="http://c3js.org/reference.html#onresize"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-resized</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called when the chart is resized.</p>
-<p>  <a href="http://c3js.org/reference.html#onresized"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-click-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is clicked.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-mouseover-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-mouseout-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered out.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
+            <td class="description last"><p>Present a function to format the label.</p>
+<p>  <a href="http://c3js.org/reference.html#pie-label-format"> c3js docs</a></p></td>
         </tr>
 
     
@@ -328,7 +208,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="events-directive.js.html">events-directive.js</a>, <a href="events-directive.js.html#line4">line 4</a>
+        <a href="pie-directive.js.html">pie-directive.js</a>, <a href="pie-directive.js.html#line4">line 4</a>
     </li></ul></dd>
     -->
     
@@ -357,30 +237,17 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-events on-init="..." on-rendered="..."/>
+  &lt;chart-pie show-label="..." expand="..."/>
 
 Example:
   <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
 
-  &lt;c3chart bindto-id="donut-plot1-chart">
-    &lt;chart-column column-id="Data 1"
-                  column-values="70"
-                  column-type="donut"/>
-    &lt;chart-column column-id="Data 2"
-                  column-values="35"
-                  column-type="donut"/>
-    &lt;chart-column column-id="Data 3"
-                  column-values="60"
-                  column-type="donut"/>
-    &lt;chart-donut title="Donut" width="60"/>
-    &lt;chart-events on-click-data="showClick(data)"/>
-  &lt;/c3chart>
-
-  graphApp.controller('GraphCtrl', function ($scope) {
-    $scope.clicked = {};
-    $scope.showClick = function(data) {
-    $scope.clicked = data;
-  }</code></pre>
+&lt;c3chart bindto-id="pie-plot1-chart">
+  &lt;chart-column column-id="Data 1" column-values="70" column-type="pie"/>
+  &lt;chart-column column-id="Data 2" column-values="35" column-type="pie"/>
+  &lt;chart-column column-id="Data 3" column-values="60" column-type="pie"/>
+  &lt;chart-pie expand="true"/>
+&lt;/c3chart></code></pre>
 
     
 </dd>

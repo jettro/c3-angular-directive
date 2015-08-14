@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: grid-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,89 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: grid-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartGrid', ChartGrid);
+/**
+ * @ngdoc directive
+ * @name chartGrid
+ * @description
+ *  `chart-grid` is used to specify properties to show a grid.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Boolean} showX Whether to show the x axis grid.
+ *   
+ *   {@link http://c3js.org/reference.html#grid-x-show| c3js docs}
+ *
+ * @param {Boolean} showY Whether to show the y axis grid.
+ *
+ *   {@link http://c3js.org/reference.html#grid-y-show| c3js docs}
+ *
+ * @param {Boolean} showY2 Whether to show the y2 axis grid.
+ *
+ *   {@link http://c3js.org/reference.html#grid-y-show| c3js docs}
+ *
+ * @param {Boolean} showFocus Whether to enable the focus grid.
+ *
+ *   {@link http://c3js.org/reference.html#grid-focus-show| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-grid showX="..." showY="..." showY2="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;chart-grid show-x="false" show-y="true">
+ *   &lt;chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+ *   &lt;chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+ *   &lt;chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+ * &lt;/chart-grid>  
+ */
+function ChartGrid () {
+    var gridLinker = function (scope, element, attrs, chartCtrl) {
+        var showX = attrs.showX;
+        if (showX &amp;&amp; showX === "true") {
+            chartCtrl.addGrid("x");
+        }
+        var showY = attrs.showY;
+        if (showY &amp;&amp; showY === "true") {
+            chartCtrl.addGrid("y");
+        }
+        var showY2 = attrs.showY2;
+        if (showY2 &amp;&amp; showY2 === "true") {
+            chartCtrl.addGrid("y2");
+        }
+        var showFocus = attrs.showFocus;
+        if (showFocus &amp;&amp; showFocus === "false") {
+            chartCtrl.hideGridFocus();
+        }
+    };
 
-<article>
-    <div class="container-overview">
-    
-
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": gridLinker,
+        "transclude": true,
+        "template": "&lt;div ng-transclude>&lt;/div>"
+    };
+}</code></pre>
+        </article>
+    </section>
 
 
 

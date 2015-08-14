@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: grid-optional-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,73 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: grid-optional-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartGridOptional', ChartGridOptional);
+/**
+ * @ngdoc directive
+ * @name chartGridOptional
+ * @description
+ *  `chart-grid-optional` is used to add optional grid lines to the chart. All attributes are mandatory
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   gridDirective
+ *
+ * @param {String} axisId x, y or y2.
+ *   
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @param {Number} value Value where to print the additional grid line.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @param {String} text Label to print at the grid line.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-grid-optional axis-id="..." value="..." text="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;chart-grid show-x="false" show-y="true">
+ *   &lt;chart-grid-optional axis-id="x" grid-value="1" grid-text="Start"/>
+ *   &lt;chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+ *   &lt;chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+ * &lt;/chart-grid>  
+ */
+function ChartGridOptional() {
+    var gridLinker = function (scope, element, attrs, chartCtrl) {
+        var axisId = attrs.axisId;
+        var value = attrs.gridValue;
+        var text = attrs.gridText;
 
-<article>
-    <div class="container-overview">
-    
+        chartCtrl.addGridLine(axisId, value, text);
+    };
 
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": gridLinker
+    };
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

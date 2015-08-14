@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: points-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,96 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: points-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartPoints', ChartPoints);
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * @ngdoc directive
+ * @name chartPoints
+ * @description
+ *  `chart-points` is used configure the points in for example a line chart. You can
+ * configure the radius of the point in normal as well as expand state.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Boolean} showPoint Whether to show points in the chart.
+ *   
+ *   {@link http://c3js.org/reference.html#point-show| c3js docs}
+ *
+ * @param {Boolean} pointExpandEnabled Whether to expand on mouse over.
+ *   
+ *   {@link http://c3js.org/reference.html#point-focus-expand-enabled| c3js docs}
+ *
+ * @param {Number} pointExpandRadius Radius of the point when expanded. Default is 1.75 times the 
+ * normal radius.
+ *
+ *   {@link http://c3js.org/reference.html#point-focus-expand-r| c3js docs}
+ *
+ * @param {Number} pointRadius Radius of the point in normal mode. Default radius is 2.5
+ *
+ *   {@link http://c3js.org/reference.html#point-r| c3js docs}
+ *
+ * @param {Number} pointSelectRadius Radius of the point when selected, default is 4 times the normal radius.
+ *
+ *   {@link http://c3js.org/reference.html#point-select-r| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-points show-point="..." point-expand-enabled="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ */
+function ChartPoints () {
+    var pointLinker = function (scope, element, attrs, chartCtrl) {
+        var point = {};
+        if (attrs.showPoint) {
+            point.show =  (attrs.showPoint === 'true');
+        }
+        if (attrs.pointExpandEnabled) {
+            if (!point.focus) {
+                point.focus = {"expand":{}};
+            }
+            point.focus.expand.enabled = (attrs.pointsFocusEnabled !== 'false');
+        }
+        if (attrs.pointExpandRadius) {
+            if (!point.focus) {
+                pie.focus = {"expand":{}};
+            }
+            point.focus.expand.r = parseInt(attrs.pointFocusRadius);
+        }
+        if (attrs.pointRadius) {
+            point.r = parseInt(attrs.pointRadius);
+        }
+        if (attrs.pointSelectRadius) {
+            point.select = {"r":parseInt(attrs.pointSelectRadius)};
+        }
+        chartCtrl.addPoint(point);
+    };
 
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {},
+        replace: true,
+        link: pointLinker
+    };
+}</code></pre>
+        </article>
+    </section>
 
 
 

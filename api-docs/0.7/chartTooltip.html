@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: directive: chartEvents</title>
+    <title>JSDoc: directive: chartTooltip</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">directive: chartEvents</h1>
+    <h1 class="page-title">directive: chartTooltip</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    chartEvents
+    chartTooltip
     </h2>
     
 </header>
@@ -49,7 +49,8 @@
 
     
     <div class="description">
-        <p><code>chart-events</code> Used to provide callback functions to respond to events of the charts.</p>
+        <p><code>chart-tooltip</code> is used to configure the look and feel of the tooltip. You can
+configure to show the tooltip or not and the formatting of labels, values, etc.</p>
 <p>Restrict To:
   Element</p>
 <p>Parent Element:
@@ -87,13 +88,13 @@
 
         <tr>
             
-                <td class="name"><code>on-init</code></td>
+                <td class="name"><code>showTooltip</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -103,21 +104,21 @@
 
             
 
-            <td class="description last"><p>The on init callback function.</p>
-<p>  <a href="http://c3js.org/reference.html#oninit"> c3js docs</a></p></td>
+            <td class="description last"><p>Whether to show the tooltip or not.</p>
+<p>  <a href="http://c3js.org/reference.html#tooltip-show"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-rendered</code></td>
+                <td class="name"><code>hideTooltipTitle</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -127,21 +128,20 @@
 
             
 
-            <td class="description last"><p>Provide the callback to respond to on-rendered. Basically, this callback will be called in each time when the chart is redrawed.</p>
-<p>  <a href="http://c3js.org/reference.html#onrendered"> c3js docs</a></p></td>
+            <td class="description last"><p>Whether to show the tooltip title or not.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-mouseover</code></td>
+                <td class="name"><code>groupTooltip</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -151,15 +151,16 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when you hoover the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#onmouseover"> c3js docs</a></p></td>
+            <td class="description last"><p>Whether to group all tooltips of the different 
+columns in the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#tooltip-grouped"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-mouseout</code></td>
+                <td class="name"><code>titleFormatFunction</code></td>
             
 
             <td class="type">
@@ -175,15 +176,15 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when you hoover out of the chart.</p>
-<p>  <a href="http://c3js.org/reference.html#onmouseout"> c3js docs</a></p></td>
+            <td class="description last"><p>Function to format the title of the tooltip.</p>
+<p>  <a href="http://c3js.org/reference.html#tooltip-format-title"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-resize</code></td>
+                <td class="name"><code>nameFormatFunction</code></td>
             
 
             <td class="type">
@@ -199,15 +200,15 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when the chart is resizing.</p>
-<p>  <a href="http://c3js.org/reference.html#onresize"> c3js docs</a></p></td>
+            <td class="description last"><p>Function to format the name of the tooltip.</p>
+<p>  <a href="http://c3js.org/reference.html#tooltip-format-name"> c3js docs</a></p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>on-resized</code></td>
+                <td class="name"><code>valueFormatFunction</code></td>
             
 
             <td class="type">
@@ -223,80 +224,8 @@
 
             
 
-            <td class="description last"><p>Provide callback to be called when the chart is resized.</p>
-<p>  <a href="http://c3js.org/reference.html#onresized"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-click-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is clicked.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-mouseover-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>on-mouseout-data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered out.</p>
-<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
+            <td class="description last"><p>Function to format the value of the tooltip.</p>
+<p>  <a href="http://c3js.org/reference.html#tooltip-format-value"> c3js docs</a></p></td>
         </tr>
 
     
@@ -328,7 +257,7 @@
     <!-- commented out by Allen Kim
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="events-directive.js.html">events-directive.js</a>, <a href="events-directive.js.html#line4">line 4</a>
+        <a href="tooltip-directive.js.html">tooltip-directive.js</a>, <a href="tooltip-directive.js.html#line4">line 4</a>
     </li></ul></dd>
     -->
     
@@ -357,30 +286,10 @@
         <h5>Example</h5>
         
     <pre class="prettyprint"><code>Usage:
-  &lt;chart-events on-init="..." on-rendered="..."/>
+  &lt;chart-size chart-height="..." chart-width="..."/>
 
 Example:
-  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
-
-  &lt;c3chart bindto-id="donut-plot1-chart">
-    &lt;chart-column column-id="Data 1"
-                  column-values="70"
-                  column-type="donut"/>
-    &lt;chart-column column-id="Data 2"
-                  column-values="35"
-                  column-type="donut"/>
-    &lt;chart-column column-id="Data 3"
-                  column-values="60"
-                  column-type="donut"/>
-    &lt;chart-donut title="Donut" width="60"/>
-    &lt;chart-events on-click-data="showClick(data)"/>
-  &lt;/c3chart>
-
-  graphApp.controller('GraphCtrl', function ($scope) {
-    $scope.clicked = {};
-    $scope.showClick = function(data) {
-    $scope.clicked = data;
-  }</code></pre>
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a></code></pre>
 
     
 </dd>

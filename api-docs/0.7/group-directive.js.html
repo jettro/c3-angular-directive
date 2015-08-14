@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: group-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,74 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: group-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartGroup', ChartGroup);
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * @ngdoc directive
+ * @name chartGroup
+ * @description
+ *  `chart-group` is used to group columns, for instance to add them to the 
+ * same column for the same x value. Input is a comma separated string with the
+ * id's of the columns to group.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {String} groupValues Comma separated column ids.
+ *   
+ *   {@link http://c3js.org/reference.html#data-groups| c3js docs}
+ *
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-group group-values="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;c3chart bindto-id="stacked-bar-plot1-chart">
+ *   &lt;chart-column column-id="data 1"
+ *             column-name="Data 1"
+ *             column-color="red"
+ *             column-values="30,200,100,400,150,250"
+ *             column-type="bar"/>
+ *   &lt;chart-column column-id="data 2"
+ *             column-name="Data 2"
+ *             column-color="green"
+ *             column-values="50,20,10,40,15,25"
+ *             column-type="bar"/>
+ *   &lt;chart-group group-values="data 1,data 2"/>
+ * &lt;/c3chart>  
+ */
+function ChartGroup () {
+    var groupLinker = function (scope, element, attrs, chartCtrl) {
+        var group = attrs.groupValues.split(",");
+        chartCtrl.addGroup(group);
+    };
 
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": groupLinker
+    };
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

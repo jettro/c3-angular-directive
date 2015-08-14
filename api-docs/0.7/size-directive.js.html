@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: size-directive.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,148 +17,76 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: size-directive.js</h1>
 
     
 
 
-
-<section>
-
-<header>
-    <h2>
     
-    </h2>
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartSize', ChartSize);
 
-<article>
-    <div class="container-overview">
-    
+/**
+ * @ngdoc directive
+ * @name chartSize
+ * @description
+ *  `chart-size` is used to configure size properties of the chart.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Number} chartWidth Width of the chart element, by default it will be 
+ * calculated from the parent container.
+ *   
+ *   {@link http://c3js.org/reference.html#size-width| c3js docs}
+ *
+ * @param {Number} chartHeight Height of the chart element, by default it will be 
+ * calculated from the parent container.
+ *   
+ *   {@link http://c3js.org/reference.html#size-height| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-size chart-height="..." chart-width="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;chart-size chart-height="600" chart-width="600"/>
+ */
+function ChartSize() {
+    var sizeLinker = function (scope, element, attrs, chartCtrl) {
+        var chartSize = null;
+        var width = attrs.chartWidth;
+        var height = attrs.chartHeight;
+        if (width || height) {
+            chartSize = {};
+            if (width) {
+                chartSize.width = parseInt(width);
+            }
+            if (height) {
+                chartSize.height = parseInt(height);
+            }
+            chartCtrl.addSize(chartSize);
+        }
+    };
 
-    
-        
-
-        
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    <!--
-    
-    -->
-
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<dt>
-    <h4 class="name" id="ChartController">ChartController<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Controller for the c3js directive</p>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <!-- commented out by Allen Kim
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line1">line 1</a>
-    </li></ul></dd>
-    -->
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": sizeLinker
+    };
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
