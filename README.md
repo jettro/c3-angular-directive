@@ -16,6 +16,9 @@ This repository contains directives that let you easily create graphs using the 
 There is a page with samples and documentation available:
 http://jettro.github.io/c3-angular-directive/
 
+There is now extensive API docs available here:
+http://jettro.github.io/c3-angular-directive/api-docs/0.7/index.html
+
 ## Goal
 Come up with a number of directives to integrate C3js with AngularJS
 
