@@ -6,7 +6,7 @@ graphApp.controller('GraphCtrl', function ($scope, $interval, dataService) {
         {"id": "top-2", "type": "spline", "name": "Top two"}];
     $scope.datax = {"id": "x"};
 
-    $scope.donutPoints = [{"data1": 70, "data2": 30, "data3": 30, "data4": 30, "data5": 30}];
+    $scope.donutPoints = [{"data1": 70, "data2": 30, "data3": 50, "data4": 40, "data5": 10}];
     $scope.donutColumns = [
         {"id": "data1", "type": "donut"},
         {"id": "data2", "type": "donut"},

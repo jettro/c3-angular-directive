@@ -1,5 +1,7 @@
 angular.module('gridshore.c3js.chart')
-    .directive('c3chart', ['$timeout', C3Chart($timeout)]);
+    .directive('c3chart', ['$timeout', function(timeout) {
+        return C3Chart(timeout);
+    }]);
 
 /**
  * @ngdoc directive
@@ -33,6 +35,10 @@ angular.module('gridshore.c3js.chart')
  * @param {String} bind-id Id of the chart, needs to be unique when using multiple charts on one page.
  * 
  *   {@link http://c3js.org/reference.html#bindto| c3js doc}
+ *
+ * @param {String} sort-data You can enter three different versions: asc, desc, null. Using this sorting you can change the order of stacking and the order of the pieces of a pie or donut.
+ * 
+ *   {@link http://c3js.org/reference.html#data-order| c3js doc}
  *
  * @param {Boolean} show-labels Configure to show the labels 'true' or not, default is false.
  * 
@@ -115,6 +121,7 @@ function C3Chart ($timeout) {
         var paddingRight = attrs.paddingRight;
         var paddingBottom = attrs.paddingBottom;
         var paddingLeft = attrs.paddingLeft;
+        var sortData = attrs.sortData;
 
         if (paddingTop) {
             chartCtrl.addPadding('top', paddingTop);
@@ -127,6 +134,9 @@ function C3Chart ($timeout) {
         }
         if (paddingLeft) {
             chartCtrl.addPadding('left', paddingLeft);
+        }
+        if (sortData) {
+            chartCtrl.addSorting(sortData);
         }
         if (attrs.labelsFormatFunction) {
             chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
