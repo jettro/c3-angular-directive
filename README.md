@@ -60,8 +60,11 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
-### 0.7.0 Upcoming
-Focus is improvements to the structure of the project and the documentation.
+### 1.0 Upcoming
+SOme final functionalities for the initial release. Want to add click events on the legend and maybe some other features.
+
+### 0.7.0
+Focus is improvements to the structure of the project and the documentation. Also fixed some bugs.
 
 ### 0.6.0
 Main part to move to a higher version is that we have the possibility now to add a callback function. In the examples folder there is a page callback-sample.html that shows how to do this. You can register the callback function to recevei the actual chart object that you can manipulate using the c3js API methods.
