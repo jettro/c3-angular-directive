@@ -57,7 +57,11 @@ angular.module('gridshore.c3js.chart')
                 config.padding = $scope.padding;
             }
             if ($scope.sorting != null) {
-                config.data.order = $scope.sorting;
+                if ($scope.sorting == "null") {
+                    config.data.order = null;
+                } else {
+                    config.data.order = $scope.sorting;
+                }
             }
             if ($scope.colors) {
                 config.data.colors = $scope.colors;
@@ -481,9 +485,6 @@ angular.module('gridshore.c3js.chart')
             if (!$scope.chartIsGenerated) {
                 $scope.chart = c3.generate($scope.config);
                 $scope.chartIsGenerated = true;
-
-            console.log($scope.config);
-
 
                 // Use the API as documented here to interact with the chart object
                 // http://c3js.org/reference.html#api

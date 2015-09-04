@@ -17,7 +17,7 @@
 
 <div>
     <div class="graph">
-        <c3chart bindto-id="eventchart" chart-data="donutPoints" chart-columns="donutColumns" sort-data="asc">
+        <c3chart bindto-id="eventchart" chart-data="donutPoints" chart-columns="donutColumns" sort-data="null">
             <chart-size chart-width="200" chart-height="200"/>
             <chart-legend show-legend="true"/>
             <chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
@@ -28,6 +28,27 @@
             <chart-size chart-width="200" chart-height="200"/>
             <chart-legend show-legend="true"/>
             <chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
+        </c3chart>
+    </div>
+    <div class="graph">
+        <c3chart bindto-id="eventchart3" sort-data="null">
+            <chart-size chart-width="200" chart-height="200"/>
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="pie"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="pie"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="pie"/>
+            <chart-column column-id="Data 4"
+                          column-values="10"
+                          column-type="pie"/>
+            <chart-column column-id="Data 5"
+                          column-values="100"
+                          column-type="pie"/>
+            <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
         </c3chart>
     </div>
 </div>
