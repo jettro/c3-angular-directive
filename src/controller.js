@@ -150,6 +150,9 @@ angular.module('gridshore.c3js.chart')
             if ($scope.bar != null) {
                 config.bar = $scope.bar;
             }
+            if ($scope.line != null) {
+                config.line = $scope.line;
+            }
             if ($scope.pie != null) {
                 config.pie = $scope.pie;
             }
@@ -405,6 +408,10 @@ angular.module('gridshore.c3js.chart')
 
         this.addBar = function (bar) {
             $scope.bar = bar;
+        };
+
+        this.addLine = function (line) {
+            $scope.line = line;
         };
 
         this.addPie = function (pie) {
