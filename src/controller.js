@@ -30,6 +30,7 @@ angular.module('gridshore.c3js.chart')
             $scope.jsonKeys = null;
             $scope.groups = null;
             $scope.sorting = null;
+            $scope.transitionDuration = null;
         }
 
         resetVars();
@@ -62,6 +63,10 @@ angular.module('gridshore.c3js.chart')
                 } else {
                     config.data.order = $scope.sorting;
                 }
+            }
+            if ($scope.transitionDuration != null) {
+                config.transition = config.transition || {};
+                config.transition.duration = $scope.transitionDuration;
             }
             if ($scope.colors) {
                 config.data.colors = $scope.colors;
@@ -240,6 +245,10 @@ angular.module('gridshore.c3js.chart')
 
         this.addChartCallbackFunction = function(chartCallbackFunction) {
             $scope.chartCallbackFunction = chartCallbackFunction;
+        };
+
+        this.addTransitionDuration = function(transitionDuration) {
+            $scope.transitionDuration = transitionDuration;
         };
 
         this.addYAxis = function (yAxis) {
