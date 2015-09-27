@@ -169,8 +169,7 @@ function C3Chart ($timeout) {
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
-            "callbackFunction": "&",
-            "transitionDuration": "=transitionDuration",
+            "callbackFunction": "&"
         },
         "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
         "replace": true,
