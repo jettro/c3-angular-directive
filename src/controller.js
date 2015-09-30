@@ -20,12 +20,12 @@ angular.module('gridshore.c3js.chart')
             $scope.xTick = null;
             $scope.yTick = null;
             $scope.names = null;
-            $scope.colors = null;
             $scope.grid = null;
             $scope.legend = null;
             $scope.tooltip = null;
             $scope.chartSize = null;
             $scope.colors = null;
+            $scope.colorThresholds = null;
             $scope.gauge = null;
             $scope.jsonKeys = null;
             $scope.groups = null;
@@ -134,6 +134,12 @@ angular.module('gridshore.c3js.chart')
             }
             if ($scope.colors != null) {
                 config.color = {"pattern": $scope.colors};
+                config.color = {
+                    "pattern": $scope.colors,
+                    "threshold" : {
+                        "values" : $scope.colorThresholds
+                    }
+                };
             }
             if ($scope.gauge != null) {
                 config.gauge = $scope.gauge;
@@ -355,6 +361,15 @@ angular.module('gridshore.c3js.chart')
             $scope.colors = colors;
         };
 
+        this.addColorThresholds = function (thresholds) {
+            $scope.colorThresholds = thresholds;
+            if($scope.colors){
+                $scope.colors.threshold = {
+                    "values" :  $scope.colorThresholds
+                }
+            }
+        };
+        
         this.addColorFunction = function (colorFunction) {
             $scope.colorFunction = colorFunction;
         };
