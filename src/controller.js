@@ -209,9 +209,9 @@ angular.module('gridshore.c3js.chart')
             $scope.config = config;
 
             if ($scope.chartData && $scope.chartColumns) {
-                $scope.$watchCollection('chartData', function () {
+                $scope.$watch('chartData', function () {
                     loadChartData();
-                });
+                },true);
             } else {
                 $scope.chart = c3.generate($scope.config);
             }
