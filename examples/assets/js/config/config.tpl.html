@@ -1,0 +1,130 @@
+<div layout="row" flex>
+    <md-content>
+        <h3>Configure the grid of the graph</h3>
+
+        <p>Another feature is that we can add a grid to the chart. We return to our one line of data chart and now add a
+            horizontal grid. In the sample we add a horizontal grid, set <em>show-y</em> to true. But we also add two
+            extra lines with a label. We have to configure the axis to use, the value to draw the line for and the label
+            to place on top of the line.</p>
+
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="chart3">
+    &lt;chart-column column-id="line 1"
+                  column-values="30,200,100,400,150,250"
+                  column-type="line"/>
+    &lt;chart-grid show-x="false" show-y="true">
+        &lt;chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+        &lt;chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+    &lt;/chart-grid>
+&lt;/c3chart>
+</pre>
+        <c3chart bindto-id="chart3">
+            <chart-column column-id="line 1"
+                          column-values="30,200,100,400,150,250"
+                          column-type="line"/>
+            <chart-grid show-x="false" show-y="true">
+                <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+            </chart-grid>
+        </c3chart>
+
+        <h3>Configure the legend</h3>
+
+        <p>You can hide the legend using the <em>show-legend</em> attribute. A more interesting property is the <em>legend-position</em>
+            attribute. Legitimate values for this property are: bottom, right and inset. When inset is used you can also
+            configure where to place the legend using one of the following values:top-left, top-right, bottom-left,
+            bottom-right.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="chart-configure-legend">
+    &lt;chart-column column-id="line 1"
+                  column-values="30,200,100,400,150,250"
+                  column-type="line"/>
+    &lt;chart-grid show-x="false" show-y="true">
+        &lt;chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+        &lt;chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+    &lt;/chart-grid>
+    &lt;chart-legend legend-position="inset" legend-inset="top-left"/>
+&lt;/c3chart>
+</pre>
+        <c3chart bindto-id="chart-configure-legend">
+            <chart-column column-id="line 1"
+                          column-values="30,200,100,400,150,250"
+                          column-type="line"/>
+            <chart-grid show-x="false" show-y="true">
+                <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+                <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+            </chart-grid>
+            <chart-legend legend-position="inset" legend-inset="top-left"/>
+        </c3chart>
+
+        <h3>Configure the Tooltip</h3>
+
+        <p>When moving you cursor over the chart points, you get a tooltip with the line name and the value. If you have
+            multiple lines by default you see all the values for the same horizontal item. Using this directive you can hide the
+            tooltip, but you can also disable the grouping of values. That way you only get the value for the line your cursor
+            is on.</p>
+<pre class="brush: xml; html-script: false">
+    &lt;chart-tooltip group-tooltip="false"/>
+</pre>
+        <c3chart bindto-id="configure-tooltip-chart">
+            <chart-column column-id="line1"
+                          column-name="Line 1"
+                          column-color="red"
+                          column-values="30,200,100,400,150,250"
+                          column-type="spline"/>
+            <chart-column column-id="bar1"
+                          column-name="Bar 1"
+                          column-color="green"
+                          column-values="50,20,10,40,15,25"
+                          column-type="bar"/>
+            <chart-tooltip group-tooltip="false"/>
+        </c3chart>
+
+        <h3>Configure the dynamic nature of chart sizes</h3>
+
+        <p>By default the chart fits within the space you give it. Maybe you have a good reason to explicitly set the size of a
+            chart. This can be done with the <em>chart-size</em> directive. It has two attributes, <em>chart-width</em> and <em>chart-height</em>
+        </p>
+
+        <c3chart bindto-id="configure-size-chart">
+            <chart-column column-id="line1"
+                          column-name="Line 1"
+                          column-color="red"
+                          column-values="30,200,100,400,150,250"
+                          column-type="spline"/>
+            <chart-column column-id="bar1"
+                          column-name="Bar 1"
+                          column-color="green"
+                          column-values="50,20,10,40,15,25"
+                          column-type="bar"/>
+            <chart-size chart-width="200" chart-height="200"/>
+        </c3chart>
+
+<pre class="brush: xml; html-script: false">
+&lt;chart-size chart-width="200" chart-height="200"/>
+</pre>
+        <h3>Configure the colors of the chart</h3>
+
+        <p>With each chart-column you can specify a color. So why more color configuration. With this directive you can give a
+            number of colors to use throughout the graph. That way you do not specify which color to take, but you do specify the
+            colors to chose from.</p>
+
+        <div class="code-column">
+            <c3chart bindto-id="configure-color-chart">
+                <chart-column column-id="line1"
+                              column-name="Line 1"
+                              column-values="30,200,100,400,150,250"
+                              column-type="spline"/>
+                <chart-column column-id="spline1"
+                              column-name="Spline 1"
+                              column-values="50,20,10,40,15,25"
+                              column-type="spline"/>
+                <chart-colors color-pattern="green,blue,red,yellow"/>
+            </c3chart>
+        </div>
+<pre class="brush: xml; html-script: false">
+&lt;chart-colors color-pattern="green,blue,red,yellow"/>
+</pre>
+
+    </md-content>
+</div>

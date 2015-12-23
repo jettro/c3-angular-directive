@@ -1,0 +1,62 @@
+<div layout="row" flex>
+    <md-content>
+        <p>A donut is almost a pie, but without the middle. Threfore it has the same configuration options. One
+            additional attribute is the <em>title</em>. This gives you a title in the middle of the donut. In the
+            example below we also demonstrate formatting the label using a function. With the function we replace the
+            percentage sign with the dollar sign.</p>
+
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="donut-plot1-chart">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="donut"/>
+    &lt;chart-donut title="Donut" width="60" show-label="true" label-format-function="formatDonut"
+                 threshold-label="0.1"/>
+&lt;/c3chart>
+</pre>
+<pre class="brush: js; html-script: false">
+function DonutCtrl() {
+    var vm = this;
+    vm.formatDonut = formatDonut;
+
+    function formatDonut(value, ratio, id) {
+        return d3.format('$')(value);
+    }
+}
+</pre>
+        <c3chart bindto-id="donut-plot1-chart">
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="donut"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="donut"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="donut"/>
+            <chart-donut title="Donut" width="60" show-label="true" label-format-function="vm.formatDonut"
+                         threshold-label="0.1"/>
+        </c3chart>
+
+        <p>In the next sample we use data coming from angularjs objects. Also we remove the sorting which is from large
+            to small by default. And in the <code>chart-donut</code> directive we also configure the width of the donut
+            and whether to show the label or not. In our case we don't show it.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="eventchart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null">
+    &lt;chart-legend show-legend="true"/>
+    &lt;chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
+&lt;/c3chart>
+</pre>
+        <c3chart bindto-id="eventchart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null">
+            <chart-legend show-legend="true"/>
+            <chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
+        </c3chart>
+
+    </md-content>
+</div>

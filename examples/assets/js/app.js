@@ -10,7 +10,11 @@
         'gridshore.c3js.bar',
         'gridshore.c3js.line',
         'gridshore.c3js.pie',
-        'gridshore.c3js.callback'
+        'gridshore.c3js.callback',
+        'gridshore.c3js.donut',
+        'gridshore.c3js.config',
+        'gridshore.c3js.gauge',
+        'gridshore.c3js.dynamic'
     ]);
 })();
 
