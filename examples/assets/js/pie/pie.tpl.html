@@ -1,0 +1,34 @@
+<div layout="row" flex>
+    <md-content>
+        <p>Creating a pie diagram is as easy as providing a number of <em>chart-column</em> elements. You can configure
+            a few options using the <em>chart-pie</em> directive.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="pie"/>
+    &lt;chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+&lt;/c3chart>
+
+</pre>
+        <c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="pie"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="pie"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="pie"/>
+            <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+        </c3chart>
+
+    </md-content>
+</div>

@@ -9,7 +9,10 @@
                       column-color="green"
                       column-values="30,200,100,400,150,250"
                       column-type="line"/>
-        &lt;chart-points point-radius="10"/>
+        &lt;chart-points point-radius="5"
+                      show-point="true"
+                      point-expand-enabled="true"
+                      point-expand-radius="10"/>
     &lt;/c3chart>
 </pre>
         <c3chart bindto-id="chart1" show-labels="true">
@@ -18,7 +21,10 @@
                           column-color="green"
                           column-values="30,200,100,400,150,250"
                           column-type="line"/>
-            <chart-points point-radius="10"/>
+            <chart-points point-radius="5"
+                          show-point="true"
+                          point-expand-enabled="true"
+                          point-expand-radius="10"/>
         </c3chart>
         <p>Now there are a lot of options available to you to configure. We can add a second line of data, but we can also
             configure vertical axes. That is what we will do in the next example. We add a second <strong>chart-column</strong>

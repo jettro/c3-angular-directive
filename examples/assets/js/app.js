@@ -8,7 +8,9 @@
         'ui.router',
         'gridshore.c3js.dashboard',
         'gridshore.c3js.bar',
-        'gridshore.c3js.line'
+        'gridshore.c3js.line',
+        'gridshore.c3js.pie',
+        'gridshore.c3js.callback'
     ]);
 })();
 
