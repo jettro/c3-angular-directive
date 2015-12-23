@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en" ng-app="graphApp">
+<head>
+    <meta charset="utf-8">
+
+    <link href="assets/css/c3.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/shCoreDefault.css" type="text/css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="assets/js/shCore.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushXml.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushJScript.js"></script>
+
+    <script type="text/javascript">
+        SyntaxHighlighter.defaults['gutter'] = true;
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.all();
+    </script>
+
+    <style>
+        .code-column {
+            max-width: 700px;
+        }
+    </style>
+</head>
+<body ng-controller="GraphCtrl">
+<h1>Tutorial C3JS AngularJS Directives</h1>
+
+<p>Welcome to the tutorial for using the c3js angular directives. We created these directives to make it easier to
+    integrate graphs in your AngularJS project.</p>
+
+<h2>Installation</h2>
+
+<p>If you want to run this tutorial you have to run this as a website. There are a few ways you can do this. For all
+    means you have to get a copy from this <a href="https://github.com/jettro/c3-angular-directive">github
+        repository</a>. You can download the zip/tar or clone the repository.</p>
+<ul>
+    <li>Using Python: Step into the examples folder and run <code>python -m SimpleHTTPServer 8000</code></li>
+    <li>Using grunt: From the root run: <code>grunt devserver</code></li>
+</ul>
+<h2>Setting up your project</h2>
+
+<p>Before you can show your graphs, you need to do the boilerplate stuff. You have to create an html page that loads the
+    appropriate javascript libraries and stylesheets. The next code block shows this very basic html page.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+        &lt;html lang="en" ng-app="graphApp">
+        &lt;head>
+        &lt;link href="assets/css/c3.min.css" rel="stylesheet" type="text/css"/>
+        &lt;/head>
+        &lt;body ng-controller="GraphCtrl">
+
+            &lt;script src="assets/js/d3.min.js" charset="utf-8">&lt;/script>
+            &lt;script src="assets/js/c3.min.js">&lt;/script>
+            &lt;script src="assets/js/angular.min.js">&lt;/script>
+            &lt;script src="assets/js/c3-angular.min.js">&lt;/script>
+
+            &lt;script src="assets/js/app.js">&lt;/script>
+        &lt;/body>
+        &lt;/html>
+    ]]>
+
+
+
+</script>
+<p>Besides the html we also need a bit of JavaScript to initialize the application. The next code block shows
+    initilizing the app and a controller.</p>
+<script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    var graphApp = angular.module('graphApp', ['gridshore.c3js.chart']);
+
+    graphApp.controller('GraphCtrl', function ($scope) {
+
+    });
+]]>
+
+
+
+</script>
+<p>That is it, before we move on to your first graph lets have a look at the different directives that are available.
+    The main element is <em>c3chart</em>. All other directives are children of this element. This directive has a few
+    attributes to configure the chart. The most important attribute is the <em>bind-id</em>, if you want multiple graphs
+    on one page, this has to be unique. Other attributes are <em>padding-top/right/left/bottom</em>,
+    <em>show-labels</em>, <em>show-subchart</em> and <em>enable-zoom</em></p>
+
+
+<h2>Basic graphs</h2>
+
+<h3>chart-column to provide the data</h3>
+
+<p>The first graph is just a line with a few data points. We start with the main element <em>c3chart</em> and configure
+    it with the <em>show-labels</em> attribute. The second element is the <em>chart-column</em>. This is an important
+    element, this element provides the data. It also configures how to present the data, the color of the line. The type
+    of chart is specified by <em>columns-type</em>. The example uses <em>line</em> but feel free to play around with the
+    column-type, see what happens when you change it to spline or bar for instance. The other two attributes in the
+    example give the id to the data <em>column-id</em>, which is reused later on, and the name <em>column-name</em>.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart1" show-labels="true">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="green"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart1" show-labels="true">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="green"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<h3>chart-axes and chart-axis to configure the axes</h3>
+
+<p>Now there are a lot of options available to you to configure. We can add a second line of data, but we can also
+    configure vertical axes. That is what we will do in the next example. We add a second <strong>chart-column</strong>
+    element. This line1 and bar1 axis have a different scale, that is what we configure in the <em>chart-axes</em>
+    element. The attributes <em>y</em> and <em>y2</em> which columns use which y axis. If you have more than two
+    chart-columns you can comma separate them to attach them to the two different vertical axes.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart2">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes y="line1" y2="bar1"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart2">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes y="line1" y2="bar1"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<p>If you look at the horizontal bar, you see that the items are numbered. There is way to specify the values for the
+    horizontal bar as well. You can use the attibute <em>values-x</em>. The value for this attribute should be the
+    column-id of the chart-column element to use for the horizontal bar. In the next sample we demonstrate the use of
+    text values for the horizontal button. Notice the chart-column with id <em>x</em>. To make this positioning work we
+    have to introduce two other elements: <em>chart-axis</em> and <em>chart-axis-x</em>. The first element chart-axis
+    has one attribute called <em>axis-rotate</em>. If you configure that, the axis are rotated, so x becomes vertical
+    and y horizontal. The second element <em>chart-axis-x</em> has more attributes. The sample shows how to configure
+    position, label and type. In our case the type is category since we are using textual labels. Other possible values
+    are indexed and timeseries. Other attributes that you can configure are: axis-show, axis-localtime, axis-min and
+    axis-max.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart2-1">
+        <chart-column column-id="x"
+                      column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes values-x="x" y="line1" y2="bar1"/>
+        <chart-axis axis-rotate="true">
+            <chart-axis-x axis-position="outer-center"
+                          axis-label="The periods"
+                          axis-type="category"/>
+        </chart-axis>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart2-1">
+        <chart-column column-id="x"
+                      column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-axes values-x="x" y="line1" y2="bar1"/>
+        <chart-axis axis-rotate="true">
+            <chart-axis-x axis-position="outer-center"
+                          axis-label="The periods"
+                          axis-type="category"/>
+        </chart-axis>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<p>The same thing we did for the x-axis also exists for the y axis. Than you have to use the element
+    <em>chart-axis-y</em>. The attibutes are almost the same, biggest difference is that we can have two of them. If you
+    have two, you have to specify the id being <em>y</em> or <em>y2</em>. You cannot use the attribute localtime but you
+    do have the additional attribute called <em>exis-inverted</em> to invert the y values.</p>
+
+<h3>chart-grid adds a grid to the graph</h3>
+
+<p>Another feature is that we can add a grid to the chart. We return to our one line of data chart and now add a
+    horizontal grid. In the sample we add a horizontal grid, set <em>show-y</em> to true. But we also add two extra
+    lines with a label. We have to configure the axis to use, the value to draw the line for and the label to place on
+    top of the line.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart3">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart3">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<h3>chart-legend to configure the legend</h3>
+
+<p>You can hide the legend using the <em>show-legend</em> attribute. A more interesting property is the <em>legend-position</em>
+    attribute. Legitimate values for this property are: bottom, right and inset. When inset is used you can also
+    configure where to place the legend using one of the following values:top-left, top-right, bottom-left,
+    bottom-right.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="chart-configure-legend">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+        <chart-legend legend-position="inset" legend-inset="top-left"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="chart-configure-legend">
+        <chart-column column-id="line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-grid show-x="false" show-y="true">
+            <chart-grid-optional axis-id="y" grid-value="20" grid-text="Minimum"/>
+            <chart-grid-optional axis-id="y" grid-value="200" grid-text="Maximum"/>
+        </chart-grid>
+        <chart-legend legend-position="inset" legend-inset="top-left"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+
+<h3>chart-tooltip</h3>
+
+<p>When moving you cursor over the chart points, you get a tooltip with the line name and the value. If you have
+    multiple lines by default you see all the values for the same horizontal item. Using this directive you can hide the
+    tooltip, but you can also disable the grouping of values. That way you only get the value for the line your cursor
+    is on.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="configure-tooltip-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-tooltip group-tooltip="false"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="configure-tooltip-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-tooltip group-tooltip="false"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<h3>chart-size to change the dynamic nature of chart sizes</h3>
+
+<p>By default the chart fits within the space you give it. Maybe you have a good reason to explicitly set the size of a
+    chart. This can be done with the <em>chart-size</em> directive. It has two attributes, <em>chart-width</em> and <em>chart-height</em>
+</p>
+
+<div class="code-column">
+    <c3chart bindto-id="configure-size-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-size chart-width="200" chart-height="200"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="configure-size-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="bar1"
+                      column-name="Bar 1"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-size chart-width="200" chart-height="200"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+
+<h3>chart-colors for more colors</h3>
+
+<p>With each chart-column you can speicfy a color. So why more color configuration. With this directive you can give a
+    number of colors to use throughout the graph. That way you do not specify which color to take, but you do speify the
+    colors to chose from.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="configure-color-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="spline1"
+                      column-name="Spline 1"
+                      column-values="50,20,10,40,15,25"
+                      column-type="spline"/>
+        <chart-colors color-pattern="green,blue,red,yellow"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="configure-color-chart">
+        <chart-column column-id="line1"
+                      column-name="Line 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="spline"/>
+        <chart-column column-id="spline1"
+                      column-name="Spline 1"
+                      column-values="50,20,10,40,15,25"
+                      column-type="spline"/>
+        <chart-colors color-pattern="green,blue,red,yellow"/>
+    </c3chart>
+    ]]>
+
+
+
+    </script>
+</div>
+<h3>chart-group to group data</h3>
+
+<p>If you have a bar chart with multiple chart-columns, the default behavior is to place the bars next to each other.
+    You can also group the bars so that are stacked. That is what the following example shows. Using the
+    <em>chart-group</em> directive we can use the <em>group-values</em> attribute. Give it a comma separated column id's
+    that need to be grouped.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="stacked-bar-plot1-chart" sort-data="asc">
+        <chart-column column-id="data 1"
+                      column-name="Data 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="bar"/>
+        <chart-column column-id="data 2"
+                      column-name="Data 2"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-group group-values="data 1,data 2"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="stacked-bar-plot1-chart">
+        <chart-column column-id="data 1"
+                      column-name="Data 1"
+                      column-color="red"
+                      column-values="30,200,100,400,150,250"
+                      column-type="bar"/>
+        <chart-column column-id="data 2"
+                      column-name="Data 2"
+                      column-color="green"
+                      column-values="50,20,10,40,15,25"
+                      column-type="bar"/>
+        <chart-group group-values="data 1,data 2"/>
+    </c3chart>
+    ]]>
+
+    </script>
+</div>
+
+<h2>Chart specific configuration options</h2>
+
+<h3>Gauge</h3>
+
+<p>You can create a gauge using column-type gauge. There are some specific configuration options that you can provide
+    using the <em>chart-gauge</em> directive.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="gauge-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="gauge"/>
+        <chart-gauge min="50"
+                     max="75"
+                     units=" hours"
+                     width="39"
+                     show-label="true"
+                     expand="true"
+                />
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="gauge-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="gauge"/>
+        <chart-gauge min="50"
+                     max="75"
+                     units=" hours"
+                     width="39"
+                     show-label="true"
+                     expand="true"
+                />
+    ]]>
+
+    </script>
+</div>
+
+<h3>Pie</h3>
+
+<p>Creating a pie diagram is as easy as providing a number of <em>chart-column</em> elements. You can configure a few
+    options using the <em>chart-pie</em> directive.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="pie"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="pie"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="pie"/>
+        <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="pie-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="pie"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="pie"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="pie"/>
+        <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+    </c3chart>
+    ]]>
+
+    </script>
+</div>
+
+<h3>Donut</h3>
+
+<p>A donut is almost a pie, but without the middle. Threfore it has the same configuration options. One additional
+    attribute is the <em>title</em>. This gives you a title in the middle of the donut.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="donut-plot1-chart" >
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="donut"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="donut"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="donut"/>
+        <chart-donut title="Donut" width="60" show-label="true" label-format-function="formatDonut" threshold-label="0.1"/>
+    </c3chart>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="donut-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="donut"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="donut"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="donut"/>
+        <chart-donut title="Donut" width="60" show-label="true" label-format-function="formatDonut" threshold-label="0.1"/>
+    </c3chart>
+    ]]>
+    </script>
+    <p>And in the controller we than add the following format function</p>
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    $scope.formatDonut = function (value, ratio, id) {
+        return d3.format('$')(value);
+    };
+    ]]>
+    </script>    
+</div>
+
+
+<h3>Point</h3>
+
+<p>When working with lines, you by default have points on the line. Sometimes you want to loose these points and
+    sometimes you want to make them more expicit. That is what the <em>chart-points</em> directive is for. Using
+    this directive you can make the points disappear or change the size. The following graph shows all options.
+</p>
+
+<div class="code-column">
+    <c3chart bindto-id="points-plot1-chart">
+        <chart-column column-id="data 1"
+                      column-name="Data 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-column column-id="data 2"
+                      column-name="Data 2"
+                      column-values="50,20,10,40,15,25"
+                      column-type="spline"/>
+        <chart-points point-radius="5"
+                      show-point="true"
+                      point-expand-enabled="true"
+                      point-expand-radius="10"/>
+    </c3chart>
+</div>
+
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="points-plot1-chart">
+        <chart-column column-id="data 1"
+                      column-name="Data 1"
+                      column-values="30,200,100,400,150,250"
+                      column-type="line"/>
+        <chart-column column-id="data 2"
+                      column-name="Data 2"
+                      column-values="50,20,10,40,15,25"
+                      column-type="spline"/>
+        <chart-points point-radius="5"
+                      show-point="true"
+                      point-expand-enabled="true"
+                      point-expand-radius="10"/>
+    </c3chart>
+    ]]>
+
+    </script>
+</div>
+
+<h2>Interactive charts</h2>
+
+<p>There are a number of events available to interact with your charts. There are two different levels of events. There
+    are events related to the complete chart like mouseover and mouseout, but also on initialize and on render. You can
+    registere a callback to these events. But there are also events more related to the plotted data. You can respond to
+    clicks on data points, but also on mouseovers and mouseout. All these callbacks are registered using the <em>chart-events</em>
+    directive. In the example we show the <em>on-data-click</em> attribute. The other callback attribute are: <em>on-init</em>,<em>on-mouseover</em>,<em>on-mouseout</em>,<em>on-resize</em>,<em>on-resized</em>,<em>on-rendered</em>,<em>on-click-data</em>,<em>on-mouseover-data</em>
+    and <em>on-mouseout-data</em>.</p>
+
+<div class="code-column">
+    <c3chart bindto-id="interactive-plot1-chart" show-labels="false">
+        <chart-column column-id="data1"
+                      column-name="Data 1"
+                      column-values="70"
+                      column-type="donut"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="donut"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="donut"/>
+        <chart-donut title="Donut" width="60" />
+        <chart-events on-click-data="showClick(data)"/>
+    </c3chart>
+    <p>Data clicked: <strong>Name</strong> {{clicked.name}}, <strong>Value</strong> {{clicked.value}}</p>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+    <c3chart bindto-id="interactive-plot1-chart">
+        <chart-column column-id="Data 1"
+                      column-values="70"
+                      column-type="donut"/>
+        <chart-column column-id="Data 2"
+                      column-values="35"
+                      column-type="donut"/>
+        <chart-column column-id="Data 3"
+                      column-values="60"
+                      column-type="donut"/>
+        <chart-donut title="Donut" width="60"/>
+        <chart-events on-click-data="showClick(data)"/>
+    </c3chart>
+    ]]>
+
+    </script>
+</div>
+
+<h2>Time series data</h2>
+<p>The next chart is really different from all the other charts. Up till now we added the data using <em>chart-column</em> elements. In a lot of situations this is fine, but what if the data is dynamic of nature. Than we want to load the data using an angular controller. That is what this sample does. after clicking the button we generate 10 additional datapoints. Also the chart-columns are taken from a scope parameter. This is all taken care of using the attributes: <em>chart-data</em>, <em>chart-columns</em> and <em>chart-x</em>.</p>
+<div class="code-column">
+<c3chart bindto-id="chart-timeseries" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
+    <chart-axis>
+        <chart-axis-x axis-id="x" axis-type="timeseries">
+            <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+        </chart-axis-x>
+    </chart-axis>
+</c3chart>
+    <button ng-click="generateData()">Start data</button>
+</div>
+<div class="code-column">
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+<c3chart bindto-id="chart-timeseries" chart-data="datapoints" chart-columns="datacolumns" chart-x="datax">
+    <chart-axis>
+        <chart-axis-x axis-id="x" axis-type="timeseries">
+            <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+        </chart-axis-x>
+    </chart-axis>
+</c3chart>
+    ]]>
+    </script>
+    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+        $scope.datapoints=[];
+    $scope.datacolumns=[{"id":"top-1","type":"line","name":"Top one"},
+        {"id":"top-2","type":"spline","name":"Top two"}];
+    $scope.datax={"id":"x"};
+
+    $scope.generateData = function() {
+        $interval(function(){
+            dataService.loadData(function(data){
+                $scope.datapoints.push(data);
+            });
+        },1000,10);
+    };
+    ]]>
+    </script>
+
+</div>
+
+
+
+<!-- Load all the required libraries -->
+<script src="assets/js/d3.min.js" charset="utf-8"></script>
+<script src="assets/js/c3.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/c3-angular.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
