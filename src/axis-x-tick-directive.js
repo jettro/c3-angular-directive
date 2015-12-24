@@ -132,7 +132,13 @@ function ChartAxisXTick() {
 
         var tickValues = attrs.tickValues;
         if (tickValues) {
-            tick.values = tickValues;
+            if (tickValues) {
+                if (tickValues.indexOf(',') > -1) {
+                    tick.values = tickValues.split(',');
+                } else {
+                    tick.values = tickValues;
+                }
+            }
         }
 
         var outer = attrs.tickOuter;

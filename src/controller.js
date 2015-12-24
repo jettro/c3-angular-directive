@@ -3,12 +3,12 @@
  * @description Controller for the c3js directive
  */
 angular.module('gridshore.c3js.chart')
-	/**
-	 * @controller
-	 */
+    /**
+     * @controller
+     */
     .controller('ChartController', ChartController);
 
-ChartController.$inject = ['$scope','$timeout'];
+ChartController.$inject = ['$scope', '$timeout'];
 function ChartController($scope, $timeout) {
     this.showGraph = showGraph;
 
@@ -146,7 +146,7 @@ function ChartController($scope, $timeout) {
             config.data.labels = true;
         }
         if ($scope.dataLabelsFormatFunction) {
-            config.data.labels        = config.data.labels || {};
+            config.data.labels = config.data.labels || {};
             config.data.labels.format = $scope.dataLabelsFormatFunction;
         }
         if ($scope.groups != null) {
@@ -163,7 +163,7 @@ function ChartController($scope, $timeout) {
             config.axis.x.tick = $scope.xTick;
         }
         if ($scope.xTickFormatFunction) {
-            config.axis.x.tick        = config.axis.x.tick || {};
+            config.axis.x.tick = config.axis.x.tick || {};
             config.axis.x.tick.format = $scope.xTickFormatFunction;
         }
 
@@ -174,7 +174,7 @@ function ChartController($scope, $timeout) {
             config.axis.y.tick = $scope.yTick;
         }
         if ($scope.yTickFormatFunction) {
-            config.axis.y.tick        = config.axis.y.tick || {};
+            config.axis.y.tick = config.axis.y.tick || {};
             config.axis.y.tick.format = $scope.yTickFormatFunction;
         }
 
@@ -190,15 +190,15 @@ function ChartController($scope, $timeout) {
             config.tooltip = {}
         }
         if ($scope.tooltipTitleFormatFunction) {
-            config.tooltip.format       = config.tooltip.format || {};
+            config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.title = $scope.tooltipTitleFormatFunction;
         }
         if ($scope.tooltipNameFormatFunction) {
-            config.tooltip.format      = config.tooltip.format || {};
+            config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.name = $scope.tooltipNameFormatFunction;
         }
         if ($scope.tooltipValueFormatFunction) {
-            config.tooltip.format       = config.tooltip.format || {};
+            config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.value = $scope.tooltipValueFormatFunction;
         }
 
@@ -209,8 +209,8 @@ function ChartController($scope, $timeout) {
             config.color = {"pattern": $scope.colors};
             config.color = {
                 "pattern": $scope.colors,
-                "threshold" : {
-                    "values" : $scope.colorThresholds
+                "threshold": {
+                    "values": $scope.colorThresholds
                 }
             };
         }
@@ -293,13 +293,13 @@ function ChartController($scope, $timeout) {
         if ($scope.chartData && $scope.chartColumns) {
             $scope.$watch('chartData', function () {
                 loadChartData();
-            },true);
+            }, true);
         } else {
             $scope.chart = c3.generate($scope.config);
         }
 
         $scope.$on('$destroy', function () {
-            $timeout(function(){
+            $timeout(function () {
                 if (angular.isDefined($scope.chart)) {
                     $scope.chart = $scope.chart.destroy();
                     resetVars();
@@ -446,9 +446,9 @@ function ChartController($scope, $timeout) {
 
     function addColorThresholds(thresholds) {
         $scope.colorThresholds = thresholds;
-        if($scope.colors){
+        if ($scope.colors) {
             $scope.colors.threshold = {
-                "values" :  $scope.colorThresholds
+                "values": $scope.colorThresholds
             }
         }
     }

@@ -14,7 +14,7 @@ angular.module('gridshore.c3js.chart')
  *   chart-axis-y
  *
  * @param {Number} tick-count Specify the number of ticks on the x axis.
- *   
+ *
  *   {@link http://c3js.org/reference.html#axis-y-tick-count| c3js doc}
  *
  * @param {Boolean} tick-outer Default is not to show the outer tick, setting this to true will show the outer tick.
@@ -37,7 +37,7 @@ angular.module('gridshore.c3js.chart')
  * @example
  * Usage:
  *   <chart-axis-y-tick tick-outer="..." tick-count="..."/>
- * 
+ *
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
  *
@@ -64,7 +64,11 @@ function ChartAxisYTick() {
 
         var tickValues = attrs.tickValues;
         if (tickValues) {
-            tick.values = tickValues;
+            if (tickValues.indexOf(',') > -1) {
+                tick.values = tickValues.split(',');
+            } else {
+                tick.values = tickValues;
+            }
         }
 
         var format = attrs.tickFormat;
@@ -76,7 +80,7 @@ function ChartAxisYTick() {
 
         if (attrs.tickFormatFunction) {
             chartCtrl.addYTickFormatFunction(scope.tickFormatFunction());
-        }        
+        }
     };
 
     return {

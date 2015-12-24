@@ -79,6 +79,52 @@
                 <chart-axes y="line1" y2="bar1"/>
                 <chart-axis axis-rotate="true"/>
             </c3chart>
+        <p>In the next bar chart we are demonstrating what you can do with formatting ticks. We add multiple
+            configurations for the x-tick as well as the y-tick.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="chartTickSample">
+    &lt;chart-column column-id="line1"
+                  column-name="Line 1"
+                  column-color="red"
+                  column-values="30,200,100,400,150,250"
+                  column-type="spline"/>
+    &lt;chart-column column-id="bar1"
+                  column-name="Bar 1"
+                  column-color="green"
+                  column-values="50,20,10,40,15,25"
+                  column-type="bar"/>
+    &lt;chart-axis>
+        &lt;chart-axis-x axis-position="outer-center" axis-label="Number by 10"
+                      axis-type="category">
+            &lt;chart-axis-x-tick tick-rotate="50"/>
+        &lt;/chart-axis-x>
+        &lt;chart-axis-y>
+            &lt;chart-axis-y-tick tick-values="50,100,150,200,250"/>
+        &lt;/chart-axis-y>
+    &lt;/chart-axis>
+&lt;/c3chart>
+</pre>
+        <c3chart bindto-id="chartTickSample">
+            <chart-column column-id="line1"
+                          column-name="Line 1"
+                          column-color="red"
+                          column-values="30,200,100,400,150,250"
+                          column-type="spline"/>
+            <chart-column column-id="bar1"
+                          column-name="Bar 1"
+                          column-color="green"
+                          column-values="50,20,10,40,15,25"
+                          column-type="bar"/>
+            <chart-axis>
+                <chart-axis-x axis-position="outer-center" axis-label="Number by 10"
+                              axis-type="category">
+                    <chart-axis-x-tick tick-rotate="50"/>
+                </chart-axis-x>
+                <chart-axis-y>
+                    <chart-axis-y-tick tick-values="50,100,150,200,250"/>
+                </chart-axis-y>
+            </chart-axis>
+        </c3chart>
 
     </md-content>
 </div>

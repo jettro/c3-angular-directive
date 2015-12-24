@@ -63,6 +63,8 @@ In the end you just need one file in your project: c3-angular.min.js
 ### 1.0 Upcoming
 SOme final functionalities for the initial release. Want to add click events on the legend and maybe some other features.
 
+Bigger refactoring to the structure of the source code and a big change to the examples.
+
 ### 0.7.0
 Focus is improvements to the structure of the project and the documentation. Also fixed some bugs.
 
