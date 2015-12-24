@@ -76,7 +76,7 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#api-focus| c3js doc}
  *
- * @param {Number} transition-duration Duration of transition (in milliseconds) for chart animation.
+ * @param {Number} transition-duration Duration of transition (in milliseconds) for chart animation. If you specify 0, transitions will be disabled which is good for large datasets.
  *
  *   {@link http://c3js.org/reference.html#transition-duration| c3js doc}
  * @example
