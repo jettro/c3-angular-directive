@@ -60,6 +60,7 @@ module.exports = function (grunt) {
                     {expand: true, flatten: true, src: ['bower_components/d3/d3.min.js'], dest: 'examples/assets/js/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['bower_components/c3/c3.min.js'], dest: 'examples/assets/js/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['bower_components/c3/c3.min.css'], dest: 'examples/assets/css/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['c3-angular.js'], dest: 'examples/assets/js/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['c3-angular.min.js'], dest: 'examples/assets/js/', filter: 'isFile'},
                     {expand: true, flatten: true, src: ['c3-angular.min.js.map'], dest: 'examples/assets/js/', filter: 'isFile'}
                 ]
