@@ -296,6 +296,9 @@ function ChartController($scope, $timeout) {
             }, true);
         } else {
             $scope.chart = c3.generate($scope.config);
+            if ($scope.chartCallbackFunction) {
+                $scope.chartCallbackFunction($scope.chart);
+            }
         }
 
         $scope.$on('$destroy', function () {

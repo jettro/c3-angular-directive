@@ -1,4 +1,4 @@
-/*! c3-angular - v0.7.1 - 2015-12-24
+/*! c3-angular - v0.7.1 - 2015-12-31
 * https://github.com/jettro/c3-angular-sample
 * Copyright (c) 2015 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -1296,6 +1296,9 @@ function ChartController($scope, $timeout) {
             }, true);
         } else {
             $scope.chart = c3.generate($scope.config);
+            if ($scope.chartCallbackFunction) {
+                $scope.chartCallbackFunction($scope.chart);
+            }
         }
 
         $scope.$on('$destroy', function () {

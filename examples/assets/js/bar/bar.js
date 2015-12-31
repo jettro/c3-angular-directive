@@ -32,11 +32,24 @@
     BarCtrl.$inject = [];
     function BarCtrl() {
         var vm = this;
+        vm.chartObj = {};
+        vm.isGrouped = false;
 
-        activate();
+        vm.handleCallbackGroup = handleCallbackGroup;
+        vm.toggleGroup = toggleGroup;
 
-        function activate() {
+        function handleCallbackGroup(chartObj) {
+            vm.chartObj = chartObj;
+        }
 
+        function toggleGroup() {
+            if (vm.isGrouped) {
+                vm.chartObj.groups([]);
+            } else {
+                vm.chartObj.groups([['bar1','bar2']]);
+            }
+            vm.isGrouped = !vm.isGrouped;
+            vm.chartObj.flush();
         }
     }
 })();

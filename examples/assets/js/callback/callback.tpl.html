@@ -1,16 +1,13 @@
 <div layout="row" flex>
     <md-content>
         <p>There are a number of events available to interact with your charts. There are two different levels of
-            events. There
-            are events related to the complete chart like mouseover and mouseout, but also on initialize and on render.
-            You can
-            registere a callback to these events. But there are also events more related to the plotted data. You can
-            respond to
-            clicks on data points, but also on mouseovers and mouseout. All these callbacks are registered using the
-            <em>chart-events</em>
-            directive. In the example we show the <em>on-data-click</em> attribute. The other callback attribute are:
-            <em>on-init</em>,<em>on-mouseover</em>,<em>on-mouseout</em>,<em>on-resize</em>,<em>on-resized</em>,<em>on-rendered</em>,<em>on-click-data</em>,<em>on-mouseover-data</em>
-            and <em>on-mouseout-data</em>.</p>
+            events. There are events related to the complete chart like mouseover and mouseout, but also on initialize
+            and on render. You can register a callback to these events. But there are also events more related to the
+            plotted data. You can respond to clicks on data points, but also on mouseovers and mouseout. All these
+            callbacks are registered using the <em>chart-events</em> directive. In the example we show the <em>on-data-click</em>
+            attribute. The other callback attribute are: <em>on-init</em>, <em>on-mouseover</em>, <em>on-mouseout</em>,
+            <em>on-resize</em>, <em>on-resized</em>, <em>on-rendered</em>, <em>on-click-data</em>,
+            <em>on-mouseover-data</em> and <em>on-mouseout-data</em>.</p>
 <pre class="brush: xml; html-script: false">
 &lt;c3chart bindto-id="interactive-plot1-chart" show-labels="false">
     &lt;chart-column column-id="data1"
@@ -107,6 +104,14 @@ function CallbackCtrl() {
                 <md-button class="md-raised" ng-click="vm.toggleLegend()">Toggle legend</md-button>
             </div>
         </div>
+        <p>The next sample is a bit more complicated, this time we have two charts with the first chart influencing the
+            content of the second chart. If an item in the first pie is selected, items for the second pie will be
+            obtained.</p>
+        <c3chart bindto-id="interactivepie1" chart-data="vm.piePoints" chart-columns="vm.pieColumns">
+            <chart-events on-click-data="vm.selectItem(data)"/>
+        </c3chart>
+        <c3chart bindto-id="interactivepie2" chart-data="vm.piePointsSelected" chart-columns="vm.pieColumnsSelected">
+        </c3chart>
 
     </md-content>
 </div>
