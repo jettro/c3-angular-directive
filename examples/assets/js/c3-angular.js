@@ -1597,6 +1597,7 @@ function ChartController($scope, $timeout) {
                 $scope.chartCallbackFunction($scope.chart);
             }
         } else {
+            $scope.config.data.unload = true;
             $scope.chart.load($scope.config.data);
         }
     }

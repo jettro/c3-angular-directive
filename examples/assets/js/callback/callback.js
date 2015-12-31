@@ -31,7 +31,7 @@
     function CallbackCtrl() {
         var vm = this;
         vm.clicked = {};
-        vm.selected = null;
+        vm.selected = undefined;
         vm.legendIsShown = true;
 
         vm.piePoints = [{"data1": 70, "data2": 30, "data3": "100"}];
