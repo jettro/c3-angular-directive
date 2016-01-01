@@ -60,8 +60,10 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
-### 1.0 Upcoming
-SOme final functionalities for the initial release. Want to add click events on the legend and maybe some other features.
+### 1.0
+Squashed a number of bugs, some of them related to tick formatting of timeseries data.
+
+Added the  click  and mouse events on the legend.
 
 Bigger refactoring to the structure of the source code and a big change to the examples.
 
