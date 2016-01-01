@@ -76,6 +76,8 @@ function ChartController($scope, $timeout) {
     this.addDataOnMouseoverFunction = addDataOnMouseoverFunction;
     this.addDataOnMouseoutFunction = addDataOnMouseoutFunction;
 
+    this.setXFormat = setXFormat;
+
     resetVars();
 
     function resetVars() {
@@ -86,6 +88,7 @@ function ChartController($scope, $timeout) {
         $scope.axes = {};
         $scope.padding = null;
         $scope.xValues = null;
+        $scope.xFormat = null;
         $scope.xsValues = null;
         $scope.xTick = null;
         $scope.yTick = null;
@@ -116,6 +119,9 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.columns) {
             config.data.columns = $scope.columns;
+        }
+        if ($scope.xFormat) {
+            config.data.xFormat = $scope.xFormat;
         }
         config.data.types = $scope.types;
         config.data.axes = $scope.axes;
@@ -544,6 +550,10 @@ function ChartController($scope, $timeout) {
             $scope.grid = {};
         }
         $scope.grid["focus"] = {"show": false};
+    }
+
+    function setXFormat(xFormat) {
+        $scope.xFormat = xFormat;
     }
 
     function addColumnProperties(id, columnType, columnName, columnColor) {

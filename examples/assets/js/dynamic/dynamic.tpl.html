@@ -10,8 +10,8 @@
             <c3chart bindto-id="chart-timeseries" chart-data="vm.datapoints" chart-columns="vm.datacolumns"
                      chart-x="vm.datax">
                 <chart-axis>
-                    <chart-axis-x axis-id="x" axis-type="timeseries">
-                        <chart-axis-x-tick tick-format="%Y-%m-%d"/>
+                    <chart-axis-x axis-id="x" axis-type="timeseries" axis-x-format="%Y-%m-%d %H:%M:%S">
+                        <chart-axis-x-tick tick-format-time="%H:%m:%s"/>
                     </chart-axis-x>
                 </chart-axis>
             </c3chart>

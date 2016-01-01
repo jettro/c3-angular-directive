@@ -49,6 +49,10 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#axis-x-type | c3js doc}
  *
+ * @param {String} axis-x-format Specify format of x axis data, usefull when using timeseries.
+ *
+ *   {@link http://c3js.org/reference.html#data-xFormat | c3js doc}
+ *
  * @example
  * Usage:
  *   <chart-axis-x axis-position="..." axis-label="..." padding-left="..." padding-right="..." .../>
@@ -100,6 +104,11 @@ function ChartAxisX () {
             axis.type=type;   
         }
         chartCtrl.addAxisProperties('x', axis);
+
+        var xFormat = attrs.axisXFormat;
+        if (xFormat) {
+            chartCtrl.setXFormat(xFormat);
+        }
     };
 
     return {
@@ -111,4 +120,4 @@ function ChartAxisX () {
         "replace": true,
         "link": axisLinker
     };
-};
+}

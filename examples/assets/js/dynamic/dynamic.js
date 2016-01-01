@@ -27,8 +27,8 @@
     angular.module('gridshore.c3js.dynamic')
         .controller('DynamicCtrl', DynamicCtrl);
 
-    DynamicCtrl.$inject = ['$interval'];
-    function DynamicCtrl($interval) {
+    DynamicCtrl.$inject = ['$interval','dateFilter'];
+    function DynamicCtrl($interval, dateFilter) {
         var vm = this;
         vm.generateData = generateData;
         vm.datapoints = [];
@@ -44,16 +44,16 @@
                     }
                     vm.datapoints.push(data);
                 });
-            }, 1000, 1000);
+            }, 1000, 10);
         }
 
         function loadData (callback) {
-            callback({"x": new Date(), "top-1": randomNumber(), "top-2": randomNumber()});
+            var aDate = dateFilter(new Date(),'yyyy-MM-dd hh:mm:ss');
+            callback({"x": aDate, "top-1": randomNumber(), "top-2": randomNumber()});
         }
 
         function randomNumber() {
             return Math.floor((Math.random() * 200) + 1);
         }
-
     }
 })();

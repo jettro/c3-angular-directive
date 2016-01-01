@@ -43,10 +43,13 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#axis-x-tick-values| c3js doc}
  *
- * @param {Function} tick-format Provide a d3 based format for the tick value.
+ * @param {String} tick-format Provide a d3 based format for the tick value.
  *   format: '$,'
  *
- *   {@link http://c3js.org/reference.html#axis-x-tick-format| c3js doc}
+ * @param {String} tick-format-time Provide a d3 based format for the tick value in case of timeseries data.
+ *   format: '%Y-%m-%d %H:%M:%S'
+ *
+ *   {@link http://c3js.org/reference.html#data-xFormat| c3js doc}
  *
  * @param {Function} tick-format-function Provide a function to format the tick value.
  *   format: function (d) { return '$' + d; }
@@ -155,6 +158,11 @@ function ChartAxisXTick() {
         var format = attrs.format;
         if (format) {
             tick.format = d3.format(format);
+        }
+
+        var formatTime = attrs.formatTime;
+        if (formatTime) {
+            tick.format = d3.time.format(format);
         }
 
         chartCtrl.addXTick(tick);

@@ -177,6 +177,10 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#axis-x-type | c3js doc}
  *
+ * @param {String} axis-x-format Specify format of x axis data, usefull when using timeseries.
+ *
+ *   {@link http://c3js.org/reference.html#data-xFormat | c3js doc}
+ *
  * @example
  * Usage:
  *   <chart-axis-x axis-position="..." axis-label="..." padding-left="..." padding-right="..." .../>
@@ -228,6 +232,11 @@ function ChartAxisX () {
             axis.type=type;   
         }
         chartCtrl.addAxisProperties('x', axis);
+
+        var xFormat = attrs.axisXFormat;
+        if (xFormat) {
+            chartCtrl.setXFormat(xFormat);
+        }
     };
 
     return {
@@ -239,7 +248,7 @@ function ChartAxisX () {
         "replace": true,
         "link": axisLinker
     };
-};
+}
 angular.module('gridshore.c3js.chart')
     .directive('chartAxisXTick', ChartAxisXTick);
 
@@ -285,10 +294,13 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#axis-x-tick-values| c3js doc}
  *
- * @param {Function} tick-format Provide a d3 based format for the tick value.
+ * @param {String} tick-format Provide a d3 based format for the tick value.
  *   format: '$,'
  *
- *   {@link http://c3js.org/reference.html#axis-x-tick-format| c3js doc}
+ * @param {String} tick-format-time Provide a d3 based format for the tick value in case of timeseries data.
+ *   format: '%Y-%m-%d %H:%M:%S'
+ *
+ *   {@link http://c3js.org/reference.html#data-xFormat| c3js doc}
  *
  * @param {Function} tick-format-function Provide a function to format the tick value.
  *   format: function (d) { return '$' + d; }
@@ -397,6 +409,11 @@ function ChartAxisXTick() {
         var format = attrs.format;
         if (format) {
             tick.format = d3.format(format);
+        }
+
+        var formatTime = attrs.formatTime;
+        if (formatTime) {
+            tick.format = d3.time.format(format);
         }
 
         chartCtrl.addXTick(tick);
@@ -1076,6 +1093,8 @@ function ChartController($scope, $timeout) {
     this.addDataOnMouseoverFunction = addDataOnMouseoverFunction;
     this.addDataOnMouseoutFunction = addDataOnMouseoutFunction;
 
+    this.setXFormat = setXFormat;
+
     resetVars();
 
     function resetVars() {
@@ -1086,6 +1105,7 @@ function ChartController($scope, $timeout) {
         $scope.axes = {};
         $scope.padding = null;
         $scope.xValues = null;
+        $scope.xFormat = null;
         $scope.xsValues = null;
         $scope.xTick = null;
         $scope.yTick = null;
@@ -1116,6 +1136,9 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.columns) {
             config.data.columns = $scope.columns;
+        }
+        if ($scope.xFormat) {
+            config.data.xFormat = $scope.xFormat;
         }
         config.data.types = $scope.types;
         config.data.axes = $scope.axes;
@@ -1544,6 +1567,10 @@ function ChartController($scope, $timeout) {
             $scope.grid = {};
         }
         $scope.grid["focus"] = {"show": false};
+    }
+
+    function setXFormat(xFormat) {
+        $scope.xFormat = xFormat;
     }
 
     function addColumnProperties(id, columnType, columnName, columnColor) {
