@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: directive: chartAxisXTick</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">directive: chartAxisXTick</h1>
+
+    
+
+
+
+<section>
+
+<header>
+    <h2>
+    chartAxisXTick
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    
+    
+    
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><code>chart-axis-x-tick</code> is used to customize the x axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.</p>
+<p>Restrict To:
+  Element</p>
+<p>Parent Element:
+  chart-axis-x</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Attributes:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Specify the number of ticks on the x axis.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-count"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-culling</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Culling means not all ticks will be shown, for category data this is by default false, for other data true.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-culling"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-culling-max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set the maximum number of ticks, if specified culling is by default true.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-culling-max"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-multiline</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not sure what this does, not documented.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-multiline"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-centered</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Centers the tick on the x axis</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-centered"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-rotate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Number of degrees to rotate the tick, can also be a negative number.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-rotate"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-fit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Default is to make the tick fit the chart, if false it will be at the exact position of the x value.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-fit"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-outer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Default is not to show the outer tick, setting this to true will show the outer tick.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-outer"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-values</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing the exact values to present a tick for.</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-values"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a d3 based format for the tick value.
+  format: '$,'</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format-time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a d3 based format for the tick value in case of timeseries data.
+  format: '%Y-%m-%d %H:%M:%S'</p>
+<p>  <a href="http://c3js.org/reference.html#data-xFormat"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tick-format-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a function to format the tick value.
+  format: function (d) { return '$' + d; }</p>
+<p>  <a href="http://c3js.org/reference.html#axis-x-tick-format"> c3js doc</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <!-- commented out by Allen Kim
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="axis-x-tick-directive.js.html">axis-x-tick-directive.js</a>, <a href="axis-x-tick-directive.js.html#line4">line 4</a>
+    </li></ul></dd>
+    -->
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>Usage:
+  &lt;chart-axis-x-tick tick-rotate="..." tick-count="..."/>
+
+Example:
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
+
+  &lt;chart-axis>
+    &lt;chart-axis-x axis-position="outer-center" axis-label="Number by 10"
+                  axis-type="category">
+      &lt;chart-axis-x-tick tick-rotate="50"/>
+    &lt;/chart-axis-x>
+  &lt;/chart-axis></code></pre>
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    <!--
+    
+    -->
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li><li><a href="chartColors.html">chartColors</a></li><li><a href="chartColumn.html">chartColumn</a></li><li><a href="chartDonut.html">chartDonut</a></li><li><a href="chartEvents.html">chartEvents</a></li><li><a href="chartGauge.html">chartGauge</a></li><li><a href="chartGrid.html">chartGrid</a></li><li><a href="chartGridOptional.html">chartGridOptional</a></li><li><a href="chartGroup.html">chartGroup</a></li><li><a href="chartLegend.html">chartLegend</a></li><li><a href="chartLine.html">chartLine</a></li><li><a href="chartPie.html">chartPie</a></li><li><a href="chartPoints.html">chartPoints</a></li><li><a href="chartSize.html">chartSize</a></li><li><a href="chartTooltip.html">chartTooltip</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  // var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  // var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  // document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>

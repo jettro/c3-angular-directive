@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: directive: C3Chart</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">directive: C3Chart</h1>
+
+    
+
+
+
+<section>
+
+<header>
+    <h2>
+    C3Chart
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    
+    
+    
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><code>c3chart</code> is the main directive to create the chart. Use it to set the padding properties and include the other directives. You can also register the callback in this directive that receives the initialised chart object.</p>
+<p>  When using multiple charts in the same page you need to provide unique bind-id parameters.</p>
+<p>Restrict To:
+  Element</p>
+<p>Parent Element:
+  -</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Attributes:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>padding-top</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set the top padding of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#padding-top"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>padding-bottom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set the bottom padding of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#padding-bottom"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>padding-right</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set the right padding of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#padding-right"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>padding-left</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Set the left padding of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#padding-left"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bind-id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Id of the chart, needs to be unique when using multiple charts on one page.</p>
+<p>  <a href="http://c3js.org/reference.html#bindto"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sort-data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>You can enter three different versions: asc, desc, null. Using this sorting you can change the order of stacking and the order of the pieces of a pie or donut.</p>
+<p>  <a href="http://c3js.org/reference.html#data-order"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>show-labels</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configure to show the labels 'true' or not, default is false.</p>
+<p>  <a href="http://c3js.org/reference.html#data-labels"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>labels-format-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a function to format the labels.</p>
+<p>  <a href="http://c3js.org/reference.html#data-labels-format"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>show-subchart</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configure to show the subchart or not (default).</p>
+<p>  <a href="http://c3js.org/reference.html#subchart-show"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enable-zoom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configure to enable zoom in the chart or not (defaut).</p>
+<p>  <a href="http://c3js.org/reference.html#subchart-show"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enable-zoom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configure to enable zoom in the chart or not (defaut).</p>
+<p>  <a href="http://c3js.org/reference.html#subchart-show"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chart-data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.</p>
+<p>  Array consisting of objects with values for the different columns: [{&quot;data1&quot;:10,&quot;data2&quot;:20},{&quot;data1&quot;:50,&quot;data2&quot;:60}]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chart-columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide a reference to a collection that contains the columns. When providing this attrbiute you also need to provide the chart-data attribute.</p>
+<p>  Array consisting of objects with some properties for the different columns: [{&quot;id&quot;: &quot;data1&quot;, &quot;type&quot;: &quot;line&quot;}, {&quot;id&quot;: &quot;data2&quot;, &quot;type&quot;: &quot;bar&quot;}]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chart-x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide information about the x column. Used when adding dynamic data to specify the field that contains the x data value.</p>
+<p>  Object containing reference to the id of the x data field: {&quot;id&quot;: &quot;x&quot;, &quot;name&quot;: &quot;My Data points&quot;}</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback-function</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Use this if you want to interact with the chart object using the api</p>
+<p>  <a href="http://c3js.org/reference.html#api-focus"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transition-duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Duration of transition (in milliseconds) for chart animation. If you specify 0, transitions will be disabled which is good for large datasets.</p>
+<p>  <a href="http://c3js.org/reference.html#transition-duration"> c3js doc</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initial-config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide the initial config object to start the graph with.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <!-- commented out by Allen Kim
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="c3chart-directive.js.html">c3chart-directive.js</a>, <a href="c3chart-directive.js.html#line6">line 6</a>
+    </li></ul></dd>
+    -->
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>Usage:
+  &lt;c3chart >
+     &lt;!-- sub elements -->
+  &lt;/c3chart>
+
+Example:
+
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
+
+Shows how to use dynamic data points.
+
+&lt;c3chart bindto-id="dynamicpie" chart-data="piePoints" chart-columns="pieColumns"/>
+
+    $scope.piePoints = [{"data1": 70, "data2": 30, "data3": "100"}];
+    $scope.pieColumns = [{"id": "data1", "type": "pie"}, {"id": "data2", "type": "pie"}, {
+      "id": "data3",
+      "type": "pie"
+
+Show how to register a callback function and use it. The screen contains a button to toggle the legend visibility.
+
+&lt;c3chart bindto-id="dynamicpie" chart-data="piePoints" chart-columns="pieColumns"
+       callback-function="handleCallback"/>
+
+    $scope.handleCallback = function (chartObj) {
+      $scope.theChart = chartObj;
+  };
+
+  $scope.legendIsShown = true;
+  $scope.toggleLegend = function() {
+      if ($scope.legendIsShown) {
+          $scope.theChart.legend.hide();
+      } else {
+          $scope.theChart.legend.show();
+      }
+      $scope.legendIsShown= !$scope.legendIsShown;
+      $scope.theChart.flush();
+  };</code></pre>
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    <!--
+    
+    -->
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li><li><a href="chartColors.html">chartColors</a></li><li><a href="chartColumn.html">chartColumn</a></li><li><a href="chartDonut.html">chartDonut</a></li><li><a href="chartEvents.html">chartEvents</a></li><li><a href="chartGauge.html">chartGauge</a></li><li><a href="chartGrid.html">chartGrid</a></li><li><a href="chartGridOptional.html">chartGridOptional</a></li><li><a href="chartGroup.html">chartGroup</a></li><li><a href="chartLegend.html">chartLegend</a></li><li><a href="chartLine.html">chartLine</a></li><li><a href="chartPie.html">chartPie</a></li><li><a href="chartPoints.html">chartPoints</a></li><li><a href="chartSize.html">chartSize</a></li><li><a href="chartTooltip.html">chartTooltip</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  // var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  // var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  // document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: directive: chartEvents</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">directive: chartEvents</h1>
+
+    
+
+
+
+<section>
+
+<header>
+    <h2>
+    chartEvents
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    
+    
+    
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p><code>chart-events</code> Used to provide callback functions to respond to events of the charts.</p>
+<p>Restrict To:
+  Element</p>
+<p>Parent Element:
+  c3chart</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Attributes:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>on-init</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The on init callback function.</p>
+<p>  <a href="http://c3js.org/reference.html#oninit"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-rendered</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide the callback to respond to on-rendered. Basically, this callback will be called in each time when the chart is redrawed.</p>
+<p>  <a href="http://c3js.org/reference.html#onrendered"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-mouseover</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called when you hoover the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#onmouseover"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-mouseout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called when you hoover out of the chart.</p>
+<p>  <a href="http://c3js.org/reference.html#onmouseout"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-resize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called when the chart is resizing.</p>
+<p>  <a href="http://c3js.org/reference.html#onresize"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-resized</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called when the chart is resized.</p>
+<p>  <a href="http://c3js.org/reference.html#onresized"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-click-data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is clicked.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-mouseover-data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>on-mouseout-data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Provide callback to be called one of the data points, lines, bars, etc. is hoovered out.</p>
+<p>  <a href="http://c3js.org/reference.html#onclickdata"> c3js docs</a></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <!-- commented out by Allen Kim
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="events-directive.js.html">events-directive.js</a>, <a href="events-directive.js.html#line4">line 4</a>
+    </li></ul></dd>
+    -->
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>Usage:
+  &lt;chart-events on-init="..." on-rendered="..."/>
+
+Example:
+  <a href="http://jettro.github.io/c3-angular-directive/#examples">http://jettro.github.io/c3-angular-directive/#examples</a>
+
+  &lt;c3chart bindto-id="donut-plot1-chart">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="donut"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="donut"/>
+    &lt;chart-donut title="Donut" width="60"/>
+    &lt;chart-events on-click-data="showClick(data)"/>
+  &lt;/c3chart>
+
+  graphApp.controller('GraphCtrl', function ($scope) {
+    $scope.clicked = {};
+    $scope.showClick = function(data) {
+    $scope.clicked = data;
+  }</code></pre>
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    <!--
+    
+    -->
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li><li><a href="chartColors.html">chartColors</a></li><li><a href="chartColumn.html">chartColumn</a></li><li><a href="chartDonut.html">chartDonut</a></li><li><a href="chartEvents.html">chartEvents</a></li><li><a href="chartGauge.html">chartGauge</a></li><li><a href="chartGrid.html">chartGrid</a></li><li><a href="chartGridOptional.html">chartGridOptional</a></li><li><a href="chartGroup.html">chartGroup</a></li><li><a href="chartLegend.html">chartLegend</a></li><li><a href="chartLine.html">chartLine</a></li><li><a href="chartPie.html">chartPie</a></li><li><a href="chartPoints.html">chartPoints</a></li><li><a href="chartSize.html">chartSize</a></li><li><a href="chartTooltip.html">chartTooltip</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  // var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  // var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  // document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>

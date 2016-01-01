@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: axis-y-tick-directive.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: axis-y-tick-directive.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartAxisYTick', ChartAxisYTick);
+
+/**
+ * @ngdoc directive
+ * @name chartAxisYTick
+ * @description
+ *  `chart-axis-y-tick` is used to customize the y or y2 axis tick properties. You can change the amount of ticks, the format of the tick, culling, rotating.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   chart-axis-y
+ *
+ * @param {Number} tick-count Specify the number of ticks on the x axis.
+ *
+ *   {@link http://c3js.org/reference.html#axis-y-tick-count| c3js doc}
+ *
+ * @param {Boolean} tick-outer Default is not to show the outer tick, setting this to true will show the outer tick.
+ *
+ *   {@link http://c3js.org/reference.html#axis-y-tick-outer| c3js doc}
+ *
+ * @param {Array} tick-values An array containing the exact values to present a tick for.
+ *
+ *   {@link http://c3js.org/reference.html#axis-y-tick-values| c3js doc}
+ *
+ * @param {Function} tick-format Provide a d3 based format for the tick value.
+ *   format: '$,'
+ *
+ *   {@link http://c3js.org/reference.html#axis-x-tick-format| c3js doc}
+ *
+ * @param {Function} tick-format-function Provide a function to format the tick value.
+ *
+ *   {@link http://c3js.org/reference.html#axis-y-tick-format| c3js doc}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-axis-y-tick tick-outer="..." tick-count="..."/>
+ *
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ *
+ */
+function ChartAxisYTick() {
+    var tickLinker = function (scope, element, attrs, chartCtrl) {
+        var tick = {};
+
+        var count = attrs.tickCount;
+        if (count) {
+            tick.count = count;
+        }
+
+        var outer = attrs.tickOuter;
+        if (outer) {
+            outer = angular.lowercase(outer);
+            if (outer === 'true') {
+                tick.outer = true;
+            }
+            else if (outer === 'false') {
+                tick.outer = false;
+            }
+        }
+
+        var tickValues = attrs.tickValues;
+        if (tickValues) {
+            if (tickValues.indexOf(',') > -1) {
+                tick.values = tickValues.split(',');
+            } else {
+                tick.values = tickValues;
+            }
+        }
+
+        var format = attrs.tickFormat;
+        if (format) {
+            tick.format = d3.format(format);
+        }
+
+        chartCtrl.addYTick(tick);
+
+        if (attrs.tickFormatFunction) {
+            chartCtrl.addYTickFormatFunction(scope.tickFormatFunction());
+        }
+    };
+
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {
+            "tickFormatFunction": "&amp;"
+        },
+        "replace": true,
+        "link": tickLinker
+    };
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li><li><a href="chartColors.html">chartColors</a></li><li><a href="chartColumn.html">chartColumn</a></li><li><a href="chartDonut.html">chartDonut</a></li><li><a href="chartEvents.html">chartEvents</a></li><li><a href="chartGauge.html">chartGauge</a></li><li><a href="chartGrid.html">chartGrid</a></li><li><a href="chartGridOptional.html">chartGridOptional</a></li><li><a href="chartGroup.html">chartGroup</a></li><li><a href="chartLegend.html">chartLegend</a></li><li><a href="chartLine.html">chartLine</a></li><li><a href="chartPie.html">chartPie</a></li><li><a href="chartPoints.html">chartPoints</a></li><li><a href="chartSize.html">chartSize</a></li><li><a href="chartTooltip.html">chartTooltip</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  // var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  // var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  // document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>

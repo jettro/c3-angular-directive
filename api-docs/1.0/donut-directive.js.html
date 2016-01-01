@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: donut-directive.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: donut-directive.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>angular.module('gridshore.c3js.chart')
+    .directive('chartDonut', ChartDonut);
+/**
+ * @ngdoc directive
+ * @name chartDonut
+ * @description
+ *  `chart-donut` SPecific configuration options for creating a donut chart.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {Boolean} show-label Show labels in the Donut.
+ *
+ *   {@link http://c3js.org/reference.html#donut-label-show| c3js docs}
+ *   
+ * @param {Number} threshold-label Set the threshold to show or hide labels.
+ *
+ *   {@link http://c3js.org/reference.html#donut-label-threshold| c3js docs}
+ * 
+ * @param {Boolean} expand Enable or disable whether to expand a pie part. True is the default.
+ *
+ *   {@link http://c3js.org/reference.html#donut-expand| c3js docs}
+ *
+ * @param {Number} width The width of the donut.
+ *
+ *   {@link http://c3js.org/reference.html#donut-width| c3js docs}
+ *
+ * @param {String} title The title for the donut chart.
+ *
+ *   {@link http://c3js.org/reference.html#donut-title| c3js docs}
+ *
+ * @param {Function} label-format-function Function to format the labels.
+ *
+ *   {@link http://c3js.org/reference.html#donut-label-format| c3js docs}
+ *
+ * @example
+ * Usage:
+ *   &lt;chart-donut show-label="..." threshold-label="..." expand="..." width="..." title="..."/>
+ * 
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ * 
+ * &lt;c3chart bindto-id="donut-plot1-chart">
+ *   &lt;chart-column column-id="Data 1"
+ *                 column-values="70"
+ *                 column-type="donut"/>
+ *   &lt;chart-column column-id="Data 2"
+ *                 column-values="35"
+ *                 column-type="donut"/>
+ *   &lt;chart-column column-id="Data 3"
+ *                 column-values="60"
+ *                 column-type="donut"/>
+ *   &lt;chart-donut title="Donut" width="60"/>
+ * &lt;/c3chart>
+ */    
+function ChartDonut() {
+    var donutLinker = function (scope, element, attrs, chartCtrl) {
+        var donut = {};
+        if (attrs.showLabel) {
+            donut.label = {"show": (attrs.showLabel === 'true')};
+        }
+        if (attrs.thresholdLabel) {
+            if (!donut.label) {
+                donut.label = {};
+            }
+            donut.label.threshold = parseFloat(attrs.thresholdLabel);
+        }
+        if (attrs.expand) {
+            donut.expand = (attrs.expand === 'true');
+        }
+        if (attrs.width) {
+            donut.width = parseInt(attrs.width);
+        }
+        if (attrs.title) {
+            donut.title = attrs.title;
+        }
+        chartCtrl.addDonut(donut);
+        if (attrs.labelFormatFunction) {
+            chartCtrl.addDonutLabelFormatFunction(scope.labelFormatFunction());
+        }
+    };
+
+    return {
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {
+            "labelFormatFunction": "&amp;"
+        },
+        replace: true,
+        link: donutLinker
+    };
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>directive</h3><ul><li><a href="C3Chart.html">C3Chart</a></li><li><a href="chartAxes.html">chartAxes</a></li><li><a href="chartAxis.html">chartAxis</a></li><li><a href="chartAxisX.html">chartAxisX</a></li><li><a href="chartAxisXTick.html">chartAxisXTick</a></li><li><a href="chartAxisY.html">chartAxisY</a></li><li><a href="chartAxisYTick.html">chartAxisYTick</a></li><li><a href="chartBar.html">chartBar</a></li><li><a href="chartColors.html">chartColors</a></li><li><a href="chartColumn.html">chartColumn</a></li><li><a href="chartDonut.html">chartDonut</a></li><li><a href="chartEvents.html">chartEvents</a></li><li><a href="chartGauge.html">chartGauge</a></li><li><a href="chartGrid.html">chartGrid</a></li><li><a href="chartGridOptional.html">chartGridOptional</a></li><li><a href="chartGroup.html">chartGroup</a></li><li><a href="chartLegend.html">chartLegend</a></li><li><a href="chartLine.html">chartLine</a></li><li><a href="chartPie.html">chartPie</a></li><li><a href="chartPoints.html">chartPoints</a></li><li><a href="chartSize.html">chartSize</a></li><li><a href="chartTooltip.html">chartTooltip</a></li></ul><h3>module</h3><ul><li><a href="C3jsChartDirective.html">C3jsChartDirective</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ChartController">ChartController</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  // var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  // var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  // document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>
