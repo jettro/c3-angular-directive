@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <link href="assets/css/c3.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/shCoreDefault.css" type="text/css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="assets/js/shCore.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushXml.js"></script>
+    <script type="text/javascript" src="assets/js/shBrushJScript.js"></script>
+
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <script type="text/javascript">
+        SyntaxHighlighter.defaults['gutter'] = true;
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.all();
+    </script>
+
+</head>
+<body ng-app="graphApp" layout="column">
+<!--
+  Your HTML content here
+-->
+<md-toolbar layout="row">
+    <h1 layout-align-gt-sm="center" class="md-toolbar-tools">C3JS AngularJS Directives - Examples</h1>
+</md-toolbar>
+
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left" md-is-locked-open="true">
+        <md-content>
+            <md-list>
+                <md-list-item ng-href="/#/dashboard">
+                    <md-icon>dashboard</md-icon>
+                    <p>Getting started</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/config">
+                    <md-icon>settings</md-icon>
+                    <p>Generic configuration</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/bar">
+                    <md-icon>assessment</md-icon>
+                    <p>Bar examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/line">
+                    <md-icon>timeline</md-icon>
+                    <p>Line examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/pie">
+                    <md-icon>timelapse</md-icon>
+                    <p>Pie examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/donut">
+                    <md-icon>donut_small</md-icon>
+                    <p>Donut examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/gauge">
+                    <md-icon>redo</md-icon>
+                    <p>Gauge examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/callback">
+                    <md-icon>reply</md-icon>
+                    <p>Callback examples</p>
+                </md-list-item>
+                <md-list-item ng-href="/#/dynamic">
+                    <md-icon>motorcycle</md-icon>
+                    <p>Dynamic examples</p>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+
+    <main layout="column" ui-view flex layout-margin></main>
+
+</section>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
+<!-- Angular Material Library -->
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+<!-- Other libraries required for the demos -->
+<script src="assets/js/d3.min.js" charset="utf-8"></script>
+<script src="assets/js/c3.min.js"></script>
+<script src="assets/js/c3-angular.min.js"></script>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/dashboard/dashboard.js"></script>
+<script src="assets/js/bar/bar.js"></script>
+<script src="assets/js/line/line.js"></script>
+<script src="assets/js/pie/pie.js"></script>
+<script src="assets/js/callback/callback.js"></script>
+<script src="assets/js/donut/donut.js"></script>
+<script src="assets/js/config/config.js"></script>
+<script src="assets/js/gauge/gauge.js"></script>
+<script src="assets/js/dynamic/dynamic.js"></script>
+
+</body>
+</html>

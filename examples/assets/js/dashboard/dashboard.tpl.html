@@ -1,0 +1,53 @@
+<div layout="row" flex>
+    <md-content>
+        <p>Welcome to the tutorial for using the c3js angular directives. We created these directives to make it easier to
+            integrate graphs in your AngularJS project.</p>
+
+        <h2>Installation</h2>
+
+        <p>If you want to run this tutorial you have to run this as a website. There are a few ways you can do this. For all
+            means you have to get a copy from this <a href="https://github.com/jettro/c3-angular-directive">github
+                repository</a>. You can download the zip/tar or clone the repository.</p>
+        <ul>
+            <li>Using Python: Step into the examples folder and run <code>python -m SimpleHTTPServer 8000</code></li>
+            <li>Using grunt: From the root run: <code>grunt devserver</code></li>
+        </ul>
+        <h2>Setting up your project</h2>
+
+        <p>Before you can show your graphs, you need to do the boilerplate stuff. You have to create an html page that loads the
+            appropriate javascript libraries and stylesheets. The next code block shows this very basic html page.</p>
+
+<pre class="brush: xml; highlight: [5, 15]; html-script: false">
+&lt;html lang="en" ng-app="graphApp">
+&lt;head>
+&lt;link href="assets/css/c3.min.css" rel="stylesheet" type="text/css"/>
+&lt;/head>
+&lt;body ng-controller="GraphCtrl">
+
+    &lt;script src="assets/js/d3.min.js" charset="utf-8">&lt;/script>
+    &lt;script src="assets/js/c3.min.js">&lt;/script>
+    &lt;script src="assets/js/angular.min.js">&lt;/script>
+    &lt;script src="assets/js/c3-angular.min.js">&lt;/script>
+
+    &lt;script src="assets/js/app.js">&lt;/script>
+&lt;/body>
+&lt;/html>
+
+</pre>
+
+        <p>Besides the html we also need a bit of JavaScript to initialize the application. The next code block shows
+            initilizing the app and a controller.</p>
+<pre class="brush: js; ruler: true;">
+var graphApp = angular.module('graphApp', ['gridshore.c3js.chart']);
+
+graphApp.controller('GraphCtrl', function ($scope) {
+
+});
+</pre>
+        <p>That is it, before we move on to your first graph lets have a look at the different directives that are available.
+            The main element is <em>c3chart</em>. All other directives are children of this element. This directive has a few
+            attributes to configure the chart. The most important attribute is the <em>bind-id</em>, if you want multiple graphs
+            on one page, this has to be unique. Other attributes are <em>padding-top/right/left/bottom</em>,
+            <em>show-labels</em>, <em>show-subchart</em> and <em>enable-zoom</em></p>
+    </md-content>
+</div>

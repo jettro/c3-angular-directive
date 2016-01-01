@@ -1,0 +1,35 @@
+<div layout="row" flex>
+    <md-content>
+        <p>You can create a gauge using column-type gauge. There are some specific configuration options that you can
+            provide using the <em>chart-gauge</em> directive.</p>
+
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="gauge-plot1-chart">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="gauge"/>
+    &lt;chart-gauge min="50"
+                 max="75"
+                 units=" hours"
+                 width="39"
+                 show-label="true"
+                 expand="true"
+    />
+&lt;/c3chart>
+</pre>
+
+        <c3chart bindto-id="gauge-plot1-chart">
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="gauge"/>
+            <chart-gauge min="50"
+                         max="75"
+                         units=" hours"
+                         width="39"
+                         show-label="true"
+                         expand="true"
+            />
+        </c3chart>
+
+    </md-content>
+</div>

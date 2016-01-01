@@ -1,0 +1,24 @@
+<div layout="row" flex>
+    <md-content>
+        <p>The next chart is really different from all the other charts. Up till now we added the data using <em>chart-column</em>
+            elements. In a lot of situations this is fine, but what if the data is dynamic of nature. Than we want to
+            load the data using an angular controller. That is what this sample does. after clicking the button we
+            generate 10 additional datapoints. Also the chart-columns are taken from a scope parameter. This is all
+            taken care of using the attributes: <em>chart-data</em>, <em>chart-columns</em> and <em>chart-x</em>.</p>
+        <div layout="row">
+            <div flex="70">
+            <c3chart bindto-id="chart-timeseries" chart-data="vm.datapoints" chart-columns="vm.datacolumns"
+                     chart-x="vm.datax">
+                <chart-axis>
+                    <chart-axis-x axis-id="x" axis-type="timeseries" axis-x-format="%Y-%m-%d %H:%M:%S">
+                        <chart-axis-x-tick tick-format-time="%H:%m:%s"/>
+                    </chart-axis-x>
+                </chart-axis>
+            </c3chart>
+            </div>
+            <div flex="30">
+                <md-button class="md-raised" ng-click="vm.generateData()">Generate data</md-button>
+            </div>
+        </div>
+    </md-content>
+</div>

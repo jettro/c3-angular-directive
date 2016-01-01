@@ -1,0 +1,144 @@
+<div layout="column" flex>
+    <md-content>
+        <p>A basic bar chart with a specified color and values through the <code>chart-column</code> directive. The
+            other directive shown
+            is the <code>chart-bar</code> directive. In this case we specify the ration of the bar width in relation to
+            the total available with.
+            A value smaller than 1 gives more space.</p>
+<pre class="brush: xml; html-script: true">
+&lt;c3chart bindto-id="chart1" show-labels="true">
+    &lt;chart-column column-id="bar1"
+                  column-name="Bar 1"
+                  column-color="green"
+                  column-values="30,200,100,400,150,250"
+                  column-type="bar"/>
+    &lt;chart-bar ratio="0.8"/>
+&lt;/c3chart>
+</pre>
+        <div layout="row">
+            <div flex="90">
+                <c3chart bindto-id="chart1" show-labels="true">
+                    <chart-column column-id="bar1"
+                                  column-name="Bar 1"
+                                  column-color="green"
+                                  column-values="30,200,100,400,150,250"
+                                  column-type="bar"/>
+                    <chart-bar ratio="0.8"/>
+                </c3chart>
+            </div>
+        </div>
+        <p>In the next example we add a second column, or better bar. This time we also add a <code>chart-column</code>
+            for x values. We have to specify
+            this column as a type <em>Category</em> in the <code>chart-axis-x</code> directive.</p>
+<pre class="brush: xml; html-script: true">
+&lt;c3chart bindto-id="chart2" show-labels="true">
+    &lt;chart-column column-id="x"
+                  column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+    &lt;chart-column column-id="bar1"
+                  column-name="Bar 1"
+                  column-color="green"
+                  column-values="30,200,100,400,150,250"
+                  column-type="bar"/>
+    &lt;chart-column column-id="bar2"
+                  column-name="Bar 2"
+                  column-color="red"
+                  column-values="50,100,200,300,350,450"
+                  column-type="bar"/>
+    &lt;chart-bar ratio="0.8"/>
+    &lt;chart-axes values-x="x"/>
+    &lt;chart-axis>
+        &lt;chart-axis-x axis-position="outer-center"
+                      axis-label="The periods"
+                      axis-type="category"/>
+    &lt;/chart-axis>
+&lt;/c3chart>
+</pre>
+        <div layout="row">
+            <div flex="90">
+                <c3chart bindto-id="chart2" show-labels="true">
+                    <chart-column column-id="x"
+                                  column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+                    <chart-column column-id="bar1"
+                                  column-name="Bar 1"
+                                  column-color="green"
+                                  column-values="30,200,100,400,150,250"
+                                  column-type="bar"/>
+                    <chart-column column-id="bar2"
+                                  column-name="Bar 2"
+                                  column-color="red"
+                                  column-values="50,100,200,300,350,450"
+                                  column-type="bar"/>
+                    <chart-bar ratio="0.8"/>
+                    <chart-axes values-x="x"/>
+                    <chart-axis>
+                        <chart-axis-x axis-position="outer-center"
+                                      axis-label="The periods"
+                                      axis-type="category"/>
+                    </chart-axis>
+                </c3chart>
+            </div>
+        </div>
+        <p>If you have a bar chart with multiple chart-columns, the default behavior is to place the bars next to each
+            other. You can also group the bars so that are stacked. That is what the following example shows. Using the
+            <code>chart-group</code> directive we can use the <code>group-values</code> attribute. Give it a comma
+            separated column id's that need to be grouped.</p>
+<pre class="brush: xml; html-script: true">
+    &lt;chart-group group-values="bar1,bar2"/>
+</pre>
+        <div layout="row">
+            <div flex="90">
+                <c3chart bindto-id="chart3" show-labels="true">
+                    <chart-column column-id="x"
+                                  column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+                    <chart-column column-id="bar1"
+                                  column-name="Bar 1"
+                                  column-color="green"
+                                  column-values="30,200,100,400,150,250"
+                                  column-type="bar"/>
+                    <chart-column column-id="bar2"
+                                  column-name="Bar 2"
+                                  column-color="red"
+                                  column-values="50,100,200,300,350,450"
+                                  column-type="bar"/>
+                    <chart-bar ratio="0.8"/>
+                    <chart-axes values-x="x"/>
+                    <chart-axis>
+                        <chart-axis-x axis-position="outer-center"
+                                      axis-label="The periods"
+                                      axis-type="category"/>
+                    </chart-axis>
+                    <chart-group group-values="bar1,bar2"/>
+                </c3chart>
+            </div>
+        </div>
+        <p>Now to show that you can also create a button to use grouping or not, we use the callback feature of the
+            library</p>
+        <div layout="row">
+            <div flex="90">
+                <c3chart bindto-id="chartGroupCallback" show-labels="false" callback-function="vm.handleCallbackGroup">
+                    <chart-column column-id="x"
+                                  column-values="period 1,period 2,period 3,period 4,period 5,period 6"/>
+                    <chart-column column-id="bar1"
+                                  column-name="Bar 1"
+                                  column-color="green"
+                                  column-values="30,200,100,400,150,250"
+                                  column-type="bar"/>
+                    <chart-column column-id="bar2"
+                                  column-name="Bar 2"
+                                  column-color="red"
+                                  column-values="50,100,200,300,350,450"
+                                  column-type="bar"/>
+                    <chart-bar ratio="0.5"/>
+                    <chart-axes values-x="x"/>
+                    <chart-axis>
+                        <chart-axis-x axis-position="outer-center"
+                                      axis-label="The periods"
+                                      axis-type="category"/>
+                    </chart-axis>
+                </c3chart>
+                <md-button class="md-raised" ng-click="vm.toggleGroup()">Toggle grouping</md-button>
+            </div>
+        </div>
+
+    </md-content>
+</div>
