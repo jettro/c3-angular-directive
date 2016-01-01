@@ -45,6 +45,7 @@ function ChartController($scope, $timeout) {
     this.addXSValues = addXSValues;
 
     this.addChartCallbackFunction = addChartCallbackFunction;
+    this.addInitialConfig = addInitialConfig;
 
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
     this.addTransitionDuration = addTransitionDuration;
@@ -104,12 +105,16 @@ function ChartController($scope, $timeout) {
         $scope.groups = null;
         $scope.sorting = null;
         $scope.transitionDuration = null;
+        $scope.initialConfig = null;
     }
 
     function showGraph() {
         var config = {};
+        if ($scope.initialConfig) {
+            config = $scope.initialConfig;
+        }
         config.bindto = "#" + $scope.bindto;
-        config.data = {};
+        config.data = config.data || {};
 
         if ($scope.xValues) {
             config.data.x = $scope.xValues;
@@ -123,8 +128,8 @@ function ChartController($scope, $timeout) {
         if ($scope.xFormat) {
             config.data.xFormat = $scope.xFormat;
         }
-        config.data.types = $scope.types;
-        config.data.axes = $scope.axes;
+        config.data.types = config.data.types || $scope.types;
+        config.data.axes = config.data.axes || $scope.axes;
         if ($scope.names) {
             config.data.names = $scope.names;
         }
@@ -164,7 +169,7 @@ function ChartController($scope, $timeout) {
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
         }
-        config.axis = $scope.axis;
+        config.axis = config.axis || $scope.axis;
         if ($scope.xTick) {
             config.axis.x.tick = $scope.xTick;
         }
@@ -554,6 +559,10 @@ function ChartController($scope, $timeout) {
 
     function setXFormat(xFormat) {
         $scope.xFormat = xFormat;
+    }
+
+    function addInitialConfig(initialConfig) {
+        $scope.initialConfig = initialConfig;
     }
 
     function addColumnProperties(id, columnType, columnName, columnColor) {

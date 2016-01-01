@@ -799,6 +799,9 @@ angular.module('gridshore.c3js.chart')
  * @param {Number} transition-duration Duration of transition (in milliseconds) for chart animation. If you specify 0, transitions will be disabled which is good for large datasets.
  *
  *   {@link http://c3js.org/reference.html#transition-duration| c3js doc}
+ *
+ * @param {Object} initial-config Provide the initial config object to start the graph with.
+ *
  * @example
  * Usage:
  *   <c3chart >
@@ -846,6 +849,7 @@ function C3Chart ($timeout) {
         var paddingLeft = attrs.paddingLeft;
         var sortData = attrs.sortData;
         var transitionDuration = attrs.transitionDuration;
+        var initialConfig = attrs.initialConfig;
 
         if (paddingTop) {
             chartCtrl.addPadding('top', paddingTop);
@@ -870,6 +874,9 @@ function C3Chart ($timeout) {
         }
         if (transitionDuration) {
             chartCtrl.addTransitionDuration(transitionDuration);
+        }
+        if (initialConfig) {
+            chartCtrl.addInitialConfig(initialConfig);
         }
         // Trick to wait for all rendering of the DOM to be finished.
         $timeout(function () {
@@ -1062,6 +1069,7 @@ function ChartController($scope, $timeout) {
     this.addXSValues = addXSValues;
 
     this.addChartCallbackFunction = addChartCallbackFunction;
+    this.addInitialConfig = addInitialConfig;
 
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
     this.addTransitionDuration = addTransitionDuration;
@@ -1121,12 +1129,16 @@ function ChartController($scope, $timeout) {
         $scope.groups = null;
         $scope.sorting = null;
         $scope.transitionDuration = null;
+        $scope.initialConfig = null;
     }
 
     function showGraph() {
         var config = {};
+        if ($scope.initialConfig) {
+            config = $scope.initialConfig;
+        }
         config.bindto = "#" + $scope.bindto;
-        config.data = {};
+        config.data = config.data || {};
 
         if ($scope.xValues) {
             config.data.x = $scope.xValues;
@@ -1140,8 +1152,8 @@ function ChartController($scope, $timeout) {
         if ($scope.xFormat) {
             config.data.xFormat = $scope.xFormat;
         }
-        config.data.types = $scope.types;
-        config.data.axes = $scope.axes;
+        config.data.types = config.data.types || $scope.types;
+        config.data.axes = config.data.axes || $scope.axes;
         if ($scope.names) {
             config.data.names = $scope.names;
         }
@@ -1181,7 +1193,7 @@ function ChartController($scope, $timeout) {
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
         }
-        config.axis = $scope.axis;
+        config.axis = config.axis || $scope.axis;
         if ($scope.xTick) {
             config.axis.x.tick = $scope.xTick;
         }
@@ -1573,6 +1585,10 @@ function ChartController($scope, $timeout) {
         $scope.xFormat = xFormat;
     }
 
+    function addInitialConfig(initialConfig) {
+        $scope.initialConfig = initialConfig;
+    }
+
     function addColumnProperties(id, columnType, columnName, columnColor) {
         if (columnType !== undefined) {
             $scope.types[id] = columnType;
@@ -1873,7 +1889,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @param {Number} max The maximum value used in the Guage.
  *
- *   {@link http://c3js.org/reference.html#data-color| c3js docs}
+ *   {@link http://c3js.org/reference.html#gauge-max| c3js docs}
  *
  * @param {Number} width The width of the Guage.
  *
