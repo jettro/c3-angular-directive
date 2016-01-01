@@ -18,7 +18,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @param {Number} max The maximum value used in the Guage.
  *
- *   {@link http://c3js.org/reference.html#data-color| c3js docs}
+ *   {@link http://c3js.org/reference.html#gauge-max| c3js docs}
  *
  * @param {Number} width The width of the Guage.
  *
