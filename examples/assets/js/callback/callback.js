@@ -41,10 +41,14 @@
         vm.piePointsSelected = [];
         vm.pieColumnsSelected = [];
 
+        vm.piePointsLabel = [{"data1": 1, "data2": 1}];
+        vm.pieColumnsLabel = [{"id": "data1", "type": "pie"}, {"id": "data2", "type": "pie"}];
+
         vm.selectItem = selectItem;
         vm.handleCallback = handleCallback;
         vm.toggleLegend = toggleLegend;
         vm.showClick = showClick;
+        vm.clickLegend = clickLegend;
 
         function selectItem(data) {
             vm.selected = data;
@@ -72,6 +76,10 @@
             }
             vm.legendIsShown= !vm.legendIsShown;
             vm.theChart.flush();
+        }
+
+        function clickLegend(data) {
+            vm.piePointsLabel[0][data]+=1;
         }
 
         function showClick(data) {

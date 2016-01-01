@@ -1,6 +1,6 @@
-/*! c3-angular - v0.7.1 - 2015-12-31
+/*! c3-angular - v0.7.1 - 2016-01-01
 * https://github.com/jettro/c3-angular-sample
-* Copyright (c) 2015 ; Licensed  */
+* Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
 angular.module('gridshore.c3js.chart')
     .directive('chartAxes', ChartAxes);
@@ -2111,7 +2111,8 @@ angular.module('gridshore.c3js.chart')
  * @ngdoc directive
  * @name chartLegend
  * @description
- *  `chart-legend` is used configure the legend to add to the chart.
+ *  `chart-legend` is used configure the legend to add to the chart. You can also add function to handle events related
+ *  to the legend: onClick, onMouseOver and onMouseOut.
  *
  * Restrict To:
  *   Element
@@ -2120,16 +2121,28 @@ angular.module('gridshore.c3js.chart')
  *   c3chart
  *
  * @param {Boolean} showLegend Whether to show the legend or not, default is show.
- *   
+ *
  *   {@link http://c3js.org/reference.html#legend-show| c3js docs}
  *
  * @param {String} legendPosition One of the following values: bottom, right, inset.
  *
  *   {@link http://c3js.org/reference.html#legend-position| c3js docs}
  *
+ * @param {Function} onMouseover Provide callback to be called when you hoover the legend.
+ *
+ *   {@link http://c3js.org/reference.html#legend-item-onmouseover| c3js docs}
+ *
+ * @param {Function} onMouseout Provide callback to be called when you hoover out of the legend.
+ *
+ *   {@link http://c3js.org/reference.html#legend-item-onmouseout| c3js docs}
+ *
+ * @param {Function} onClick Provide callback to be called when you click the legend.
+ *
+ *   {@link http://c3js.org/reference.html#legend-item-onmouseout| c3js docs}
+ *
  * @example
  * Usage:
- *   <chart-legend show-legend="..." legend-position="..."/>
+ *   <chart-legend show-legend="..." legend-position="..." on-click="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
@@ -2153,6 +2166,35 @@ function ChartLegend () {
             }
         }
 
+        if (attrs.onMouseover) {
+            legend = legend || {};
+            legend.item = legend.item || {};
+            legend.item.onmouseover = function (data) {
+                scope.$apply(function () {
+                    scope.onMouseover({"data": data});
+                });
+            };
+        }
+        if (attrs.onMouseout) {
+            legend = legend || {};
+            legend.item = legend.item || {};
+            legend.item.onmouseout = function (data) {
+                scope.$apply(function () {
+                    scope.onMouseout({"data": data});
+                });
+            };
+        }
+        if (attrs.onClick) {
+            legend = legend || {};
+            legend.item = legend.item || {};
+
+            legend.item.onclick = function (data) {
+                scope.$apply(function () {
+                    scope.onClick({"data": data});
+                });
+            };
+        }
+
         if (legend != null) {
             chartCtrl.addLegend(legend);
         }
@@ -2161,7 +2203,11 @@ function ChartLegend () {
     return {
         "require": "^c3chart",
         "restrict": "E",
-        "scope": {},
+        "scope": {
+            "onMouseover": "&",
+            "onMouseout": "&",
+            "onClick": "&"
+        },
         "replace": true,
         "link": legendLinker
     };
