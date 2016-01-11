@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jettro/c3-angular-sample.git"
+    "url": "git://github.com/jettro/c3-angular-directive.git"
   },
   "keywords": [
     "c3js",
@@ -21,9 +21,9 @@
   "author": "Jettro Coenradie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jettro/c3-angular-sample/issues"
+    "url": "https://github.com/jettro/c3-angular-directive/issues"
   },
-  "homepage": "https://github.com/jettro/c3-angular-sample",
+  "homepage": "https://github.com/jettro/c3-angular-directive",
   "devDependencies": {
     "angular-jsdoc": "^0.3.8",
     "canonical-path": "0.0.2",
