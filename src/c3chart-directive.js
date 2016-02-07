@@ -32,6 +32,10 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#padding-left| c3js doc}
  *
+ * @param {String} empty-label Set text displayed when empty data.
+ *
+ *   {@link http://c3js.org/reference.html#data-empty-label-text| c3js doc}
+ *
  * @param {String} bind-id Id of the chart, needs to be unique when using multiple charts on one page.
  * 
  *   {@link http://c3js.org/reference.html#bindto| c3js doc}
@@ -176,7 +180,8 @@ function C3Chart ($timeout) {
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
-            "callbackFunction": "&"
+            "callbackFunction": "&",
+            "emptyLabel": "@emptyLabel"
         },
         "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
         "replace": true,
