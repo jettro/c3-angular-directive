@@ -752,6 +752,10 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#padding-left| c3js doc}
  *
+ * @param {String} empty-label Set text displayed when empty data.
+ *
+ *   {@link http://c3js.org/reference.html#data-empty-label-text| c3js doc}
+ *
  * @param {String} bind-id Id of the chart, needs to be unique when using multiple charts on one page.
  * 
  *   {@link http://c3js.org/reference.html#bindto| c3js doc}
@@ -896,7 +900,8 @@ function C3Chart ($timeout) {
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
-            "callbackFunction": "&"
+            "callbackFunction": "&",
+            "emptyLabel": "@emptyLabel"
         },
         "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
         "replace": true,
@@ -1042,6 +1047,7 @@ function ChartController($scope, $timeout) {
     this.addPadding = addPadding;
     this.addSorting = addSorting;
     this.addSize = addSize;
+    this.addEmptyLabel = addEmptyLabel;
 
     this.addColors = addColors;
     this.addColorThresholds = addColorThresholds;
@@ -1115,6 +1121,7 @@ function ChartController($scope, $timeout) {
         $scope.axis = {};
         $scope.axes = {};
         $scope.padding = null;
+        $scope.emptyLabel = null;
         $scope.xValues = null;
         $scope.xFormat = null;
         $scope.xsValues = null;
@@ -1159,6 +1166,13 @@ function ChartController($scope, $timeout) {
         config.data.axes = config.data.axes || $scope.axes;
         if ($scope.names) {
             config.data.names = $scope.names;
+        }
+        if ($scope.emptyLabel != null) {
+            config.data.empty = {
+                label : {
+                    text: $scope.emptyLabel
+                }
+            }
         }
         if ($scope.padding != null) {
             config.padding = $scope.padding;
@@ -1410,6 +1424,10 @@ function ChartController($scope, $timeout) {
 
     function rotateAxis() {
         $scope.axis.rotated = true;
+    }
+
+    function addEmptyLabel(text) {
+        $scope.emptyLabel = text;
     }
 
     function addPadding(side, amount) {
