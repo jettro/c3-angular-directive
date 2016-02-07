@@ -60,6 +60,10 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
+### 1.1
+Added pull requests
+- marton987: Added regions to line charts by adding a new directive
+
 ### 1.0
 Squashed a number of bugs, some of them related to tick formatting of timeseries data.
 
