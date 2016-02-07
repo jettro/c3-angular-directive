@@ -30,5 +30,116 @@
             <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
         </c3chart>
 
+        <p>Using the color configuration options it is possible to specify the colors to use in the pie chart. In the
+            following sample we specify the colors to use in a pattern array.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="pie"/>
+    &lt;chart-colors color-pattern="#000,#888,#ccc"/>
+    &lt;chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+&lt;/c3chart>
+
+</pre>
+        <c3chart bindto-id="pie-plot1-chart-colors" sort-data="desc">
+            <chart-colors color-pattern="#000,#888,#ccc"/>
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="pie"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="pie"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="pie"/>
+            <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+        </c3chart>
+
+        <p>Using the color configuration options it is possible to specify the colors to use in the pie chart. In the
+            following sample we specify the colors using a color function. At the moment I cannot use the value, but
+            I can use the name of the columns in the function</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="pie"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="pie"/>
+    &lt;chart-colors color-function="vm.calculateColor"/>
+    &lt;chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+&lt;/c3chart>
+</pre>
+<pre>
+function calculateColor(color, value) {
+    if (value === "Data 1") {
+        return "red";
+    } else if (value === "Data 2") {
+        return "blue";
+    } else if (value === "Data 3") {
+        return "yellow";
+    } else {
+        return "green";
+    }
+}
+</pre>
+        <c3chart bindto-id="pie-plot1-chart-color-function" sort-data="desc">
+            <chart-colors color-function="vm.calculateColor"/>
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="pie"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="pie"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="pie"/>
+            <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+        </c3chart>
+        <p>Using the color configuration options it is possible to specify the colors to use in the pie chart. In the
+            following sample we specify the colors however in the columns themselves.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="pie-plot1-chart" sort-data="desc">
+    &lt;chart-column column-id="Data 1"
+                  column-values="70"
+                  column-type="pie"
+                  column-color="red"/>
+    &lt;chart-column column-id="Data 2"
+                  column-values="35"
+                  column-type="pie"
+                  column-color="orange"/>
+    &lt;chart-column column-id="Data 3"
+                  column-values="60"
+                  column-type="pie"
+                  column-color="cyan"/>
+    &lt;chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+&lt;/c3chart>
+</pre>
+        <c3chart bindto-id="pie-plot1-chart-color-columns" sort-data="desc">
+            <chart-column column-id="Data 1"
+                          column-values="70"
+                          column-type="pie"
+                          column-color="red"/>
+            <chart-column column-id="Data 2"
+                          column-values="35"
+                          column-type="pie"
+                          column-color="orange"/>
+            <chart-column column-id="Data 3"
+                          column-values="60"
+                          column-type="pie"
+                          column-color="cyan"/>
+            <chart-pie expand="true" show-label="true" threshold-label="0.1"/>
+        </c3chart>
+
     </md-content>
 </div>

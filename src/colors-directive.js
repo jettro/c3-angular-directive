@@ -23,7 +23,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @example
  * Usage:
- *   <chart-color color-pattern="..." color-function="..." thresholds="..."/>
+ *   <chart-colors color-pattern="..." color-function="..." thresholds="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
@@ -34,7 +34,7 @@ function ChartColors () {
     var colorsLinker = function (scope, element, attrs, chartCtrl) {
         var pattern = attrs.colorPattern;
         if (pattern) {
-            chartCtrl.addColors(pattern.split(","));
+            chartCtrl.addColorPatterns(pattern.split(","));
         }
 
         var thresholds = attrs.thresholds;

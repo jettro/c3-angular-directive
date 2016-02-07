@@ -20,7 +20,7 @@ function ChartController($scope, $timeout) {
     this.addSize = addSize;
     this.addEmptyLabel = addEmptyLabel;
 
-    this.addColors = addColors;
+    this.addColorPatterns = addColorPatterns;
     this.addColorThresholds = addColorThresholds;
     this.addColorFunction = addColorFunction;
 
@@ -159,12 +159,6 @@ function ChartController($scope, $timeout) {
             config.transition = config.transition || {};
             config.transition.duration = $scope.transitionDuration;
         }
-        if ($scope.colors) {
-            config.data.colors = $scope.colors;
-        }
-        if ($scope.colorFunction) {
-            config.data.color = $scope.colorFunction;
-        }
         if ($scope.showLabels && $scope.showLabels === "true") {
             config.data.labels = true;
         }
@@ -228,15 +222,31 @@ function ChartController($scope, $timeout) {
         if ($scope.chartSize != null) {
             config.size = $scope.chartSize;
         }
+
         if ($scope.colors != null) {
-            config.color = {"pattern": $scope.colors};
-            config.color = {
-                "pattern": $scope.colors,
-                "threshold": {
-                    "values": $scope.colorThresholds
-                }
-            };
+            // Colors per data column shoule be specified in $scope.colors
+            config.data.colors = $scope.colors;
         }
+
+        if ($scope.colorFunction) {
+            config.data.color = $scope.colorFunction;
+        }
+
+        if ($scope.colorPatterns != null) {
+            // The colorPatters should contain an array with color patterns
+            if (config.color === undefined) {
+                config.color = {};
+            }
+            config.color.pattern = $scope.colorPatterns;
+        }
+
+        if ($scope.colorThresholds != null) {
+            if (config.color === undefined) {
+                config.color = {};
+            }
+            config.color.threshold = {"values": $scope.colorThresholds};
+        }
+
         if ($scope.gauge != null) {
             config.gauge = $scope.gauge;
         } else {
@@ -473,8 +483,8 @@ function ChartController($scope, $timeout) {
         $scope.chartSize = chartSize;
     }
 
-    function addColors(colors) {
-        $scope.colors = colors;
+    function addColorPatterns(colors) {
+        $scope.colorPatterns = colors;
     }
 
     function addColorThresholds(thresholds) {

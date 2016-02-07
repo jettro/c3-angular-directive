@@ -65,6 +65,9 @@ Added pull requests
 - marton987 (Martin Freytes): Added regions to line charts by adding a new directive
 - stevezau (Steve): Added support for empty data labels.
 
+Bugs fixed:
+- Issue 86: Has to do with the colors.
+
 ### 1.0
 Squashed a number of bugs, some of them related to tick formatting of timeseries data.
 
