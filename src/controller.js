@@ -57,6 +57,8 @@ function ChartController($scope, $timeout) {
 
     this.addLine = addLine;
 
+    this.addRegion = addRegion;
+
     this.addPie = addPie;
     this.addPieLabelFormatFunction = addPieLabelFormatFunction;
 
@@ -85,6 +87,7 @@ function ChartController($scope, $timeout) {
         $scope.chart = null;
         $scope.columns = [];
         $scope.types = {};
+        $scope.regions = {};
         $scope.axis = {};
         $scope.axes = {};
         $scope.padding = null;
@@ -242,6 +245,9 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.line != null) {
             config.line = $scope.line;
+        }
+        if ($scope.regions != null) {
+            config.data.regions = $scope.regions;
         }
         if ($scope.pie != null) {
             config.pie = $scope.pie;
@@ -521,6 +527,10 @@ function ChartController($scope, $timeout) {
 
     function addLine(line) {
         $scope.line = line;
+    }
+
+    function addRegion(id, intervals) {
+        $scope.regions[id] = intervals;
     }
 
     function addPie(pie) {
