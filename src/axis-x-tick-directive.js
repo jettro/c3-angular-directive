@@ -162,7 +162,7 @@ function ChartAxisXTick() {
 
         var formatTime = attrs.formatTime;
         if (formatTime) {
-            tick.format = d3.time.format(format);
+            tick.format = d3.time.format(formatTime);
         }
 
         chartCtrl.addXTick(tick);
@@ -182,4 +182,4 @@ function ChartAxisXTick() {
         "replace": true,
         "link": tickLinker
     };
-};
+}
