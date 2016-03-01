@@ -163,7 +163,8 @@ function selectItem(data) {
                     function.</p>
 <pre class="brush: xml; html-script: false">
 &lt;c3chart bindto-id="interactivelegend" chart-data="vm.piePointsLabel" chart-columns="vm.pieColumnsLabel">
-    &lt;chart-legend on-click="vm.clickLegend(data)"/>
+    &lt;chart-legend on-click="vm.clickLegend(data)" legend-inset="top-right"
+    legend-inset-x="50" legend-inset-y="50" legend-inset-step="5"/>
 &lt;/c3chart>
 </pre>
 
@@ -180,7 +181,8 @@ function clickLegend(data) {
             <div flex="50">
                 <c3chart bindto-id="interactivelegend" chart-data="vm.piePointsLabel"
                          chart-columns="vm.pieColumnsLabel">
-                    <chart-legend on-click="vm.clickLegend(data)"/>
+                    <chart-legend on-click="vm.clickLegend(data)" legend-inset="top-right"
+                        legend-inset-x="50" legend-inset-y="50" legend-inset-step="5"/>
                 </c3chart>
             </div>
         </div>

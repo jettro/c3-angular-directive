@@ -60,6 +60,13 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
+### 1.2 (To be released)
+- In issue 104 @AesSedai proposed more properties for the legend inset directive. These are now added.
+
+
+Bugs fixed:
+- Issue 104: Fixed problem with the time format function
+
 ### 1.1
 Added pull requests
 - marton987 (Martin Freytes): Added regions to line charts by adding a new directive

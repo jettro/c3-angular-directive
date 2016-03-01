@@ -34,6 +34,22 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#legend-item-onmouseout| c3js docs}
  *
+ * @param {String} legendInset Where to show an inset legend, valid values are: top-left, top-right, bottom-left, bottom-right
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetX X position for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetY Y position for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetStep Step for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
  * @example
  * Usage:
  *   <chart-legend show-legend="..." legend-position="..." on-click="..."/>
@@ -57,6 +73,19 @@ function ChartLegend () {
             var inset = attrs.legendInset;
             if (inset) {
                 legend = {"position":"inset","inset":{"anchor":inset}};
+
+                var insetX = attrs.legendInsetX;
+                if (insetX) {
+                    legend.inset.x = parseInt(insetX);
+                }
+                var insetY = attrs.legendInsetY;
+                if (insetY) {
+                    legend.inset.y = parseInt(insetY);
+                }
+                var insetStep = attrs.legendInsetStep;
+                if (insetStep) {
+                    legend.inset.step = parseInt(insetStep);
+                }
             }
         }
 
