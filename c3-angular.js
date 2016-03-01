@@ -1,4 +1,4 @@
-/*! c3-angular - v1.0.1 - 2016-02-07
+/*! c3-angular - v1.1.0 - 2016-03-01
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
