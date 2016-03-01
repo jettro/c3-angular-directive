@@ -1461,7 +1461,7 @@ function ChartController($scope, $timeout) {
         $scope.grid[axis].show = true;
     }
 
-    function addGridLine(axis, value, text) {
+    function addGridLine(axis, value, text, gridClass, position) {
         if ($scope.grid == null) {
             $scope.grid = {};
         }
@@ -1481,10 +1481,20 @@ function ChartController($scope, $timeout) {
             }
 
         }
+        var theGridLine = {};
+        theGridLine.value=value;
+        theGridLine.text=text;
+        if (gridClass) {
+            theGridLine.class = gridClass;
+        }
+        if (position) {
+            theGridLine.position = position;
+        }
         if (axis === "y2") {
-            $scope.grid.y.lines.push({"value": value, "text": text, "axis": "y2"});
+            theGridLine.axis = "y2";
+            $scope.grid.y.lines.push(theGridLine);
         } else {
-            $scope.grid[axis].lines.push({"value": value, "text": text});
+            $scope.grid[axis].lines.push(theGridLine);
         }
     }
 
@@ -2096,6 +2106,14 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
  *
+ * @param {String} gridClass Class to add to the grid line to be able to style them separately.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @param {String} position Sets the position for the label, values are: start, middle, end.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
  * @example
  * Usage:
  *   <chart-grid-optional axis-id="..." value="..." text="..."/>
@@ -2114,8 +2132,10 @@ function ChartGridOptional() {
         var axisId = attrs.axisId;
         var value = attrs.gridValue;
         var text = attrs.gridText;
+        var gridClass = attrs.gridClass;
+        var position = attrs.position;
 
-        chartCtrl.addGridLine(axisId, value, text);
+        chartCtrl.addGridLine(axisId, value, text, gridClass, position);
     };
 
     return {

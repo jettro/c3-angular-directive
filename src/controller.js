@@ -432,7 +432,7 @@ function ChartController($scope, $timeout) {
         $scope.grid[axis].show = true;
     }
 
-    function addGridLine(axis, value, text) {
+    function addGridLine(axis, value, text, gridClass, position) {
         if ($scope.grid == null) {
             $scope.grid = {};
         }
@@ -452,10 +452,20 @@ function ChartController($scope, $timeout) {
             }
 
         }
+        var theGridLine = {};
+        theGridLine.value=value;
+        theGridLine.text=text;
+        if (gridClass) {
+            theGridLine.class = gridClass;
+        }
+        if (position) {
+            theGridLine.position = position;
+        }
         if (axis === "y2") {
-            $scope.grid.y.lines.push({"value": value, "text": text, "axis": "y2"});
+            theGridLine.axis = "y2";
+            $scope.grid.y.lines.push(theGridLine);
         } else {
-            $scope.grid[axis].lines.push({"value": value, "text": text});
+            $scope.grid[axis].lines.push(theGridLine);
         }
     }
 

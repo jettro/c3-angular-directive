@@ -24,6 +24,14 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
  *
+ * @param {String} gridClass Class to add to the grid line to be able to style them separately.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @param {String} position Sets the position for the label, values are: start, middle, end.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
  * @example
  * Usage:
  *   <chart-grid-optional axis-id="..." value="..." text="..."/>
@@ -42,8 +50,10 @@ function ChartGridOptional() {
         var axisId = attrs.axisId;
         var value = attrs.gridValue;
         var text = attrs.gridText;
+        var gridClass = attrs.gridClass;
+        var position = attrs.position;
 
-        chartCtrl.addGridLine(axisId, value, text);
+        chartCtrl.addGridLine(axisId, value, text, gridClass, position);
     };
 
     return {
