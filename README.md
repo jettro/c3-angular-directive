@@ -60,7 +60,7 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
-### 1.1 (To be released)
+### 1.1
 Added pull requests
 - marton987 (Martin Freytes): Added regions to line charts by adding a new directive
 - stevezau (Steve): Added support for empty data labels.
