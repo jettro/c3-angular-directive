@@ -1,5 +1,5 @@
-/*! c3-angular - v0.7.1 - 2016-01-01
-* https://github.com/jettro/c3-angular-sample
+/*! c3-angular - v1.1.0 - 2016-03-01
+* https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
 angular.module('gridshore.c3js.chart')
@@ -413,7 +413,7 @@ function ChartAxisXTick() {
 
         var formatTime = attrs.formatTime;
         if (formatTime) {
-            tick.format = d3.time.format(format);
+            tick.format = d3.time.format(formatTime);
         }
 
         chartCtrl.addXTick(tick);
@@ -433,7 +433,7 @@ function ChartAxisXTick() {
         "replace": true,
         "link": tickLinker
     };
-};
+}
 
 angular.module('gridshore.c3js.chart')
     .directive('chartAxisY', ChartAxisY);
@@ -752,6 +752,10 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#padding-left| c3js doc}
  *
+ * @param {String} empty-label Set text displayed when empty data.
+ *
+ *   {@link http://c3js.org/reference.html#data-empty-label-text| c3js doc}
+ *
  * @param {String} bind-id Id of the chart, needs to be unique when using multiple charts on one page.
  * 
  *   {@link http://c3js.org/reference.html#bindto| c3js doc}
@@ -896,7 +900,8 @@ function C3Chart ($timeout) {
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
-            "callbackFunction": "&"
+            "callbackFunction": "&",
+            "emptyLabel": "@emptyLabel"
         },
         "template": "<div><div id='{{bindto}}'></div><div ng-transclude></div></div>",
         "replace": true,
@@ -930,7 +935,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @example
  * Usage:
- *   <chart-color color-pattern="..." color-function="..." thresholds="..."/>
+ *   <chart-colors color-pattern="..." color-function="..." thresholds="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
@@ -941,7 +946,7 @@ function ChartColors () {
     var colorsLinker = function (scope, element, attrs, chartCtrl) {
         var pattern = attrs.colorPattern;
         if (pattern) {
-            chartCtrl.addColors(pattern.split(","));
+            chartCtrl.addColorPatterns(pattern.split(","));
         }
 
         var thresholds = attrs.thresholds;
@@ -1042,8 +1047,9 @@ function ChartController($scope, $timeout) {
     this.addPadding = addPadding;
     this.addSorting = addSorting;
     this.addSize = addSize;
+    this.addEmptyLabel = addEmptyLabel;
 
-    this.addColors = addColors;
+    this.addColorPatterns = addColorPatterns;
     this.addColorThresholds = addColorThresholds;
     this.addColorFunction = addColorFunction;
 
@@ -1081,6 +1087,8 @@ function ChartController($scope, $timeout) {
 
     this.addLine = addLine;
 
+    this.addRegion = addRegion;
+
     this.addPie = addPie;
     this.addPieLabelFormatFunction = addPieLabelFormatFunction;
 
@@ -1109,9 +1117,11 @@ function ChartController($scope, $timeout) {
         $scope.chart = null;
         $scope.columns = [];
         $scope.types = {};
+        $scope.regions = {};
         $scope.axis = {};
         $scope.axes = {};
         $scope.padding = null;
+        $scope.emptyLabel = null;
         $scope.xValues = null;
         $scope.xFormat = null;
         $scope.xsValues = null;
@@ -1157,6 +1167,13 @@ function ChartController($scope, $timeout) {
         if ($scope.names) {
             config.data.names = $scope.names;
         }
+        if ($scope.emptyLabel != null) {
+            config.data.empty = {
+                label : {
+                    text: $scope.emptyLabel
+                }
+            }
+        }
         if ($scope.padding != null) {
             config.padding = $scope.padding;
         }
@@ -1170,12 +1187,6 @@ function ChartController($scope, $timeout) {
         if ($scope.transitionDuration != null) {
             config.transition = config.transition || {};
             config.transition.duration = $scope.transitionDuration;
-        }
-        if ($scope.colors) {
-            config.data.colors = $scope.colors;
-        }
-        if ($scope.colorFunction) {
-            config.data.color = $scope.colorFunction;
         }
         if ($scope.showLabels && $scope.showLabels === "true") {
             config.data.labels = true;
@@ -1240,15 +1251,31 @@ function ChartController($scope, $timeout) {
         if ($scope.chartSize != null) {
             config.size = $scope.chartSize;
         }
+
         if ($scope.colors != null) {
-            config.color = {"pattern": $scope.colors};
-            config.color = {
-                "pattern": $scope.colors,
-                "threshold": {
-                    "values": $scope.colorThresholds
-                }
-            };
+            // Colors per data column shoule be specified in $scope.colors
+            config.data.colors = $scope.colors;
         }
+
+        if ($scope.colorFunction) {
+            config.data.color = $scope.colorFunction;
+        }
+
+        if ($scope.colorPatterns != null) {
+            // The colorPatters should contain an array with color patterns
+            if (config.color === undefined) {
+                config.color = {};
+            }
+            config.color.pattern = $scope.colorPatterns;
+        }
+
+        if ($scope.colorThresholds != null) {
+            if (config.color === undefined) {
+                config.color = {};
+            }
+            config.color.threshold = {"values": $scope.colorThresholds};
+        }
+
         if ($scope.gauge != null) {
             config.gauge = $scope.gauge;
         } else {
@@ -1266,6 +1293,9 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.line != null) {
             config.line = $scope.line;
+        }
+        if ($scope.regions != null) {
+            config.data.regions = $scope.regions;
         }
         if ($scope.pie != null) {
             config.pie = $scope.pie;
@@ -1406,6 +1436,10 @@ function ChartController($scope, $timeout) {
         $scope.axis.rotated = true;
     }
 
+    function addEmptyLabel(text) {
+        $scope.emptyLabel = text;
+    }
+
     function addPadding(side, amount) {
         if ($scope.padding == null) {
             $scope.padding = {};
@@ -1427,7 +1461,7 @@ function ChartController($scope, $timeout) {
         $scope.grid[axis].show = true;
     }
 
-    function addGridLine(axis, value, text) {
+    function addGridLine(axis, value, text, gridClass, position) {
         if ($scope.grid == null) {
             $scope.grid = {};
         }
@@ -1447,10 +1481,20 @@ function ChartController($scope, $timeout) {
             }
 
         }
+        var theGridLine = {};
+        theGridLine.value=value;
+        theGridLine.text=text;
+        if (gridClass) {
+            theGridLine.class = gridClass;
+        }
+        if (position) {
+            theGridLine.position = position;
+        }
         if (axis === "y2") {
-            $scope.grid.y.lines.push({"value": value, "text": text, "axis": "y2"});
+            theGridLine.axis = "y2";
+            $scope.grid.y.lines.push(theGridLine);
         } else {
-            $scope.grid[axis].lines.push({"value": value, "text": text});
+            $scope.grid[axis].lines.push(theGridLine);
         }
     }
 
@@ -1478,8 +1522,8 @@ function ChartController($scope, $timeout) {
         $scope.chartSize = chartSize;
     }
 
-    function addColors(colors) {
-        $scope.colors = colors;
+    function addColorPatterns(colors) {
+        $scope.colorPatterns = colors;
     }
 
     function addColorThresholds(thresholds) {
@@ -1545,6 +1589,10 @@ function ChartController($scope, $timeout) {
 
     function addLine(line) {
         $scope.line = line;
+    }
+
+    function addRegion(id, intervals) {
+        $scope.regions[id] = intervals;
     }
 
     function addPie(pie) {
@@ -2058,6 +2106,14 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
  *
+ * @param {String} gridClass Class to add to the grid line to be able to style them separately.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
+ * @param {String} position Sets the position for the label, values are: start, middle, end.
+ *
+ *   {@link http://c3js.org/reference.html#grid-x-lines| c3js docs}
+ *
  * @example
  * Usage:
  *   <chart-grid-optional axis-id="..." value="..." text="..."/>
@@ -2076,8 +2132,10 @@ function ChartGridOptional() {
         var axisId = attrs.axisId;
         var value = attrs.gridValue;
         var text = attrs.gridText;
+        var gridClass = attrs.gridClass;
+        var position = attrs.position;
 
-        chartCtrl.addGridLine(axisId, value, text);
+        chartCtrl.addGridLine(axisId, value, text, gridClass, position);
     };
 
     return {
@@ -2183,6 +2241,22 @@ angular.module('gridshore.c3js.chart')
  *
  *   {@link http://c3js.org/reference.html#legend-item-onmouseout| c3js docs}
  *
+ * @param {String} legendInset Where to show an inset legend, valid values are: top-left, top-right, bottom-left, bottom-right
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetX X position for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetY Y position for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
+ * @param {Number} legendInsetStep Step for the inset.
+ *
+ *   {@link http://c3js.org/reference.html#legend-inset| c3js docs}
+ *
  * @example
  * Usage:
  *   <chart-legend show-legend="..." legend-position="..." on-click="..."/>
@@ -2206,6 +2280,19 @@ function ChartLegend () {
             var inset = attrs.legendInset;
             if (inset) {
                 legend = {"position":"inset","inset":{"anchor":inset}};
+
+                var insetX = attrs.legendInsetX;
+                if (insetX) {
+                    legend.inset.x = parseInt(insetX);
+                }
+                var insetY = attrs.legendInsetY;
+                if (insetY) {
+                    legend.inset.y = parseInt(insetY);
+                }
+                var insetStep = attrs.legendInsetStep;
+                if (insetStep) {
+                    legend.inset.step = parseInt(insetStep);
+                }
             }
         }
 
@@ -2465,6 +2552,74 @@ function ChartPoints () {
         link: pointLinker
     };
 }
+angular.module('gridshore.c3js.chart')
+    .directive('chartRegion', ChartRegion);
+/**
+ * @ngdoc directive
+ * @name chartRegion
+ * @description
+ *  `chart-region` is used to set a region property on a chart.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {String} region-id The id used to uniquely identify the column
+ *
+ * @param {String} region-style Style to identify the regions.
+ *
+ *   {@link http://c3js.org/reference.html#data-regions| c3js doc}
+ *
+ * @param {String} region-starts The regions where the data starts.
+ *
+ * @param {String} region-ends The regions where the data starts.
+ *
+ * @example
+ * Usage:
+ *   <chart-region region-id="..." region-style="..." region-starts="..." region-ends="..."/>
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ *
+ */
+
+function ChartRegion() {
+    var regionLinker = function (scope, element, attrs, chartCtrl) {
+        var style = 'dashed',
+            starts = [],
+            ends = [],
+            intervals = [];
+        if (attrs.regionStyle) {
+            style = attrs.regionStyle;
+        }
+        if (attrs.regionStarts){
+            starts = attrs.regionStarts.split(",");
+        }
+        if (attrs.regionEnds){
+            ends = attrs.regionEnds.split(",");
+        }
+        if (starts.length > ends.length) {
+            intervals.push({'start': starts.pop(), 'style': style});
+        }
+        if (starts.length < ends.length) {
+            intervals.push({'end': ends.shift(), 'style': style});
+        }
+        starts.forEach(function (value, i) {
+             intervals.push({'start': starts[i], 'end': ends[i], 'style': style});
+        });
+        chartCtrl.addRegion(attrs.regionId, intervals);
+    };
+
+    return {
+        require: '^c3chart',
+        restrict: 'E',
+        scope: {},
+        replace: true,
+        link: regionLinker
+    };
+}
+
 angular.module('gridshore.c3js.chart')
     .directive('chartSize', ChartSize);
 
