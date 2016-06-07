@@ -31,5 +31,51 @@
             />
         </c3chart>
 
+        <pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="gauge-plot2-chart"
+         chart-data="vm.gaugePoint"
+         chart-columns="vm.gaugeColumn">
+    &lt;chart-gauge units=" hours"
+                 width="39"
+                 show-label="true"
+                 expand="true"
+    />
+&lt;/c3chart>
+</pre>
+<p>Now a more complicated example, we use the gauge chart to show how to dynamically change the value of the gauge.</p>
+<pre class="brush: js; html-script: false">
+GaugeCtrl.$inject = ['$interval'];
+function GaugeCtrl($interval) {
+    var vm = this;
+
+    activate();
+
+    function activate() {
+        vm.gaugePoint = [{"data1": 70}];
+        vm.gaugeColumn = [
+            {"id": "data1", "type": "gauge"}];
+
+        $interval(function () {
+            vm.gaugePoint[0]['data1'] = randomNumber();
+        }, 1000, 10);
+
+    }
+
+    function randomNumber() {
+        return Math.floor((Math.random() * 100) + 1);
+    }
+}
+</pre>
+
+        <c3chart bindto-id="gauge-plot2-chart"
+                 chart-data="vm.gaugePoint"
+                 chart-columns="vm.gaugeColumn">
+            <chart-gauge units=" hours"
+                         width="39"
+                         show-label="true"
+                         expand="true"
+            />
+        </c3chart>
+
     </md-content>
 </div>
