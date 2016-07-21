@@ -3,9 +3,9 @@
  * @description Controller for the c3js directive
  */
 angular.module('gridshore.c3js.chart')
-    /**
-     * @controller
-     */
+/**
+ * @controller
+ */
     .controller('ChartController', ChartController);
 
 ChartController.$inject = ['$scope', '$timeout'];
@@ -140,7 +140,7 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.emptyLabel != null) {
             config.data.empty = {
-                label : {
+                label: {
                     text: $scope.emptyLabel
                 }
             }
@@ -453,8 +453,8 @@ function ChartController($scope, $timeout) {
 
         }
         var theGridLine = {};
-        theGridLine.value=value;
-        theGridLine.text=text;
+        theGridLine.value = isNaN(+value) ? value : +value;
+        theGridLine.text = text;
         if (gridClass) {
             theGridLine.class = gridClass;
         }

@@ -1,4 +1,4 @@
-/*! c3-angular - v1.2.0 - 2016-07-21
+/*! c3-angular - v1.3.0 - 2016-07-21
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -1032,9 +1032,9 @@ function ChartColumn () {
 }
 
 angular.module('gridshore.c3js.chart')
-    /**
-     * @controller
-     */
+/**
+ * @controller
+ */
     .controller('ChartController', ChartController);
 
 ChartController.$inject = ['$scope', '$timeout'];
@@ -1169,7 +1169,7 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.emptyLabel != null) {
             config.data.empty = {
-                label : {
+                label: {
                     text: $scope.emptyLabel
                 }
             }
@@ -1482,8 +1482,8 @@ function ChartController($scope, $timeout) {
 
         }
         var theGridLine = {};
-        theGridLine.value=value;
-        theGridLine.text=text;
+        theGridLine.value = isNaN(+value) ? value : +value;
+        theGridLine.text = text;
         if (gridClass) {
             theGridLine.class = gridClass;
         }
