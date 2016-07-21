@@ -1063,6 +1063,7 @@ function ChartController($scope, $timeout) {
     this.addTooltipTitleFormatFunction = addTooltipTitleFormatFunction;
     this.addTooltipNameFormatFunction = addTooltipNameFormatFunction;
     this.addTooltipValueFormatFunction = addTooltipValueFormatFunction;
+    this.addTooltipContentFormatFunction = addTooltipContentFormatFunction;
 
     this.addYAxis = addYAxis;
     this.addYTick = addYTick;
@@ -1246,6 +1247,10 @@ function ChartController($scope, $timeout) {
         if ($scope.tooltipValueFormatFunction) {
             config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.value = $scope.tooltipValueFormatFunction;
+        }
+
+        if ($scope.tooltipContentFormatFunction) {
+            config.tooltip.contents = $scope.tooltipContentFormatFunction;
         }
 
         if ($scope.chartSize != null) {
@@ -1516,6 +1521,10 @@ function ChartController($scope, $timeout) {
 
     function addTooltipValueFormatFunction(tooltipValueFormatFunction) {
         $scope.tooltipValueFormatFunction = tooltipValueFormatFunction;
+    }
+
+    function addTooltipContentFormatFunction(tooltipContentFormatFunction) {
+        $scope.tooltipContentFormatFunction = tooltipContentFormatFunction;
     }
 
     function addSize(chartSize) {
@@ -2719,9 +2728,13 @@ angular.module('gridshore.c3js.chart')
  *   
  *   {@link http://c3js.org/reference.html#tooltip-format-value| c3js docs}
  *
+ * @param {Function} contentFormatFunction Function to format the content of the tooltip.
+ *
+ *   {@link http://c3js.org/reference.html#tooltip-contents| c3js docs}
+ *
  * @example
  * Usage:
- *   <chart-size chart-height="..." chart-width="..."/>
+ *   <chart-tooltip show-tooltip="true" name-format-function="formatTooltipName"/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
@@ -2791,6 +2804,9 @@ function ChartTooltip () {
         if (attrs.valueFormatFunction) {
             chartCtrl.addTooltipValueFormatFunction(scope.valueFormatFunction());
         }
+        if (attrs.contentFormatFunction) {
+            chartCtrl.addTooltipContentFormatFunction(scope.contentFormatFunction());
+        }
 
     };
 
@@ -2798,9 +2814,10 @@ function ChartTooltip () {
         "require": "^c3chart",
         "restrict": "E",
         "scope": {
-            "valueFormatFunction": '&',
-            "nameFormatFunction" : "&",
-            "titleFormatFunction": "&"
+            "valueFormatFunction": "&",
+            "nameFormatFunction": "&",
+            "titleFormatFunction": "&",
+            "contentFormatFunction": "&"
         },
         "replace": true,
         "link": tooltipLinker

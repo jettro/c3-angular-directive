@@ -31,10 +31,10 @@
     function LineCtrl() {
         var vm = this;
 
-        activate();
+        vm.formatTitleFunction = formatTitleFunction;
 
-        function activate() {
-
+        function formatTitleFunction(x) {
+            return 'Category ' + x;
         }
     }
 })();

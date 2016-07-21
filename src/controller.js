@@ -34,6 +34,7 @@ function ChartController($scope, $timeout) {
     this.addTooltipTitleFormatFunction = addTooltipTitleFormatFunction;
     this.addTooltipNameFormatFunction = addTooltipNameFormatFunction;
     this.addTooltipValueFormatFunction = addTooltipValueFormatFunction;
+    this.addTooltipContentFormatFunction = addTooltipContentFormatFunction;
 
     this.addYAxis = addYAxis;
     this.addYTick = addYTick;
@@ -217,6 +218,10 @@ function ChartController($scope, $timeout) {
         if ($scope.tooltipValueFormatFunction) {
             config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.value = $scope.tooltipValueFormatFunction;
+        }
+
+        if ($scope.tooltipContentFormatFunction) {
+            config.tooltip.contents = $scope.tooltipContentFormatFunction;
         }
 
         if ($scope.chartSize != null) {
@@ -487,6 +492,10 @@ function ChartController($scope, $timeout) {
 
     function addTooltipValueFormatFunction(tooltipValueFormatFunction) {
         $scope.tooltipValueFormatFunction = tooltipValueFormatFunction;
+    }
+
+    function addTooltipContentFormatFunction(tooltipContentFormatFunction) {
+        $scope.tooltipContentFormatFunction = tooltipContentFormatFunction;
     }
 
     function addSize(chartSize) {
