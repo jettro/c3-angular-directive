@@ -24,7 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4",
-    "c3": "~0.4.10"
+    "angular": "~1.5",
+    "c3": "~0.4.11"
   }
 }
