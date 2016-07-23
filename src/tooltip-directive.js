@@ -43,11 +43,22 @@ angular.module('gridshore.c3js.chart')
  *
  * @example
  * Usage:
- *   <chart-tooltip show-tooltip="true" name-format-function="formatTooltipName"/>
+ *   <chart-tooltip show-tooltip="..." value-format-function="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
  * 
+ * <chart-tooltip show-tooltip="true" value-format-function="vm.formatTooltip"/>
+ *
+ * function Ctrl() {
+ *   var vm = this;
+ *   vm.formatTooltip = formatTooltip;
+ *
+ *   function formatTooltip(value, ratio, id, index) {
+ *       return '$' + value;
+ *   }
+ * }
+ *
  */
 function ChartTooltip () {
     var tooltipLinker = function (scope, element, attrs, chartCtrl) {
