@@ -58,7 +58,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
  * 
- *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
+ *   {@link http://c3js.org/reference.html#enable-zoom| c3js doc}
  *
  * @param {Array} chart-data Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.
  * 
