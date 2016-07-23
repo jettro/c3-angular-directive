@@ -1,4 +1,4 @@
-/*! c3-angular - v1.1.0 - 2016-03-01
+/*! c3-angular - v1.3.0 - 2016-07-23
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -780,10 +780,6 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
  *
- * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
- * 
- *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
- *
  * @param {Array} chart-data Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.
  * 
  *   Array consisting of objects with values for the different columns: [{"data1":10,"data2":20},{"data1":50,"data2":60}]
@@ -1032,9 +1028,9 @@ function ChartColumn () {
 }
 
 angular.module('gridshore.c3js.chart')
-    /**
-     * @controller
-     */
+/**
+ * @controller
+ */
     .controller('ChartController', ChartController);
 
 ChartController.$inject = ['$scope', '$timeout'];
@@ -1063,6 +1059,7 @@ function ChartController($scope, $timeout) {
     this.addTooltipTitleFormatFunction = addTooltipTitleFormatFunction;
     this.addTooltipNameFormatFunction = addTooltipNameFormatFunction;
     this.addTooltipValueFormatFunction = addTooltipValueFormatFunction;
+    this.addTooltipContentFormatFunction = addTooltipContentFormatFunction;
 
     this.addYAxis = addYAxis;
     this.addYTick = addYTick;
@@ -1111,6 +1108,8 @@ function ChartController($scope, $timeout) {
 
     this.setXFormat = setXFormat;
 
+    this.addSelection = addSelection;
+
     resetVars();
 
     function resetVars() {
@@ -1140,6 +1139,7 @@ function ChartController($scope, $timeout) {
         $scope.sorting = null;
         $scope.transitionDuration = null;
         $scope.initialConfig = null;
+        $scope.selection = null;
     }
 
     function showGraph() {
@@ -1169,7 +1169,7 @@ function ChartController($scope, $timeout) {
         }
         if ($scope.emptyLabel != null) {
             config.data.empty = {
-                label : {
+                label: {
                     text: $scope.emptyLabel
                 }
             }
@@ -1246,6 +1246,10 @@ function ChartController($scope, $timeout) {
         if ($scope.tooltipValueFormatFunction) {
             config.tooltip.format = config.tooltip.format || {};
             config.tooltip.format.value = $scope.tooltipValueFormatFunction;
+        }
+
+        if ($scope.tooltipContentFormatFunction) {
+            config.tooltip.contents = $scope.tooltipContentFormatFunction;
         }
 
         if ($scope.chartSize != null) {
@@ -1351,6 +1355,9 @@ function ChartController($scope, $timeout) {
                     $scope.dataOnMouseout({"data": data});
                 });
             };
+        }
+        if ($scope.selection != null) {
+            config.data.selection = $scope.selection;
         }
 
         $scope.config = config;
@@ -1482,8 +1489,8 @@ function ChartController($scope, $timeout) {
 
         }
         var theGridLine = {};
-        theGridLine.value=value;
-        theGridLine.text=text;
+        theGridLine.value = isNaN(+value) ? value : +value;
+        theGridLine.text = text;
         if (gridClass) {
             theGridLine.class = gridClass;
         }
@@ -1516,6 +1523,10 @@ function ChartController($scope, $timeout) {
 
     function addTooltipValueFormatFunction(tooltipValueFormatFunction) {
         $scope.tooltipValueFormatFunction = tooltipValueFormatFunction;
+    }
+
+    function addTooltipContentFormatFunction(tooltipContentFormatFunction) {
+        $scope.tooltipContentFormatFunction = tooltipContentFormatFunction;
     }
 
     function addSize(chartSize) {
@@ -1653,6 +1664,10 @@ function ChartController($scope, $timeout) {
             }
             $scope.colors[id] = columnColor;
         }
+    }
+
+    function addSelection(selection) {
+        $scope.selection = selection;
     }
 
     function loadChartData() {
@@ -2621,6 +2636,65 @@ function ChartRegion() {
 }
 
 angular.module('gridshore.c3js.chart')
+    .directive('selection', Selection);
+/**
+ * @ngdoc directive
+ * @name selection
+ * @description
+ *  `selection` is used to to configure whether it is possible to select elements and interact with the chart to find selected elements.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {String} enabled Specify whether the selection should be enabled or not, default is true.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-enabled}
+ *
+ * @param {String} grouped Enables the grouped selection.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-grouped}
+ *
+ * @param {String} multiple Enables possibility to select multiple items.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-multiple}
+ *
+ * @example
+ * Usage:
+ *   <selection enabled="true"/>
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ */
+function Selection () {
+    var selectionLinker = function (scope, element, attrs, chartCtrl) {
+        var enabled = attrs.enabled;
+        var grouped = attrs.grouped;
+        var multiple = attrs.multiple;
+
+        if (enabled && enabled === 'true') {
+            var selection = {"enabled": true};
+            if (grouped && grouped === 'true') {
+                selection.grouped = true;
+            }
+            if (multiple && multiple === 'true') {
+                selection.multiple = true;
+            }
+            chartCtrl.addSelection(selection);
+        }
+    };
+
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": selectionLinker
+    };
+}
+
+angular.module('gridshore.c3js.chart')
     .directive('chartSize', ChartSize);
 
 /**
@@ -2719,9 +2793,13 @@ angular.module('gridshore.c3js.chart')
  *   
  *   {@link http://c3js.org/reference.html#tooltip-format-value| c3js docs}
  *
+ * @param {Function} contentFormatFunction Function to format the content of the tooltip.
+ *
+ *   {@link http://c3js.org/reference.html#tooltip-contents| c3js docs}
+ *
  * @example
  * Usage:
- *   <chart-size chart-height="..." chart-width="..."/>
+ *   <chart-tooltip show-tooltip="true" name-format-function="formatTooltipName"/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
@@ -2791,6 +2869,9 @@ function ChartTooltip () {
         if (attrs.valueFormatFunction) {
             chartCtrl.addTooltipValueFormatFunction(scope.valueFormatFunction());
         }
+        if (attrs.contentFormatFunction) {
+            chartCtrl.addTooltipContentFormatFunction(scope.contentFormatFunction());
+        }
 
     };
 
@@ -2798,9 +2879,10 @@ function ChartTooltip () {
         "require": "^c3chart",
         "restrict": "E",
         "scope": {
-            "valueFormatFunction": '&',
-            "nameFormatFunction" : "&",
-            "titleFormatFunction": "&"
+            "valueFormatFunction": "&",
+            "nameFormatFunction": "&",
+            "titleFormatFunction": "&",
+            "contentFormatFunction": "&"
         },
         "replace": true,
         "link": tooltipLinker

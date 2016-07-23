@@ -37,18 +37,22 @@
             {"id": "data3", "type": "donut"},
             {"id": "data4", "type": "donut"},
             {"id": "data5", "type": "donut"}];
+        vm.selectedItems = [];
 
         vm.formatDonut = formatDonut;
-
-        activate();
-
-        function activate() {
-
-        }
+        vm.handleCallback = handleCallback;
+        vm.handleClick = handleClick;
 
         function formatDonut(value, ratio, id) {
             return d3.format('$')(value);
         }
 
+        function handleCallback(chartObj) {
+            vm.theChart = chartObj;
+        }
+
+        function handleClick(data) {
+            vm.selectedItems = vm.theChart.selected();
+        }
     }
 })();

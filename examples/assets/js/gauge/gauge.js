@@ -27,14 +27,25 @@
     angular.module('gridshore.c3js.gauge')
         .controller('GaugeCtrl', GaugeCtrl);
 
-    GaugeCtrl.$inject = [];
-    function GaugeCtrl() {
+    GaugeCtrl.$inject = ['$interval'];
+    function GaugeCtrl($interval) {
         var vm = this;
 
         activate();
 
         function activate() {
+            vm.gaugePoint = [{"data1": 70}];
+            vm.gaugeColumn = [
+                {"id": "data1", "type": "gauge"}];
 
+            $interval(function () {
+                vm.gaugePoint[0]['data1'] = randomNumber();
+            }, 1000, 10);
+
+        }
+
+        function randomNumber() {
+            return Math.floor((Math.random() * 100) + 1);
         }
     }
 })();
