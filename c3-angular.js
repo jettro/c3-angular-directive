@@ -1,4 +1,4 @@
-/*! c3-angular - v1.3.0 - 2016-07-21
+/*! c3-angular - v1.3.0 - 2016-07-23
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -780,10 +780,6 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
  *
- * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
- * 
- *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
- *
  * @param {Array} chart-data Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.
  * 
  *   Array consisting of objects with values for the different columns: [{"data1":10,"data2":20},{"data1":50,"data2":60}]
@@ -1112,6 +1108,8 @@ function ChartController($scope, $timeout) {
 
     this.setXFormat = setXFormat;
 
+    this.addSelection = addSelection;
+
     resetVars();
 
     function resetVars() {
@@ -1141,6 +1139,7 @@ function ChartController($scope, $timeout) {
         $scope.sorting = null;
         $scope.transitionDuration = null;
         $scope.initialConfig = null;
+        $scope.selection = null;
     }
 
     function showGraph() {
@@ -1356,6 +1355,9 @@ function ChartController($scope, $timeout) {
                     $scope.dataOnMouseout({"data": data});
                 });
             };
+        }
+        if ($scope.selection != null) {
+            config.data.selection = $scope.selection;
         }
 
         $scope.config = config;
@@ -1662,6 +1664,10 @@ function ChartController($scope, $timeout) {
             }
             $scope.colors[id] = columnColor;
         }
+    }
+
+    function addSelection(selection) {
+        $scope.selection = selection;
     }
 
     function loadChartData() {
@@ -2626,6 +2632,65 @@ function ChartRegion() {
         scope: {},
         replace: true,
         link: regionLinker
+    };
+}
+
+angular.module('gridshore.c3js.chart')
+    .directive('selection', Selection);
+/**
+ * @ngdoc directive
+ * @name selection
+ * @description
+ *  `selection` is used to to configure whether it is possible to select elements and interact with the chart to find selected elements.
+ *
+ * Restrict To:
+ *   Element
+ *
+ * Parent Element:
+ *   c3chart
+ *
+ * @param {String} enabled Specify whether the selection should be enabled or not, default is true.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-enabled}
+ *
+ * @param {String} grouped Enables the grouped selection.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-grouped}
+ *
+ * @param {String} multiple Enables possibility to select multiple items.
+ *
+ *   {@link http://c3js.org/reference.html#data-selection-multiple}
+ *
+ * @example
+ * Usage:
+ *   <selection enabled="true"/>
+ * Example:
+ *   {@link http://jettro.github.io/c3-angular-directive/#examples}
+ */
+function Selection () {
+    var selectionLinker = function (scope, element, attrs, chartCtrl) {
+        var enabled = attrs.enabled;
+        var grouped = attrs.grouped;
+        var multiple = attrs.multiple;
+
+        if (enabled && enabled === 'true') {
+            var selection = {"enabled": true};
+            if (grouped && grouped === 'true') {
+                selection.grouped = true;
+            }
+            if (multiple && multiple === 'true') {
+                selection.multiple = true;
+            }
+            chartCtrl.addSelection(selection);
+        }
+    };
+
+    return {
+        "require": "^c3chart",
+        "restrict": "E",
+        "scope": {},
+        "replace": true,
+        "link": selectionLinker
     };
 }
 

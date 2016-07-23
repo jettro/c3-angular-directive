@@ -53,10 +53,35 @@ function DonutCtrl() {
     &lt;chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
 &lt;/c3chart>
 </pre>
-        <c3chart bindto-id="eventchart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null">
+        <c3chart bindto-id="donut-plot2-chart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null">
             <chart-legend show-legend="true"/>
             <chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
         </c3chart>
 
+        <p>In the next sample we continue with the previous sample, we now make it possible to configure the selection and on data click present the selected columns.</p>
+<pre class="brush: xml; html-script: false">
+&lt;c3chart bindto-id="eventchart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null">
+    &lt;chart-legend show-legend="true"/>
+    &lt;chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
+    &lt;selection enabled="true"/>
+    &lt;chart-events on-click-data="vm.handleClick(data)"/>
+&lt;/c3chart>
+</pre>
+        <div layout="row">
+            <div layout="column" flex>
+                <c3chart bindto-id="donut-plot3-chart" chart-data="vm.donutPoints" chart-columns="vm.donutColumns" sort-data="null" callback-function="vm.handleCallback">
+                    <chart-legend show-legend="true"/>
+                    <chart-donut expand="true" width="30" show-label="false" title="Donut Title"/>
+                    <selection enabled="true"/>
+                    <chart-events on-click-data="vm.handleClick(data)"/>
+                </c3chart>
+            </div>
+            <div layout="column" flex="20">
+                <p>Selected items:</p>
+                <ul>
+                    <li ng-repeat="item in vm.theChart.selected()">{{item.id}}</li>
+                </ul>
+            </div>
+        </div>
     </md-content>
 </div>

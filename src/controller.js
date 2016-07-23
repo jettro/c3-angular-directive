@@ -83,6 +83,8 @@ function ChartController($scope, $timeout) {
 
     this.setXFormat = setXFormat;
 
+    this.addSelection = addSelection;
+
     resetVars();
 
     function resetVars() {
@@ -112,6 +114,7 @@ function ChartController($scope, $timeout) {
         $scope.sorting = null;
         $scope.transitionDuration = null;
         $scope.initialConfig = null;
+        $scope.selection = null;
     }
 
     function showGraph() {
@@ -327,6 +330,9 @@ function ChartController($scope, $timeout) {
                     $scope.dataOnMouseout({"data": data});
                 });
             };
+        }
+        if ($scope.selection != null) {
+            config.data.selection = $scope.selection;
         }
 
         $scope.config = config;
@@ -633,6 +639,10 @@ function ChartController($scope, $timeout) {
             }
             $scope.colors[id] = columnColor;
         }
+    }
+
+    function addSelection(selection) {
+        $scope.selection = selection;
     }
 
     function loadChartData() {
