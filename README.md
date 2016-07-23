@@ -12,12 +12,12 @@ This repository contains directives that let you easily create graphs using the 
 
 ```
 
-# Documentation
+## Documentation
 There is a page with samples and documentation available:
 http://jettro.github.io/c3-angular-directive/
 
 There is now extensive API docs available here:
-http://jettro.github.io/c3-angular-directive/api-docs/0.7/index.html
+http://jettro.github.io/c3-angular-directive/api-docs/1.3/index.html
 
 The project contains a number of examples that can be started using grunt:
 
@@ -59,6 +59,17 @@ bower install c3-angular --save
 In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
+
+### 1.3
+Closed the following issues
+- 126: Merge request with tooltip documentation fix
+- 118: Zoom documentation
+- 88: Added example for using category labels on the x-axis with dynamic values
+- 100: Added the selections directive
+- 97: Problems with colors are fixed
+- 108: Added support for tooltip contents callback
+- 112: Fixed bug with numeric grid values
+- 125: Upgraded angular to 1.5 and c3 to 0.4.11
 
 ### 1.2
 - In issue 104 @AesSedai proposed more properties for the legend inset directive. These are now added.
