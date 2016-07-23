@@ -139,6 +139,53 @@
                 <md-button class="md-raised" ng-click="vm.toggleGroup()">Toggle grouping</md-button>
             </div>
         </div>
-
+        <div layout="row">
+            <div flex="90">
+            <p>In the next example we show that it is possible to have dynamic data fields while still using category
+            labels for the x-axis.</p>
+<pre class="brush: xml; html-script: true">
+    &lt;c3chart bindto-id="chartGroupDataPoints" chart-data="vm.datapoints" chart-columns="vm.datacolumns"
+             chart-x="vm.datax">
+        &lt;chart-bar ratio="0.5"/>
+        &lt;chart-axes values-x="x"/>
+        &lt;chart-axis>
+            &lt;chart-axis-x axis-position="outer-center"
+                          axis-label="The numbers"
+                          axis-type="category"/>
+        &lt;/chart-axis>
+    &lt;/c3chart>
+</pre>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex="90">
+<pre class="brush: javascript; html-script: true">
+    vm.datapoints = [
+        {"x": "one", "top-1": 10, "top-2": 12},
+        {"x": "two", "top-1": 11, "top-2": 13},
+        {"x": "three", "top-1": 12, "top-2": 14},
+        {"x": "four", "top-1": 13, "top-2": 15},
+        {"x": "five", "top-1": 14, "top-2": 16}
+    ];
+    vm.datacolumns = [{"id": "top-1", "type": "bar", "name": "Top one"},
+        {"id": "top-2", "type": "bar", "name": "Top two"}];
+    vm.datax = {"id": "x"};
+</pre>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex="90">
+                <c3chart bindto-id="chartGroupDataPoints" chart-data="vm.datapoints" chart-columns="vm.datacolumns"
+                         chart-x="vm.datax">
+                    <chart-bar ratio="0.5"/>
+                    <chart-axes values-x="x"/>
+                    <chart-axis>
+                        <chart-axis-x axis-position="outer-center"
+                                      axis-label="The numbers"
+                                      axis-type="category"/>
+                    </chart-axis>
+                </c3chart>
+            </div>
+        </div>
     </md-content>
 </div>
