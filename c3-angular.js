@@ -869,6 +869,12 @@ function C3Chart ($timeout) {
         if (attrs.labelsFormatFunction) {
             chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
         }
+        if (attrs.onZoomEndFunction) {
+            chartCtrl.addOnZoomEndFunction(scope.onZoomEndFunction());
+        }
+        if (attrs.subchartOnBrushFunction){
+          chartCtrl.addSubchartOnBrushFunction(scope.subchartOnBrushFunction());          
+        }        
         if (attrs.callbackFunction) {
             chartCtrl.addChartCallbackFunction(scope.callbackFunction());
         }
@@ -891,7 +897,9 @@ function C3Chart ($timeout) {
             "bindto": "@bindtoId",
             "showLabels": "@showLabels",
             "labelsFormatFunction": "&",
+            "onZoomEndFunction": "&",
             "showSubchart": "@showSubchart",
+            "subchartOnBrushFunction": "&",            
             "enableZoom": "@enableZoom",
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
@@ -1077,6 +1085,9 @@ function ChartController($scope, $timeout) {
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
     this.addTransitionDuration = addTransitionDuration;
 
+    this.addSubchartOnBrushFunction = addSubchartOnBrushFunction;    
+    this.addOnZoomEndFunction = addOnZoomEndFunction;
+
     this.addGauge = addGauge;
     this.addGaugeLabelFormatFunction = addGaugeLabelFormatFunction;
 
@@ -1201,9 +1212,17 @@ function ChartController($scope, $timeout) {
         if ($scope.showSubchart && $scope.showSubchart === "true") {
             config.subchart = {"show": true};
         }
+        if ($scope.subchartOnBrushFunction){
+            config.subchart = config.subchart || {};
+            config.subchart.onbrush = $scope.subchartOnBrushFunction;
+        }                
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
         }
+        if ($scope.onZoomEndFunction){
+            config.zoom = config.zoom || {};
+            config.zoom.onzoomend = $scope.onZoomEndFunction;
+        }        
         config.axis = config.axis || $scope.axis;
         if ($scope.xTick) {
             config.axis.x.tick = $scope.xTick;
@@ -1397,6 +1416,14 @@ function ChartController($scope, $timeout) {
 
     function addDataLabelsFormatFunction(dataLabelsFormatFunction) {
         $scope.dataLabelsFormatFunction = dataLabelsFormatFunction;
+    }
+    
+    function addSubchartOnBrushFunction(subchartOnBrushFunction) {
+        $scope.subchartOnBrushFunction = subchartOnBrushFunction;
+    }
+    
+    function addOnZoomEndFunction(onZoomEndFunction) {
+        $scope.onZoomEndFunction = onZoomEndFunction;
     }
 
     function addChartCallbackFunction(chartCallbackFunction) {
