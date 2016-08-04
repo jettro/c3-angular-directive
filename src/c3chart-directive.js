@@ -56,9 +56,17 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
  *
+ * @param {Function} subchart-on-brush-function Use this if you want to do something after brush on subchart
+ * 
+ *   {@link http://c3js.org/reference.html#subchart-onbrush| c3js doc}
+ *
  * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
+ *
+ * @param {Function} on-zoom-end-function Use this if you want to do something after zooming
+ * 
+ *   {@link http://c3js.org/reference.html#zoom-onzoomend| c3js doc} 
  *
  * @param {Array} chart-data Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.
  * 
@@ -149,6 +157,12 @@ function C3Chart ($timeout) {
         if (attrs.labelsFormatFunction) {
             chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
         }
+        if (attrs.onZoomEndFunction) {
+            chartCtrl.addOnZoomEndFunction(scope.onZoomEndFunction());
+        }
+        if (attrs.subchartOnBrushFunction){
+          chartCtrl.addSubchartOnBrushFunction(scope.subchartOnBrushFunction());          
+        }         
         if (attrs.callbackFunction) {
             chartCtrl.addChartCallbackFunction(scope.callbackFunction());
         }
@@ -171,7 +185,9 @@ function C3Chart ($timeout) {
             "bindto": "@bindtoId",
             "showLabels": "@showLabels",
             "labelsFormatFunction": "&",
+            "onZoomEndFunction": "&",            
             "showSubchart": "@showSubchart",
+            "subchartOnBrushFunction": "&",
             "enableZoom": "@enableZoom",
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
