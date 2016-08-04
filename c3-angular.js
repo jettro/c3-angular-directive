@@ -1,4 +1,4 @@
-/*! c3-angular - v1.3.0 - 2016-07-23
+/*! c3-angular - v1.3.0 - 2016-08-04
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -776,9 +776,17 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
  *
+ * @param {Function} subchart-on-brush-function Use this if you want to do something after brush on subchart
+ * 
+ *   {@link http://c3js.org/reference.html#subchart-onbrush| c3js doc}
+ *
  * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
  * 
  *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
+ *
+ * @param {Function} on-zoom-end-function Use this if you want to do something after zooming
+ * 
+ *   {@link http://c3js.org/reference.html#zoom-onzoomend| c3js doc} 
  *
  * @param {Array} chart-data Provide a reference to a collection that can contain dynamic data. When providing this attrbiute you also need to provide the chart-columns attribute.
  * 
@@ -869,6 +877,12 @@ function C3Chart ($timeout) {
         if (attrs.labelsFormatFunction) {
             chartCtrl.addDataLabelsFormatFunction(scope.labelsFormatFunction());
         }
+        if (attrs.onZoomEndFunction) {
+            chartCtrl.addOnZoomEndFunction(scope.onZoomEndFunction());
+        }
+        if (attrs.subchartOnBrushFunction){
+          chartCtrl.addSubchartOnBrushFunction(scope.subchartOnBrushFunction());          
+        }         
         if (attrs.callbackFunction) {
             chartCtrl.addChartCallbackFunction(scope.callbackFunction());
         }
@@ -891,7 +905,9 @@ function C3Chart ($timeout) {
             "bindto": "@bindtoId",
             "showLabels": "@showLabels",
             "labelsFormatFunction": "&",
+            "onZoomEndFunction": "&",            
             "showSubchart": "@showSubchart",
+            "subchartOnBrushFunction": "&",
             "enableZoom": "@enableZoom",
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
@@ -1076,6 +1092,9 @@ function ChartController($scope, $timeout) {
 
     this.addDataLabelsFormatFunction = addDataLabelsFormatFunction;
     this.addTransitionDuration = addTransitionDuration;
+    
+    this.addSubchartOnBrushFunction = addSubchartOnBrushFunction;    
+    this.addOnZoomEndFunction = addOnZoomEndFunction;    
 
     this.addGauge = addGauge;
     this.addGaugeLabelFormatFunction = addGaugeLabelFormatFunction;
@@ -1201,9 +1220,17 @@ function ChartController($scope, $timeout) {
         if ($scope.showSubchart && $scope.showSubchart === "true") {
             config.subchart = {"show": true};
         }
+        if ($scope.subchartOnBrushFunction){
+            config.subchart = config.subchart || {};
+            config.subchart.onbrush = $scope.subchartOnBrushFunction;
+        }           
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
         }
+        if ($scope.onZoomEndFunction){
+            config.zoom = config.zoom || {};
+            config.zoom.onzoomend = $scope.onZoomEndFunction;
+        }          
         config.axis = config.axis || $scope.axis;
         if ($scope.xTick) {
             config.axis.x.tick = $scope.xTick;
@@ -1398,6 +1425,14 @@ function ChartController($scope, $timeout) {
     function addDataLabelsFormatFunction(dataLabelsFormatFunction) {
         $scope.dataLabelsFormatFunction = dataLabelsFormatFunction;
     }
+    
+    function addSubchartOnBrushFunction(subchartOnBrushFunction) {
+        $scope.subchartOnBrushFunction = subchartOnBrushFunction;
+    }
+    
+    function addOnZoomEndFunction(onZoomEndFunction) {
+        $scope.onZoomEndFunction = onZoomEndFunction;
+    }    
 
     function addChartCallbackFunction(chartCallbackFunction) {
         $scope.chartCallbackFunction = chartCallbackFunction;
@@ -2799,11 +2834,22 @@ angular.module('gridshore.c3js.chart')
  *
  * @example
  * Usage:
- *   <chart-tooltip show-tooltip="true" name-format-function="formatTooltipName"/>
+ *   <chart-tooltip show-tooltip="..." value-format-function="..."/>
  * 
  * Example:
  *   {@link http://jettro.github.io/c3-angular-directive/#examples}
  * 
+ * <chart-tooltip show-tooltip="true" value-format-function="vm.formatTooltip"/>
+ *
+ * function Ctrl() {
+ *   var vm = this;
+ *   vm.formatTooltip = formatTooltip;
+ *
+ *   function formatTooltip(value, ratio, id, index) {
+ *       return '$' + value;
+ *   }
+ * }
+ *
  */
 function ChartTooltip () {
     var tooltipLinker = function (scope, element, attrs, chartCtrl) {
