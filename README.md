@@ -60,6 +60,10 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
+### 1.3.1
+Merged pull request #131 by mumuxin
+Made doc change based on comment from LucasBassetti
+
 ### 1.3
 Closed the following issues
 - 126: Merge request with tooltip documentation fix
@@ -70,6 +74,8 @@ Closed the following issues
 - 108: Added support for tooltip contents callback
 - 112: Fixed bug with numeric grid values
 - 125: Upgraded angular to 1.5 and c3 to 0.4.11
+
+Pull request by LucasBassetti to fix tooltip docs
 
 ### 1.2
 - In issue 104 @AesSedai proposed more properties for the legend inset directive. These are now added.
