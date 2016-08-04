@@ -1,4 +1,4 @@
-/*! c3-angular - v1.3.0 - 2016-08-04
+/*! c3-angular - v1.3.1 - 2016-08-04
 * https://github.com/jettro/c3-angular-directive
 * Copyright (c) 2016 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
@@ -744,6 +744,7 @@ angular.module('gridshore.c3js.chart')
  * @param {Number} padding-bottom Set the bottom padding of the chart.
  *
  *   {@link http://c3js.org/reference.html#padding-bottom| c3js doc}
+ *
  * @param {Number} padding-right Set the right padding of the chart.
  * 
  *   {@link http://c3js.org/reference.html#padding-right| c3js doc}
@@ -782,7 +783,7 @@ angular.module('gridshore.c3js.chart')
  *
  * @param {Boolean} enable-zoom Configure to enable zoom in the chart or not (defaut).
  * 
- *   {@link http://c3js.org/reference.html#subchart-show| c3js doc}
+ *   {@link http://c3js.org/reference.html#zoom-enabled| c3js doc}
  *
  * @param {Function} on-zoom-end-function Use this if you want to do something after zooming
  * 
