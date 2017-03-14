@@ -186,6 +186,10 @@ function ChartController($scope, $timeout) {
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
         }
+        if ($scope.rescaleZoom && $scope.rescaleZoom === "true") {
+            config.zoom = config.zoom || {};
+            config.zoom.rescale = true;
+        }
         if ($scope.onZoomEndFunction){
             config.zoom = config.zoom || {};
             config.zoom.onzoomend = $scope.onZoomEndFunction;
