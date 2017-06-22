@@ -17,6 +17,7 @@ function ChartController($scope, $timeout) {
     this.rotateAxis = rotateAxis;
     this.addPadding = addPadding;
     this.addSorting = addSorting;
+    this.addInteractionEnabled = addInteractionEnabled;
     this.addSize = addSize;
     this.addEmptyLabel = addEmptyLabel;
 
@@ -345,6 +346,12 @@ function ChartController($scope, $timeout) {
         if ($scope.selection != null) {
             config.data.selection = $scope.selection;
         }
+        
+        if (typeof $scope.interactionEnabled === 'boolean') {
+            config.interaction = {
+              enabled: $scope.interactionEnabled
+            };
+        }
 
         $scope.config = config;
 
@@ -450,6 +457,10 @@ function ChartController($scope, $timeout) {
 
     function addSorting(sorting) {
         $scope.sorting = sorting;
+    }
+
+    function addInteractionEnabled(interactionEnabled) {
+        $scope.interactionEnabled = interactionEnabled;
     }
 
     function addGrid(axis) {
