@@ -22,7 +22,7 @@ angular.module('gridshore.c3js.chart')
  * @param {Number} tick-culling-max Set the maximum number of ticks, if specified culling is by default true.
  * 
  *   {@link http://c3js.org/reference.html#axis-x-tick-culling-max| c3js doc}
- * @param {Boolean} tick-multiline Not sure what this does, not documented.
+ * @param {Boolean} tick-multiline Break the line if the tick length doesn't fit in space, default true.
  *
  *   {@link http://c3js.org/reference.html#axis-x-tick-multiline| c3js doc}
  * @param {Boolean} tick-centered Centers the tick on the x axis
