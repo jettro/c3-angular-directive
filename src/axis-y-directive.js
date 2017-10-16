@@ -65,14 +65,14 @@ angular.module('gridshore.c3js.chart')
  *                 axis-label="Higher numbers"
  *                 padding-top="100"
  *                 padding-bottom="0"
- *                 range-min="0"/>
+ *                 axis-min="0"/>
  *     <chart-axis-y axis-id="y2"
  *                 axis-position="outer-right"
  *                 axis-label="Lower numbers"
  *                 padding-top="10"
  *                 padding-bottom="0"
- *                 range-max="100"
- *                 range-min="0"/>
+ *                 axis-max="100"
+ *                 axis-min="0"/>
  *  </chart-axis>
  */
 
