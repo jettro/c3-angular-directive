@@ -1,6 +1,6 @@
-/*! c3-angular - v1.3.1 - 2016-08-04
+/*! c3-angular - v1.3.1 - 2017-10-16
 * https://github.com/jettro/c3-angular-directive
-* Copyright (c) 2016 ; Licensed  */
+* Copyright (c) 2017 ; Licensed  */
 angular.module('gridshore.c3js.chart', []);
 angular.module('gridshore.c3js.chart')
     .directive('chartAxes', ChartAxes);
@@ -273,7 +273,7 @@ angular.module('gridshore.c3js.chart')
  * @param {Number} tick-culling-max Set the maximum number of ticks, if specified culling is by default true.
  * 
  *   {@link http://c3js.org/reference.html#axis-x-tick-culling-max| c3js doc}
- * @param {Boolean} tick-multiline Not sure what this does, not documented.
+ * @param {Boolean} tick-multiline Break the line if the tick length doesn't fit in space, default true.
  *
  *   {@link http://c3js.org/reference.html#axis-x-tick-multiline| c3js doc}
  * @param {Boolean} tick-centered Centers the tick on the x axis
@@ -860,6 +860,10 @@ function C3Chart ($timeout) {
         var transitionDuration = attrs.transitionDuration;
         var initialConfig = attrs.initialConfig;
 
+        if (attrs.interactionEnabled && attrs.interactionEnabled === 'false') {
+            chartCtrl.addInteractionEnabled(false);
+        }
+
         if (paddingTop) {
             chartCtrl.addPadding('top', paddingTop);
         }
@@ -1059,6 +1063,7 @@ function ChartController($scope, $timeout) {
     this.rotateAxis = rotateAxis;
     this.addPadding = addPadding;
     this.addSorting = addSorting;
+    this.addInteractionEnabled = addInteractionEnabled;
     this.addSize = addSize;
     this.addEmptyLabel = addEmptyLabel;
 
@@ -1387,6 +1392,12 @@ function ChartController($scope, $timeout) {
         if ($scope.selection != null) {
             config.data.selection = $scope.selection;
         }
+        
+        if (typeof $scope.interactionEnabled === 'boolean') {
+            config.interaction = {
+              enabled: $scope.interactionEnabled
+            };
+        }
 
         $scope.config = config;
 
@@ -1492,6 +1503,10 @@ function ChartController($scope, $timeout) {
 
     function addSorting(sorting) {
         $scope.sorting = sorting;
+    }
+
+    function addInteractionEnabled(interactionEnabled) {
+        $scope.interactionEnabled = interactionEnabled;
     }
 
     function addGrid(axis) {
