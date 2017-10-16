@@ -6,7 +6,7 @@
     "Jettro Coenradie <jettro@gridshore.nl>"
   ],
   "description": "An angularjs directive to integrate c3.js within your angularjs project.",
-  "main": "c3-angular.min.js",
+  "main": "c3-angular.js",
   "moduleType": [
     "yui"
   ],
@@ -24,7 +24,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.5",
+    "angular": "~1.6",
     "c3": "0.4.18"
   }
 }
