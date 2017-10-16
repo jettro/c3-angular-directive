@@ -61,6 +61,15 @@ In the end you just need one file in your project: c3-angular.min.js
 
 ## Version History
 
+### 1.4.0
+- Upgrade to version 0.4.18 of c3js library
+- Merged pull request #174 by adamczykmichael update to material css
+- Merged pull request #172 by esahekmat with a fix for documentation
+- Merged pull request #169 by vmanchev with a new option for interaction enabled
+
+
+
+
 ### 1.3.1
 Merged pull request #131 by mumuxin
 Made doc change based on comment from LucasBassetti
