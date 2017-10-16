@@ -140,6 +140,10 @@ function C3Chart ($timeout) {
         var transitionDuration = attrs.transitionDuration;
         var initialConfig = attrs.initialConfig;
 
+        if (attrs.interactionEnabled && attrs.interactionEnabled === 'false') {
+            chartCtrl.addInteractionEnabled(false);
+        }
+
         if (paddingTop) {
             chartCtrl.addPadding('top', paddingTop);
         }
