@@ -155,12 +155,12 @@ function ChartAxisXTick() {
             }
         }
 
-        var format = attrs.format;
+        var format = attrs.tickFormat;
         if (format) {
             tick.format = d3.format(format);
         }
 
-        var formatTime = attrs.formatTime;
+        var formatTime = attrs.tickFormatTime;
         if (formatTime) {
             tick.format = d3.time.format(formatTime);
         }
