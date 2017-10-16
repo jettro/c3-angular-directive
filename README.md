@@ -66,6 +66,7 @@ In the end you just need one file in your project: c3-angular.min.js
 - Merged pull request #174 by adamczykmichael update to material css
 - Merged pull request #172 by esahekmat with a fix for documentation
 - Merged pull request #169 by vmanchev with a new option for interaction enabled
+- Merged pull request #134 by ishank18 with a more consistent tick labelling
 
 
 
