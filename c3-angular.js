@@ -785,6 +785,10 @@ angular.module('gridshore.c3js.chart')
  * 
  *   {@link http://c3js.org/reference.html#zoom-enabled| c3js doc}
  *
+ * @param {Boolean} rescale-zoom Use it to update the y domain according to the zoomed region.
+ * 
+ *   {@link http://c3js.org/reference.html#zoom-rescale| c3js doc}
+ *
  * @param {Function} on-zoom-end-function Use this if you want to do something after zooming
  * 
  *   {@link http://c3js.org/reference.html#zoom-onzoomend| c3js doc} 
@@ -914,6 +918,7 @@ function C3Chart ($timeout) {
             "showSubchart": "@showSubchart",
             "subchartOnBrushFunction": "&",
             "enableZoom": "@enableZoom",
+            "rescaleZoom": "@rescaleZoom",
             "chartData": "=chartData",
             "chartColumns": "=chartColumns",
             "chartX": "=chartX",
@@ -1232,6 +1237,10 @@ function ChartController($scope, $timeout) {
         }           
         if ($scope.enableZoom && $scope.enableZoom === "true") {
             config.zoom = {"enabled": true};
+        }
+        if ($scope.rescaleZoom && $scope.rescaleZoom === "true") {
+            config.zoom = config.zoom || {};
+            config.zoom.rescale = true;
         }
         if ($scope.onZoomEndFunction){
             config.zoom = config.zoom || {};
